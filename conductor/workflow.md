@@ -27,22 +27,34 @@ Once the track is fully completed and has passed the **Code Review Process**:
    ```bash
    git push -u origin <track_id>
    ```
-2. **Update Version:** Update the project version using the `npm version` command with the appropriate named argument (`major`, `minor`, or `patch`).
-   - **Command:** `npm version [major|minor|patch] --no-git-tag-version`
-   - **Synchronization:** Immediately after updating `package.json`, manually update the `version` field in `./src/manifest.json` to match.
-   - **Commit:** Stage and commit both `package.json` and `./src/manifest.json` with a message following the format: `chore(release): bump version to v<new_version>`.
-3. **Open Pull Request:** Use the GitHub CLI to open a PR. The PR body MUST include:
-   - **Closes:** Reference the Track ID.
-   - **Work Summary:** A high-level outline of the work implemented.
-   - **Requirements Mapping:** References to specific product requirements (e.g., REQ-123 or section titles from `product.md`) satisfied by this track.
-   - **Manual Verification:** Step-by-step instructions for manual verification.
-   - **Formatting Protocol:**
-     - **File Links:** If referencing a markdown file (e.g., `conductor/product.md`), create a markdown link to that file on the current branch (e.g., `[conductor/product.md](../../blob/<branch_name>/conductor/product.md)`).
-     - **Fallback:** If linking is not possible, surround the filename with backticks (e.g., `src/manifest.json`).
-     - **URLs:** Format all URLs (including `chrome://extensions`) as markdown links (e.g., `[chrome://extensions](chrome://extensions)`).
-   ```bash
-   gh pr create --title "feat(conductor): <track_description>" --body "<Detailed Body Content>"
-   ```
+2. **Update Version:** Update the project version using the `npm version` command.
+   - **Protocol:** You MUST ask the user to select between `major`, `minor`, `patch`, or `none` using the `ask_user` tool.
+   - **Recommendation:** You should provide a recommendation based on your understanding of the changes:
+     - **none:** Recommended for tracks that are NOT end-user facing (e.g., internal tests, documentation updates, maintenance chores).
+     - **patch:** Recommended for bug fixes or changes that only affect the web dashboard or internal documentation without requiring a Chrome extension update.
+     - **minor:** Recommended for new features that are backward compatible.
+     - **major:** Recommended for incompatible API changes or significant architectural shifts.
+   - **Action (if bump chosen):**
+     - **Command:** `npm version [major|minor|patch] --no-git-tag-version`
+     - **Synchronization:** Immediately after updating `package.json`, manually update the `version` field in `./src/manifest.json` to match.
+     - **Commit:** Stage and commit both `package.json` and `./src/manifest.json` with a message following the format: `chore(release): bump version to v<new_version>`.
+   - **Action (if none chosen):** Skip version update and proceed to the next step.
+3. **Open Pull Request:** Use the GitHub CLI to open a PR. To avoid shell escaping issues (especially with backticks), follow this protocol:
+   - **Step 3.1: Create Body File:** Create a temporary file named `prbody.md` containing the detailed description.
+   - **Step 3.2: Generate PR Content:** The PR body MUST include:
+     - **Closes:** Reference the Track ID.
+     - **Work Summary:** A high-level outline of the work implemented.
+     - **Requirements Mapping:** References to specific product requirements (e.g., REQ-123 or section titles from `product.md`) satisfied by this track.
+     - **Manual Verification:** Step-by-step instructions for manual verification.
+     - **Formatting Protocol:**
+       - **File Links:** If referencing a markdown file (e.g., `conductor/product.md`), create a markdown link to that file on the current branch (e.g., `[conductor/product.md](../../blob/<branch_name>/conductor/product.md)`).
+       - **Fallback:** If linking is not possible, surround the filename with backticks (e.g., `src/manifest.json`).
+       - **URLs:** Format all URLs (including `chrome://extensions`) as markdown links (e.g., `[chrome://extensions](chrome://extensions)`).
+   - **Step 3.3: Execute PR Creation:** Use the `--body-file` flag with the GitHub CLI.
+     ```bash
+     gh pr create --title "feat(conductor): <track_description>" --body-file prbody.md
+     ```
+   - **Step 3.4: Cleanup:** Delete the temporary `prbody.md` file immediately after the PR is successfully created.
 
 ## Task Workflow
 
