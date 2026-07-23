@@ -12,20 +12,21 @@
 
 ## Track Workflow
 
-### Track Branching Protocol
+### Track Worktree Protocol (JungleJim)
 Before starting any work on a new track:
-1. **Identify Track Type and Short Name:** Determine the track type (e.g., `feat`, `fix`, `chore`) and a descriptive short name.
-2. **Create & Checkout Branch:** Create a new git branch using the pattern `<type>/<short_name>` (e.g., `feat/extension_popup`).
+1. **Identify Track ID:** Determine the track ID (e.g., `extension_popup` or `auth-flow`).
+2. **Spawn Track Worktree:** Create an isolated worktree under `.worktrees/<track_id>` using JungleJim:
    ```bash
-   git checkout -b <type>/<short_name>
+   git agent-start <track_id>
    ```
-3. **Commit Exclusively:** All commits related to the track (code, plan updates, checkpoints) MUST be made on this branch.
+   Under the hood, this creates a Git branch `feature/<track_id>` and checks out the isolated worktree into `.worktrees/<track_id>`.
+3. **Work in Worktree:** All work related to the track (code, plan updates, checkpoints) MUST be performed inside `.worktrees/<track_id>`.
 
-### Track Finalization (Pull Request)
+### Track Finalization (Pull Request & Teardown)
 Once the track is fully completed and has passed the **Code Review Process**:
 1. **Push Branch:** Ensure the local branch is pushed to the remote repository.
    ```bash
-   git push -u origin <track_id>
+   git push -u origin feature/<track_id>
    ```
 2. **Update Version:** Update the project version using the `npm version` command.
    - **Protocol:** You MUST ask the user to select between `major`, `minor`, `patch`, or `none` using the `ask_user` tool.
@@ -55,6 +56,10 @@ Once the track is fully completed and has passed the **Code Review Process**:
      gh pr create --title "feat(conductor): <track_description>" --body-file prbody.md
      ```
    - **Step 3.4: Cleanup:** Delete the temporary `prbody.md` file immediately after the PR is successfully created.
+4. **Teardown Worktree (JungleJim Teardown):** Once the PR has been reviewed and merged, clean up the worktree and local branch:
+   ```bash
+   git agent-stop <track_id>
+   ```
 
 ## Task Workflow
 
@@ -65,15 +70,16 @@ All tasks follow a strict lifecycle:
 ### Track Initiation
 
 When suggesting new tracks to begin:
-1. **Check Existing Branches:** First, check all existing local and remote branches. A track may be being implemented in parallel on a different branch.
-2. **Identify In-Progress Work:** If a branch already exists that appears to correspond to a potential track, and it is not the currently checked-out branch, clearly indicate this in the suggestion list.
-3. **Avoid Duplication:** Do not suggest creating a new track for work that is already active on another branch unless specifically asked to branch off or restart.
+1. **Check Active Jims & Branches:** First, check active worktrees using `git jims` and check all existing local and remote branches. A track may be actively being implemented in parallel in a `.worktrees/<track_id>` worktree or on another branch.
+2. **Identify In-Progress Work:** If a worktree or branch already exists for a potential track, clearly indicate this in the suggestion list.
+3. **Avoid Duplication:** Do not suggest creating a new track for work that is already active on another branch or worktree unless specifically asked.
 
 ### Track Startup
 
-1. **Create Track Branch:** Create a new branch for the track using the formal pattern `<type>/<short_name>` (e.g., `feat/messaging`).
-2. **Initialize Track Files:** Create the track directory and initial files (`index.md`, `metadata.json`, `spec.md`, `plan.md`) following the standard templates. Ensure the `plan.md` contains the initial strategy and tasks.
-3. **Push to Remote:** Immediately push the new branch and the initialized track files to the remote repository (`git push -u origin <branch_name>`) so that the plan is visible to other agents and developers.
+1. **Spawn Track Worktree:** Spawn a worktree for the track using JungleJim: `git agent-start <track_id>`.
+2. **Navigate to Worktree:** Move into `.worktrees/<track_id>` to perform all track development.
+3. **Initialize Track Files:** Create the track directory and initial files (`index.md`, `metadata.json`, `spec.md`, `plan.md`) following standard templates. Ensure `plan.md` contains the initial strategy and tasks.
+4. **Push to Remote:** Push the new branch and track files to the remote repository (`git push -u origin feature/<track_id>`).
 
 ### Standard Task Workflow
 
