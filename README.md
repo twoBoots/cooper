@@ -1,19 +1,19 @@
-# Wrangler 🐒
+# Cooper 🛢️🐒
 
-**Wrangler** combines the **Conductor** methodology with worktree isolation via **JungleJim** ([twoBoots/junglejim](https://github.com/twoBoots/junglejim)) for wrangling code monkeys (i.e. human and AI developers).
+**Cooper** combines the **Conductor** methodology with worktree isolation via **JungleJim** ([twoBoots/junglejim](https://github.com/twoBoots/junglejim)) for crafting a barrel of monkeys (i.e. human and AI developers).
 
 ## Quick Start / One-Line Installation
 
-To set up **Wrangler** in any Git project repository, navigate to your target project folder and run:
+To set up **Cooper** in any Git project repository, navigate to your target project folder and run:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/twoBoots/wrangler/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/twoBoots/cooper/main/install.sh | bash
 ```
 
 Alternatively, if you have this repository cloned locally:
 
 ```bash
-/path/to/wrangler/install.sh /path/to/your-project
+/path/to/cooper/install.sh /path/to/your-project
 ```
 
 ### What `install.sh` does:

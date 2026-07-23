@@ -1,4 +1,4 @@
-# Agent Guidelines (Wrangler + JungleJim Workflow)
+# Agent Guidelines (Cooper + JungleJim Workflow)
 
 ## Rules
 

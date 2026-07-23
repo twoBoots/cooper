@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -e
 
-# Wrangler Remote/Local Installer Script
-# Scaffolds Wrangler (Conductor Workflow + JungleJim Worktrees) into any Git repository.
+# Cooper Remote/Local Installer Script
+# Scaffolds Cooper (Conductor Workflow + JungleJim Worktrees) into any Git repository.
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/twoBoots/wrangler/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/twoBoots/cooper/main/install.sh | bash
 #   or: ./install.sh [target_directory]
 
-RAW_BASE_URL="https://raw.githubusercontent.com/twoBoots/wrangler/main"
+RAW_BASE_URL="https://raw.githubusercontent.com/twoBoots/cooper/main"
 JJ_RAW_BASE_URL="https://raw.githubusercontent.com/twoBoots/junglejim/main"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" 2>/dev/null)" && pwd || true)"
 TARGET_DIR="${1:-$(pwd)}"
@@ -21,10 +21,10 @@ if [ ! -d ".git" ] && ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; the
     exit 1
 fi
 
-echo "🤠 Installing Wrangler (Conductor + JungleJim) into $(pwd)..."
+echo "🛢️ Installing Cooper (Conductor + JungleJim) into $(pwd)..."
 
-# Helper function to fetch or copy a file from Wrangler repo
-get_wrangler_file() {
+# Helper function to fetch or copy a file from Cooper repo
+get_cooper_file() {
     local filename="$1"
     local dest="${2:-$filename}"
     local dest_dir="$(dirname "$dest")"
@@ -59,7 +59,7 @@ fi
 
 # 2. Install Conductor workflow specification
 echo "  [2/3] Installing Conductor workflow specification..."
-get_wrangler_file "conductor/workflow.md" "conductor/workflow.md"
+get_cooper_file "conductor/workflow.md" "conductor/workflow.md"
 echo "  [✓] Installed conductor/workflow.md"
 
 # 3. Setup AGENTS.md
@@ -77,18 +77,18 @@ if [ -f "AGENTS.md" ]; then
     if ! grep -qs "Conductor" AGENTS.md; then
         echo "" >> AGENTS.md
         cat "$TMP_TEMPLATE" >> AGENTS.md
-        echo "  [✓] Appended Wrangler Conductor rules to existing AGENTS.md"
+        echo "  [✓] Appended Cooper Conductor rules to existing AGENTS.md"
     else
-        echo "  [✓] Wrangler Conductor rules already present in AGENTS.md"
+        echo "  [✓] Cooper Conductor rules already present in AGENTS.md"
     fi
 else
     cp "$TMP_TEMPLATE" AGENTS.md
-    echo "  [✓] Created AGENTS.md from Wrangler template"
+    echo "  [✓] Created AGENTS.md from Cooper template"
 fi
 rm -f "$TMP_TEMPLATE"
 
 echo ""
-echo "🤠 Wrangler successfully installed!"
+echo "🛢️ Cooper successfully installed!"
 echo "Workflow summary:"
 echo "  1. Start track in isolated worktree : git agent-start <track_id>"
 echo "  2. List active tracks               : git jims"
