@@ -31,9 +31,9 @@ Alternatively, if you have this repository cloned locally:
 ## Workflow Summary
 
 1. **Spawn Track Worktree**: `git agent-start <track_id>`
-   - Creates branch `feature/<track_id>` and checks out isolated worktree at `.worktrees/<track_id>`.
+   - Creates branch `<track_id>` and checks out isolated worktree at `.worktrees/<track_id>`.
 2. **Develop in Worktree**: Navigate to `.worktrees/<track_id>` to work.
    - Follow TDD, maintain high coverage, record plan updates, and create phase checkpoints following `conductor/workflow.md`.
 3. **List Active Worktrees**: `git jims`
-4. **Push & PR**: Push `feature/<track_id>` and submit PR.
+4. **Push & PR**: Push `<track_id>` and submit PR.
 5. **Teardown Worktree**: `git agent-stop <track_id>` after PR approval and merge.

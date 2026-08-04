@@ -19,14 +19,14 @@ Before starting any work on a new track:
    ```bash
    git agent-start <track_id>
    ```
-   Under the hood, this creates a Git branch `feature/<track_id>` and checks out the isolated worktree into `.worktrees/<track_id>`.
+   Under the hood, this creates a Git branch `<track_id>` and checks out the isolated worktree into `.worktrees/<track_id>`.
 3. **Work in Worktree:** All work related to the track (code, plan updates, checkpoints) MUST be performed inside `.worktrees/<track_id>`.
 
 ### Track Finalization (Pull Request & Teardown)
 Once the track is fully completed and has passed the **Code Review Process**:
 1. **Push Branch:** Ensure the local branch is pushed to the remote repository.
    ```bash
-   git push -u origin feature/<track_id>
+   git push -u origin <track_id>
    ```
 2. **Update Version:** Update the project version using the `npm version` command.
    - **Protocol:** You MUST ask the user to select between `major`, `minor`, `patch`, or `none` using the `ask_user` tool.
@@ -79,7 +79,7 @@ When suggesting new tracks to begin:
 1. **Spawn Track Worktree:** Spawn a worktree for the track using JungleJim: `git agent-start <track_id>`.
 2. **Navigate to Worktree:** Move into `.worktrees/<track_id>` to perform all track development.
 3. **Initialize Track Files:** Create the track directory and initial files (`index.md`, `metadata.json`, `spec.md`, `plan.md`) following standard templates. Ensure `plan.md` contains the initial strategy and tasks.
-4. **Push to Remote:** Push the new branch and track files to the remote repository (`git push -u origin feature/<track_id>`).
+4. **Push to Remote:** Push the new branch and track files to the remote repository (`git push -u origin <track_id>`).
 
 ### Standard Task Workflow
 
@@ -398,7 +398,7 @@ A task is complete when:
 - [ ] Backup created
 
 ### Deployment Steps
-1. Merge feature branch to main
+1. Merge track branch to main
 2. Tag release with version
 3. Push to deployment service
 4. Run database migrations
