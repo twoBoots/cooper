@@ -12,10 +12,10 @@
 
 ## Track Workflow
 
-### Track Worktree Protocol (JungleJim)
+### Track Worktree Protocol (Troop)
 Before starting any work on a new track:
 1. **Identify Track ID:** Determine the track ID (e.g., `extension_popup` or `auth-flow`).
-2. **Spawn Track Worktree:** Create an isolated worktree under `.worktrees/<track_id>` using JungleJim:
+2. **Spawn Track Worktree:** Create an isolated worktree under `.worktrees/<track_id>` using Troop:
    ```bash
    git agent-start <track_id>
    ```
@@ -56,7 +56,7 @@ Once the track is fully completed and has passed the **Code Review Process**:
      gh pr create --title "feat(conductor): <track_description>" --body-file prbody.md
      ```
    - **Step 3.4: Cleanup:** Delete the temporary `prbody.md` file immediately after the PR is successfully created.
-4. **Teardown Worktree (JungleJim Teardown):** Once the PR has been reviewed and merged, clean up the worktree and local branch:
+4. **Teardown Worktree (Troop Teardown):** Once the PR has been reviewed and merged, clean up the worktree and local branch:
    ```bash
    git agent-stop <track_id>
    ```
@@ -65,18 +65,18 @@ Once the track is fully completed and has passed the **Code Review Process**:
 
 All tasks follow a strict lifecycle:
 
-## Track Lifecycle
+### Track Lifecycle
 
 ### Track Initiation
 
 When suggesting new tracks to begin:
-1. **Check Active Jims & Branches:** First, check active worktrees using `git jims` and check all existing local and remote branches. A track may be actively being implemented in parallel in a `.worktrees/<track_id>` worktree or on another branch.
+1. **Check Active Worktrees & Branches:** First, check active worktrees using `git troop` and check all existing local and remote branches. A track may be actively being implemented in parallel in a `.worktrees/<track_id>` worktree or on another branch.
 2. **Identify In-Progress Work:** If a worktree or branch already exists for a potential track, clearly indicate this in the suggestion list.
 3. **Avoid Duplication:** Do not suggest creating a new track for work that is already active on another branch or worktree unless specifically asked.
 
 ### Track Startup
 
-1. **Spawn Track Worktree:** Spawn a worktree for the track using JungleJim: `git agent-start <track_id>`.
+1. **Spawn Track Worktree:** Spawn a worktree for the track using Troop: `git agent-start <track_id>`.
 2. **Navigate to Worktree:** Move into `.worktrees/<track_id>` to perform all track development.
 3. **Initialize Track Files:** Create the track directory and initial files (`index.md`, `metadata.json`, `spec.md`, `plan.md`) following standard templates. Ensure `plan.md` contains the initial strategy and tasks.
 4. **Push to Remote:** Push the new branch and track files to the remote repository (`git push -u origin <track_id>`).

@@ -1,6 +1,6 @@
 # Cooper 🛢️🐒
 
-**Cooper** combines the **Conductor** methodology with worktree isolation via **JungleJim** ([twoBoots/junglejim](https://github.com/twoBoots/junglejim)) for crafting a barrel of monkeys (i.e. human and AI developers).
+**Cooper** combines the **Conductor** methodology with worktree isolation via **Troop** ([twoBoots/troop](https://github.com/twoBoots/troop)) for crafting a barrel of monkeys (i.e. human and AI developers working in trees).
 
 ## Quick Start / One-Line Installation
 
@@ -18,14 +18,14 @@ Alternatively, if you have this repository cloned locally:
 
 ### What `install.sh` does:
 
-1. **JungleJim Setup**: Runs the `junglejim` installer to set up shared Git aliases (`git agent-start`, `git jims`, `git agent-stop`), `.gitignore` (`.worktrees/`), and installs `JUNGLEJIM.md`.
+1. **Troop Setup**: Runs the `troop` installer to set up shared Git aliases (`git agent-start`, `git troop`, `git agent-stop`), `.gitignore` (`.worktrees/`), and installs `TROOP.md`.
 2. **Conductor Specification**: Copies `conductor/workflow.md` into your project's `conductor/` directory.
-3. **Agent Rules**: Injects combined Conductor + JungleJim rules from `AGENTS.template.md` into your project's `AGENTS.md`.
+3. **Agent Rules**: Injects combined Conductor + Troop rules from `AGENTS.template.md` into your project's `AGENTS.md`.
 
 ## Structure
 
 - `install.sh`: One-line automated installer script.
-- `conductor/workflow.md`: The combined Conductor + JungleJim workflow specification.
+- `conductor/workflow.md`: The combined Conductor + Troop workflow specification.
 - `AGENTS.template.md`: Template rules injected into `AGENTS.md` for AI agent instructions.
 
 ## Workflow Summary
@@ -34,6 +34,6 @@ Alternatively, if you have this repository cloned locally:
    - Creates branch `<track_id>` and checks out isolated worktree at `.worktrees/<track_id>`.
 2. **Develop in Worktree**: Navigate to `.worktrees/<track_id>` to work.
    - Follow TDD, maintain high coverage, record plan updates, and create phase checkpoints following `conductor/workflow.md`.
-3. **List Active Worktrees**: `git jims`
+3. **List Active Worktrees**: `git troop`
 4. **Push & PR**: Push `<track_id>` and submit PR.
 5. **Teardown Worktree**: `git agent-stop <track_id>` after PR approval and merge.

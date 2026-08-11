@@ -2,14 +2,14 @@
 set -e
 
 # Cooper Remote/Local Installer Script
-# Scaffolds Cooper (Conductor Workflow + JungleJim Worktrees) into any Git repository.
+# Scaffolds Cooper (Conductor Workflow + Troop Worktrees) into any Git repository.
 #
 # Usage:
 #   curl -fsSL https://raw.githubusercontent.com/twoBoots/cooper/main/install.sh | bash
 #   or: ./install.sh [target_directory]
 
 RAW_BASE_URL="https://raw.githubusercontent.com/twoBoots/cooper/main"
-JJ_RAW_BASE_URL="https://raw.githubusercontent.com/twoBoots/junglejim/main"
+TROOP_RAW_BASE_URL="https://raw.githubusercontent.com/twoBoots/troop/main"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" 2>/dev/null)" && pwd || true)"
 TARGET_DIR="${1:-$(pwd)}"
 
@@ -21,7 +21,7 @@ if [ ! -d ".git" ] && ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; the
     exit 1
 fi
 
-echo "🛢️ Installing Cooper (Conductor + JungleJim) into $(pwd)..."
+echo "🛢️ Installing Cooper (Conductor + Troop) into $(pwd)..."
 
 # Helper function to fetch or copy a file from Cooper repo
 get_cooper_file() {
@@ -44,16 +44,16 @@ get_cooper_file() {
     fi
 }
 
-# 1. Run JungleJim installer first (worktree setup, .gitaliases, .gitignore, JUNGLEJIM.md)
-echo "  [1/3] Setting up JungleJim worktree foundation..."
-if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/../junglejim/install.sh" ]; then
-    "$SCRIPT_DIR/../junglejim/install.sh" "$TARGET_DIR"
+# 1. Run Troop installer first (worktree setup, .gitaliases, .gitignore, TROOP.md)
+echo "  [1/3] Setting up Troop worktree foundation..."
+if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/../troop/install.sh" ]; then
+    "$SCRIPT_DIR/../troop/install.sh" "$TARGET_DIR"
 elif command -v curl >/dev/null 2>&1; then
-    curl -fsSL "$JJ_RAW_BASE_URL/install.sh" | bash
+    curl -fsSL "$TROOP_RAW_BASE_URL/install.sh" | bash
 elif command -v wget >/dev/null 2>&1; then
-    wget -qO- "$JJ_RAW_BASE_URL/install.sh" | bash
+    wget -qO- "$TROOP_RAW_BASE_URL/install.sh" | bash
 else
-    echo "Error: Unable to fetch JungleJim installer."
+    echo "Error: Unable to fetch Troop installer."
     exit 1
 fi
 
@@ -91,6 +91,6 @@ echo ""
 echo "🛢️ Cooper successfully installed!"
 echo "Workflow summary:"
 echo "  1. Start track in isolated worktree : git agent-start <track_id>"
-echo "  2. List active tracks               : git jims"
+echo "  2. List active tracks               : git troop"
 echo "  3. Develop & checkpoint             : Follow conductor/workflow.md"
 echo "  4. Teardown track after PR merge    : git agent-stop <track_id>"
