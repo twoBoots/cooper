@@ -1,6 +1,6 @@
 # Cooper 🛢️🐒
 
-**Cooper** combines the **Conductor** methodology with worktree isolation via **Troop** ([twoBoots/troop](https://github.com/twoBoots/troop)) for crafting a barrel of monkeys (i.e. human and AI developers working in trees).
+**Cooper** combines the **Conductor** ([conductor](https://github.com/gemini-cli-extensions/conductor)) methodology with worktree isolation via **Troop** ([troop](https://github.com/twoBoots/troop)) for crafting a barrel of monkeys (i.e. human and AI developers working in trees).
 
 ## Quick Start / One-Line Installation
 
