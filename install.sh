@@ -66,7 +66,7 @@ get_conductor_template() {
 # 1. Run Troop installer first (worktree setup, .gitaliases, .gitignore, TROOP.md)
 echo "  [1/4] Setting up Troop worktree foundation..."
 if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/../troop/install.sh" ]; then
-    "$SCRIPT_DIR/../troop/install.sh" "$TARGET_DIR"
+    bash "$SCRIPT_DIR/../troop/install.sh" "$TARGET_DIR"
 elif command -v curl >/dev/null 2>&1; then
     curl -fsSL "$TROOP_RAW_BASE_URL/install.sh" | bash
 elif command -v wget >/dev/null 2>&1; then
