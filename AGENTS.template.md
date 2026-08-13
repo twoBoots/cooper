@@ -1,18 +1,23 @@
-# Agent Guidelines (Cooper + Troop Workflow)
+# Agent Guidelines (Cooper Hybrid Framework + Troop Workflow)
 
 ## Rules
 
-1. **Conductor Mandate**:
-   - All feature development, bug fixes, and significant changes MUST follow the **Conductor Workflow**.
-   - Refer to `conductor/workflow.md` for the specific track lifecycle (TDD, plan updates, git notes, checkpoints, and quality gates).
+1. **Cooper Hybrid Mandate (.cooper/)**:
+   - All feature development, bug fixes, and system changes MUST follow the **Cooper Hybrid Workflow**.
+   - Refer to `.cooper/definition/workflow.md` (or `cooper/workflow.md`) for full track lifecycle guidelines.
+   - Read living capability specs from `.cooper/specs/<capability>/spec.md` before starting new tracks.
+   - All proposed feature changes MUST produce a **Spec Delta** (`.cooper/active/<track_id>/spec-deltas/<capability>/spec.md`) showing requirement additions (`+`) and deletions (`-`) before code is written.
 
-2. **Troop Isolation Protocol**:
-   - Work inside an isolated worktree under `.worktrees/<track_id>`. Do NOT modify code in the repository main trunk directly unless explicitly instructed.
+2. **Troop Worktree Isolation Protocol**:
+   - Work inside an isolated worktree under `.worktrees/<track_id>`. Do NOT modify code in the main repository trunk directly.
    - Base track worktrees off `main` using `git agent-start <track_id>`.
 
-3. **Execution & Cleanup**:
-   - List active track worktrees with `git troop`.
-   - Teardown completed worktrees with `git agent-stop <track_id>` after PR approval and merge.
+3. **Phase & Remote Synchronization**:
+   - At phase completion, run `git fetch origin main` to synchronize workflow rules and living capability specs across parallel worktrees.
+   - Push completed phase checkpoints and Git Notes metadata to remote using `git push origin <track_id>`.
 
-4. **Source of Truth**:
-   - Read `conductor/workflow.md` for full lifecycle and workflow guidelines.
+4. **Quality & Execution Control**:
+   - Enforce TDD (Red -> Green -> Refactor) and maintain test coverage >80%.
+   - Attach task execution summaries and phase checkpoint reports via `git notes add -m`.
+   - List active tracks with `git troop`.
+   - Teardown completed worktrees with `git agent-stop <track_id>` after PR approval and merge.

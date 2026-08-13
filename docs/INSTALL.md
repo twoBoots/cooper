@@ -1,0 +1,79 @@
+# Cooper Installation & Migration Guide
+
+`install.sh` is a one-line installer that scaffolds the **Cooper Hybrid Spec-Driven Development (SDD) Framework** (`.cooper/`) and **Troop Worktree Isolation** (`.worktrees/`) into any target Git repository.
+
+---
+
+## Quick Installation
+
+Run the following command inside your target repository:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/twoBoots/cooper/main/install.sh | bash
+```
+
+Alternatively, if running from a local clone of the Cooper repository:
+
+```bash
+/path/to/cooper/install.sh /path/to/your-project
+```
+
+---
+
+## Installer Execution Flow & Migration Logic
+
+```mermaid
+flowchart TD
+    A["run install.sh"] --> B{"Audit Target Repository"}
+    
+    B -->|Conductor Exists| C["1. Auto-Migrate conductor/ -> .cooper/"]
+    B -->|OpenSpec Exists| D["2. Auto-Migrate openspec/ -> .cooper/specs/"]
+    B -->|Neither Exists| E["3. Fetch Scaffolding Templates from twoBoots/conductor"]
+    
+    C --> F["Setup .cooper/ Structure & Backward-Compatible conductor/workflow.md"]
+    D --> F
+    E --> F
+    
+    F --> G["Run Troop Setup & Inject Rules into AGENTS.md"]
+```
+
+### 1. Troop Foundation Setup
+The installer runs the `troop` installer (`twoBoots/troop`) to establish Git worktree isolation:
+* Sets up Git command aliases (`git agent-start <track_id>`, `git troop`, `git agent-stop <track_id>`).
+* Updates `.gitignore` to exclude `.worktrees/`.
+* Installs `TROOP.md` reference guide.
+
+### 2. Auto-Migration & Scaffolding Scenarios
+
+#### Scenario A: Existing Conductor Setup Detected
+If an existing `conductor/` directory is present in the target repository:
+* **Definitions**: Migrates `product.md`, `tech-stack.md`, `product-guidelines.md`, and `workflow.md` to `.cooper/definition/`.
+* **Code Style Guides**: Migrates `conductor/code_styleguides/` to `.cooper/code_styleguides/`.
+* **Tracks**: Migrates `conductor/tracks/` to `.cooper/archive/`.
+* **Backward Compatibility**: Maintains `conductor/workflow.md` as a copy pointing to `.cooper/definition/workflow.md` so legacy scripts continue to work without breaking.
+
+#### Scenario B: Existing OpenSpec Setup Detected
+If an existing `openspec/` directory is present in the target repository:
+* **Living Specs**: Copies capability specs from `openspec/specs/` directly to `.cooper/specs/`.
+* **Active Changes**: Copies change proposals from `openspec/changes/` to `.cooper/active/`.
+
+#### Scenario C: Greenfield Project (Neither Exists)
+If neither `conductor/` nor `openspec/` is found:
+* **Fetches Templates**: Dynamically fetches baseline project definitions (`product.md`, `tech-stack.md`, `product-guidelines.md`) and code styleguides (`typescript.md`, `python.md`) from `twoBoots/conductor`.
+* **Scaffolds `.cooper/` Directory**: Initializes the baseline directory structure:
+  ```
+  .cooper/
+  ├── definition/
+  ├── code_styleguides/
+  ├── specs/
+  ├── active/
+  └── archive/
+  ```
+
+### 3. Agent Rules Injection (`AGENTS.md`)
+The installer creates or appends to `AGENTS.md` with rules instructing AI agents to follow:
+* `.cooper/specs/` living spec reading.
+* `.cooper/active/<track_id>/spec-deltas/` requirement diff generation.
+* TDD Red/Green/Refactor cycle with Git Notes summaries (`git notes add -m`).
+* Phase completion synchronization (`git fetch origin main` & `git push origin <track_id>`).
+* Troop worktree isolation (`.worktrees/<track_id>`).
