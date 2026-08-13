@@ -2,7 +2,7 @@
 set -e
 
 # Cooper Remote/Local Installer Script
-# Scaffolds Cooper (Conductor Workflow + Troop Worktrees) into any Git repository.
+# Scaffolds Cooper (Cooper Hybrid SDD Workflow + Troop Worktrees) into any Git repository.
 #
 # Usage:
 #   curl -fsSL https://raw.githubusercontent.com/twoBoots/cooper/main/install.sh | bash
@@ -21,7 +21,7 @@ if [ ! -d ".git" ] && ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; the
     exit 1
 fi
 
-echo "🛢️ Installing Cooper (Conductor + Troop) into $(pwd)..."
+echo "🛢️ Installing Cooper (Cooper Hybrid SDD + Troop) into $(pwd)..."
 
 # Helper function to fetch or copy a file from Cooper repo
 get_cooper_file() {
@@ -57,10 +57,11 @@ else
     exit 1
 fi
 
-# 2. Install Conductor workflow specification
-echo "  [2/3] Installing Conductor workflow specification..."
-get_cooper_file "conductor/workflow.md" "conductor/workflow.md"
-echo "  [✓] Installed conductor/workflow.md"
+# 2. Install Cooper Hybrid workflow specification (.cooper/ & conductor/)
+echo "  [2/3] Installing Cooper Hybrid workflow specification..."
+get_cooper_file "cooper/workflow.md" ".cooper/definition/workflow.md"
+get_cooper_file "cooper/workflow.md" "conductor/workflow.md"
+echo "  [✓] Installed .cooper/definition/workflow.md & conductor/workflow.md"
 
 # 3. Setup AGENTS.md
 echo "  [3/3] Setting up AGENTS.md rules..."
@@ -74,12 +75,12 @@ elif command -v wget >/dev/null 2>&1; then
 fi
 
 if [ -f "AGENTS.md" ]; then
-    if ! grep -qs "Conductor" AGENTS.md; then
+    if ! grep -qs "Cooper Hybrid" AGENTS.md; then
         echo "" >> AGENTS.md
         cat "$TMP_TEMPLATE" >> AGENTS.md
-        echo "  [✓] Appended Cooper Conductor rules to existing AGENTS.md"
+        echo "  [✓] Appended Cooper Hybrid rules to existing AGENTS.md"
     else
-        echo "  [✓] Cooper Conductor rules already present in AGENTS.md"
+        echo "  [✓] Cooper Hybrid rules already present in AGENTS.md"
     fi
 else
     cp "$TMP_TEMPLATE" AGENTS.md
@@ -88,9 +89,9 @@ fi
 rm -f "$TMP_TEMPLATE"
 
 echo ""
-echo "🛢️ Cooper successfully installed!"
+echo "🛢️ Cooper Hybrid SDD successfully installed!"
 echo "Workflow summary:"
 echo "  1. Start track in isolated worktree : git agent-start <track_id>"
 echo "  2. List active tracks               : git troop"
-echo "  3. Develop & checkpoint             : Follow conductor/workflow.md"
+echo "  3. Develop & checkpoint             : Follow .cooper/definition/workflow.md"
 echo "  4. Teardown track after PR merge    : git agent-stop <track_id>"
