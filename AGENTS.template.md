@@ -4,12 +4,13 @@
 
 1. **Cooper Hybrid Mandate (.cooper/)**:
    - All feature development, bug fixes, and system changes MUST follow the **Cooper Hybrid Workflow**.
-   - Refer to `.cooper/definition/workflow.md` (or `cooper/workflow.md`) for full track lifecycle guidelines.
+   - Refer to `.cooper/definition/workflow.md` for full track lifecycle guidelines.
    - Read living capability specs from `.cooper/specs/<capability>/spec.md` before starting new tracks.
    - All proposed feature changes MUST produce a **Spec Delta** (`.cooper/active/<track_id>/spec-deltas/<capability>/spec.md`) showing requirement additions (`+`) and deletions (`-`) before code is written.
 
 2. **Troop Worktree Isolation Protocol**:
    - Work inside an isolated worktree under `.worktrees/<track_id>`. Do NOT modify code in the main repository trunk directly.
+   - Refer to `.cooper/TROOP.md` for complete Troop worktree commands and guidelines.
    - Base track worktrees off `main` using `git agent-start <track_id>`.
 
 3. **Phase & Remote Synchronization**:

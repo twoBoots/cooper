@@ -30,18 +30,18 @@ flowchart TD
     B -->|OpenSpec Exists| D["2. Auto-Migrate openspec/ -> .cooper/specs/"]
     B -->|Neither Exists| E["3. Fetch Scaffolding Templates from twoBoots/conductor"]
     
-    C --> F["Setup .cooper/ Structure & Backward-Compatible conductor/workflow.md"]
+    C --> F["Setup .cooper/ Structure & Install .cooper/definition/workflow.md"]
     D --> F
     E --> F
     
-    F --> G["Run Troop Setup & Inject Rules into AGENTS.md"]
+    F --> G["Run Troop Setup, Move TROOP.md to .cooper/, & Inject Rules into AGENTS.md"]
 ```
 
 ### 1. Troop Foundation Setup
 The installer runs the `troop` installer (`twoBoots/troop`) to establish Git worktree isolation:
 * Sets up Git command aliases (`git agent-start <track_id>`, `git troop`, `git agent-stop <track_id>`).
 * Updates `.gitignore` to exclude `.worktrees/`.
-* Installs `TROOP.md` reference guide.
+* Relocates `TROOP.md` reference guide to `.cooper/TROOP.md` to keep the project root clean.
 
 ### 2. Auto-Migration & Scaffolding Scenarios
 
@@ -50,7 +50,6 @@ If an existing `conductor/` directory is present in the target repository:
 * **Definitions**: Migrates `product.md`, `tech-stack.md`, `product-guidelines.md`, and `workflow.md` to `.cooper/definition/`.
 * **Code Style Guides**: Migrates `conductor/code_styleguides/` to `.cooper/code_styleguides/`.
 * **Tracks**: Migrates `conductor/tracks/` to `.cooper/archive/`.
-* **Backward Compatibility**: Maintains `conductor/workflow.md` as a copy pointing to `.cooper/definition/workflow.md` so legacy scripts continue to work without breaking.
 
 #### Scenario B: Existing OpenSpec Setup Detected
 If an existing `openspec/` directory is present in the target repository:
@@ -63,6 +62,7 @@ If neither `conductor/` nor `openspec/` is found:
 * **Scaffolds `.cooper/` Directory**: Initializes the baseline directory structure:
   ```
   .cooper/
+  ├── TROOP.md
   ├── definition/
   ├── code_styleguides/
   ├── specs/

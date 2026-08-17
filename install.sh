@@ -79,6 +79,12 @@ fi
 # Ensure base .cooper directory tree exists
 mkdir -p .cooper/definition .cooper/code_styleguides .cooper/specs .cooper/active .cooper/archive
 
+# Relocate TROOP.md into .cooper/ to keep project root clean
+if [ -f "TROOP.md" ]; then
+    mv "TROOP.md" ".cooper/TROOP.md"
+    echo "  [✓] Relocated TROOP.md to .cooper/TROOP.md"
+fi
+
 CONDUCTOR_EXISTS=false
 OPENSPEC_EXISTS=false
 
@@ -161,14 +167,10 @@ EOF
     echo "  [✓] Initial baseline scaffolding created under .cooper/"
 fi
 
-# 3. Install Cooper Hybrid workflow specification (.cooper/ & conductor/ compatibility link)
+# 3. Install Cooper Hybrid workflow specification
 echo "  [3/4] Installing Cooper Hybrid workflow specification..."
-get_cooper_file "cooper/workflow.md" ".cooper/definition/workflow.md"
-
-# Backwards compatibility: maintain conductor/workflow.md
-mkdir -p conductor
-cp .cooper/definition/workflow.md conductor/workflow.md
-echo "  [✓] Installed .cooper/definition/workflow.md (and backward-compatible conductor/workflow.md)"
+get_cooper_file ".cooper/definition/workflow.md" ".cooper/definition/workflow.md"
+echo "  [✓] Installed .cooper/definition/workflow.md"
 
 # 4. Setup AGENTS.md
 echo "  [4/4] Setting up AGENTS.md rules..."

@@ -17,9 +17,10 @@
 
 ```
 .cooper/
+├── TROOP.md                       # Troop worktree reference manual
 ├── definition/                    # Global project definitions
 │   ├── product.md                 # Product vision & initial concepts
-│   ├── product-guidelines.md        # UX, branding, prose standards
+│   ├── product-guidelines.md      # UX, branding, prose standards
 │   ├── tech-stack.md              # Languages, frameworks, DBs
 │   └── workflow.md                # Coverage (>80%), TDD rules, commit frequency & Troop protocol
 ├── code_styleguides/              # Language-specific conventions (python.md, typescript.md)

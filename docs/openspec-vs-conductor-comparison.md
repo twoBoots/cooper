@@ -27,6 +27,7 @@ As AI coding agents (Claude Code, Cursor, Gemini CLI, Antigravity, etc.) mature,
 
 ```
 .cooper/
+├── TROOP.md                       # Troop worktree reference manual
 ├── definition/                    # Global project definitions
 │   ├── product.md                 # Product vision & initial concepts
 │   ├── product-guidelines.md        # UX, branding, prose standards

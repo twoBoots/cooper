@@ -20,15 +20,16 @@ Alternatively, if you have this repository cloned locally:
 
 ## What `install.sh` Does
 
-1. **Troop Setup**: Runs the `troop` installer to set up shared Git aliases (`git agent-start`, `git troop`, `git agent-stop`), `.gitignore` (`.worktrees/`), and installs `TROOP.md`.
+1. **Troop Setup**: Runs the `troop` installer to set up shared Git aliases (`git agent-start`, `git troop`, `git agent-stop`), `.gitignore` (`.worktrees/`), and installs `TROOP.md` into `.cooper/TROOP.md` (keeping the root folder clean).
 2. **Auto-Migration & Scaffolding**: Auto-migrates existing `conductor/` or `openspec/` setups to `.cooper/`, or fetches baseline scaffolding from `twoBoots/conductor` for greenfield repositories.
-3. **Cooper Hybrid Specification**: Copies workflow specifications into `.cooper/definition/workflow.md` (and `conductor/workflow.md`).
+3. **Cooper Hybrid Specification**: Copies workflow specifications into `.cooper/definition/workflow.md`.
 4. **Agent Rules**: Injects Cooper Hybrid + Troop rules from `AGENTS.template.md` into your project's `AGENTS.md`.
 
 ## Structure
 
 ```
 .cooper/
+├── TROOP.md                       # Troop worktree reference manual
 ├── definition/                    # Global project definitions (product.md, tech-stack.md, workflow.md)
 ├── code_styleguides/              # Language-specific conventions
 ├── specs/                         # LIVING CAPABILITY SPECS (OpenSpec Living Spec model)
@@ -43,7 +44,7 @@ Alternatively, if you have this repository cloned locally:
 ```
 
 - `install.sh`: One-line automated installer script.
-- `cooper/workflow.md`: The Cooper Hybrid SDD + Troop workflow specification.
+- `.cooper/definition/workflow.md`: The Cooper Hybrid SDD + Troop workflow specification.
 - `AGENTS.template.md`: Template rules injected into `AGENTS.md` for AI agent instructions.
 - `docs/INSTALL.md`: Installation, migration, and scaffolding guide.
 - `docs/openspec-vs-conductor-comparison.md`: Detailed comparison and hybrid architecture blueprint.

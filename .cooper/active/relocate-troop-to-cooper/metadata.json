@@ -1,0 +1,8 @@
+{
+  "id": "relocate-troop-to-cooper",
+  "title": "Relocate TROOP.md into .cooper/ and align repo structure to .cooper/",
+  "type": "feature",
+  "status": "in_progress",
+  "created_at": "2026-08-17T14:12:00+10:00",
+  "updated_at": "2026-08-17T14:12:00+10:00"
+}
