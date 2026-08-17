@@ -30,7 +30,7 @@ flowchart TD
     B -->|OpenSpec Exists| D["2. Auto-Migrate openspec/ -> .cooper/specs/"]
     B -->|Neither Exists| E["3. Fetch Scaffolding Templates from twoBoots/conductor"]
     
-    C --> F["Setup .cooper/ Structure & Install .cooper/definition/workflow.md"]
+    C --> F["Setup .cooper/ Structure & Install .cooper/COOPER.md and workflow.md"]
     D --> F
     E --> F
     
@@ -62,6 +62,7 @@ If neither `conductor/` nor `openspec/` is found:
 * **Scaffolds `.cooper/` Directory**: Initializes the baseline directory structure:
   ```
   .cooper/
+  ├── COOPER.md
   ├── TROOP.md
   ├── definition/
   ├── code_styleguides/
@@ -72,6 +73,7 @@ If neither `conductor/` nor `openspec/` is found:
 
 ### 3. Agent Rules Injection (`AGENTS.md`)
 The installer creates or appends to `AGENTS.md` with rules instructing AI agents to follow:
+* `.cooper/COOPER.md` quick reference.
 * `.cooper/specs/` living spec reading.
 * `.cooper/active/<track_id>/spec-deltas/` requirement diff generation.
 * TDD Red/Green/Refactor cycle with Git Notes summaries (`git notes add -m`).

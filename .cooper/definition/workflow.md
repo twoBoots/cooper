@@ -17,6 +17,7 @@
 
 ```
 .cooper/
+├── COOPER.md                      # Cooper SDD reference manual & cheatsheet
 ├── TROOP.md                       # Troop worktree reference manual
 ├── definition/                    # Global project definitions
 │   ├── product.md                 # Product vision & initial concepts

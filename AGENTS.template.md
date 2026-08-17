@@ -4,7 +4,7 @@
 
 1. **Cooper Hybrid Mandate (.cooper/)**:
    - All feature development, bug fixes, and system changes MUST follow the **Cooper Hybrid Workflow**.
-   - Refer to `.cooper/definition/workflow.md` for full track lifecycle guidelines.
+   - Refer to `.cooper/COOPER.md` for a quick reference and `.cooper/definition/workflow.md` for full track lifecycle guidelines.
    - Read living capability specs from `.cooper/specs/<capability>/spec.md` before starting new tracks.
    - All proposed feature changes MUST produce a **Spec Delta** (`.cooper/active/<track_id>/spec-deltas/<capability>/spec.md`) showing requirement additions (`+`) and deletions (`-`) before code is written.
 

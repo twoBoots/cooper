@@ -167,10 +167,11 @@ EOF
     echo "  [✓] Initial baseline scaffolding created under .cooper/"
 fi
 
-# 3. Install Cooper Hybrid workflow specification
-echo "  [3/4] Installing Cooper Hybrid workflow specification..."
+# 3. Install Cooper Hybrid workflow specification & COOPER.md reference
+echo "  [3/4] Installing Cooper Hybrid workflow specification & COOPER.md..."
 get_cooper_file ".cooper/definition/workflow.md" ".cooper/definition/workflow.md"
-echo "  [✓] Installed .cooper/definition/workflow.md"
+get_cooper_file ".cooper/COOPER.md" ".cooper/COOPER.md"
+echo "  [✓] Installed .cooper/definition/workflow.md & .cooper/COOPER.md"
 
 # 4. Setup AGENTS.md
 echo "  [4/4] Setting up AGENTS.md rules..."
