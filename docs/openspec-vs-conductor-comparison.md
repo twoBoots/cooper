@@ -19,36 +19,49 @@ As AI coding agents (Claude Code, Cursor, Gemini CLI, Antigravity, etc.) mature,
 | **Knowledge Representation** | Append-Only Track History | Living Capability Library + Spec Deltas | **Living Capability Library + Spec Deltas** |
 | **Execution Control** | Strict TDD, style guides, checkpoints | Flexible / Agnostic | **Strict TDD, style guides, Git Notes & phase checkpoints** |
 | **Phase Synchronization** | Manual / Local | N/A | **Automatic (`git fetch origin main` & `git push origin <track_id>`)** |
+| **Agent Skills** | External Global Plugin Prerequisite | N/A | **Packaged Project-Local Skills (`.agents/skills/`)** |
 | **Scaffolding** | Full (`product.md`, `tech-stack.md`) | Minimalist | **Full Scaffolding (`.cooper/definition/`)** |
 
 ---
 
-## 2. The Cooper Hybrid Architecture (`.cooper/`)
+## 2. The Cooper Hybrid Architecture (`.cooper/` & `.agents/skills/`)
 
 ```
-.cooper/
-├── COOPER.md                      # Cooper SDD reference manual & cheatsheet
-├── TROOP.md                       # Troop worktree reference manual
-├── definition/                    # Global project definitions
-│   ├── product.md                 # Product vision & initial concepts
-│   ├── product-guidelines.md        # UX, branding, prose standards
-│   ├── tech-stack.md              # Languages, frameworks, DBs
-│   └── workflow.md                # Coverage (>80%), TDD rules, commit frequency & Troop protocol
-├── code_styleguides/              # Language-specific conventions (python.md, typescript.md)
-├── specs/                         # LIVING CAPABILITY SPECS (OpenSpec Living Spec model)
-│   ├── auth-login/spec.md
-│   ├── auth-session/spec.md
-│   └── checkout-cart/spec.md
-├── active/                        # ACTIVE TRACKS (Living inside .worktrees/<track_id>/)
-│   └── track_add_remember_me_20260813/
-│       ├── proposal.md            # High-level rationale & decisions
-│       ├── design.md              # Technical architecture decisions
-│       ├── plan.md                # TDD-enforced, phase-checkpointed plan
-│       ├── metadata.json          # Track metadata & status
-│       └── spec-deltas/           # Requirement diffs (+ added, - removed)
-│           └── auth-session/spec.md
-└── archive/                       # HISTORICAL COMPLETED TRACKS
-    └── track_initial_setup_20260801/
+your-project/
+├── .agents/
+│   └── skills/                        # Packaged Project-Local Cooper Skills
+│       ├── cooper-setup/SKILL.md      # Project initialization & scaffolding
+│       ├── cooper-new-track/SKILL.md  # Worktree spawning & spec delta planning
+│       ├── cooper-implement/SKILL.md  # TDD execution & phase sync
+│       ├── cooper-review/SKILL.md     # Code & spec delta review
+│       └── cooper-status/SKILL.md     # Worktrees & track overview
+├── .cooper/
+│   ├── index.md                       # Handshake index (Single Source of Truth)
+│   ├── COOPER.md                      # Cooper SDD reference manual & cheatsheet
+│   ├── TROOP.md                       # Troop worktree reference manual
+│   ├── tracks.md                      # Tracks Registry
+│   ├── definition/                    # Global project definitions
+│   │   ├── product.md                 # Product vision & initial concepts
+│   │   ├── product-guidelines.md      # UX, branding, prose standards
+│   │   ├── tech-stack.md              # Languages, frameworks, DBs
+│   │   └── workflow.md                # Coverage (>80%), TDD rules, commit frequency & Troop protocol
+│   ├── code_styleguides/              # Language-specific conventions (python.md, typescript.md)
+│   ├── specs/                         # LIVING CAPABILITY SPECS (OpenSpec Living Spec model)
+│   │   ├── auth-login/spec.md
+│   │   ├── auth-session/spec.md
+│   │   └── checkout-cart/spec.md
+│   ├── active/                        # ACTIVE TRACKS (Living inside .worktrees/<track_id>/)
+│   │   └── track_add_remember_me_20260813/
+│   │       ├── proposal.md            # High-level rationale & decisions
+│   │       ├── design.md              # Technical architecture decisions
+│   │       ├── plan.md                # TDD-enforced, phase-checkpointed plan
+│   │       ├── metadata.json          # Track metadata & status
+│   │       └── spec-deltas/           # Requirement diffs (+ added, - removed)
+│   │           └── auth-session/spec.md
+│   └── archive/                       # HISTORICAL COMPLETED TRACKS
+│       └── track_initial_setup_20260801/
+├── .worktrees/                        # Isolated Git worktrees for active tracks
+└── AGENTS.md                          # Universal agent guidelines
 ```
 
 ---
