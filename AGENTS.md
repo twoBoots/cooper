@@ -25,6 +25,7 @@
 5. **Project-Local Skills (.agents/skills/)**:
    - When available, activate Cooper's dedicated project skills for structured workflows:
      - `cooper-setup`: Audit, scaffold, or reconfigure `.cooper/` infrastructure.
+     - `cooper-rfc`: Plan collaborative architectural initiatives, draft RFCs & spec deltas, open Draft PRs, and decompose into tracks.
      - `cooper-new-track`: Spawn worktree, analyze living specs, and create proposal/design/spec-deltas/plan.
      - `cooper-implement`: Execute TDD tasks, record Git Notes, run phase checkpoints and syncs.
      - `cooper-review`: Conduct Principal Engineer code review against spec deltas, styleguides, and tests.

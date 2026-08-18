@@ -25,7 +25,7 @@ Alternatively, if you have this repository cloned locally:
 1. **Troop Foundation**: Sets up shared Git aliases (`git agent-start`, `git troop`, `git agent-stop`), `.gitignore` (`.worktrees/`), and installs `TROOP.md` into `.cooper/TROOP.md`.
 2. **Auto-Migration & Scaffolding**: Auto-migrates existing `conductor/` or `openspec/` setups to `.cooper/`, or scaffolds baseline templates from Cooper's self-contained template suite for greenfield repositories.
 3. **Cooper Specification & Handshake**: Copies workflow specifications into `.cooper/definition/workflow.md`, installs `.cooper/COOPER.md`, and creates `.cooper/index.md` as the single source of truth.
-4. **Native Agent Skills**: Installs project-local Cooper skills into `.agents/skills/` (`cooper-setup`, `cooper-new-track`, `cooper-implement`, `cooper-review`, `cooper-status`).
+4. **Native Agent Skills**: Installs project-local Cooper skills into `.agents/skills/` (`cooper-setup`, `cooper-rfc`, `cooper-new-track`, `cooper-implement`, `cooper-review`, `cooper-status`).
 5. **Agent Rules**: Injects Cooper SDD + Troop rules from `AGENTS.template.md` into your project's `AGENTS.md`.
 
 ## Structure
@@ -35,6 +35,7 @@ your-project/
 ├── .agents/
 │   └── skills/                        # Packaged Project-Local Cooper Skills
 │       ├── cooper-setup/SKILL.md      # Project initialization & scaffolding
+│       ├── cooper-rfc/SKILL.md        # Upstream collaborative RFC & architectural design
 │       ├── cooper-new-track/SKILL.md  # Worktree spawning & spec delta planning
 │       ├── cooper-implement/SKILL.md  # TDD execution & phase sync
 │       ├── cooper-review/SKILL.md     # Code & spec delta review
@@ -64,6 +65,7 @@ your-project/
 | Skill | Description |
 | :--- | :--- |
 | **`cooper-setup`** | Audits codebase, scaffolds `.cooper/` definitions, styleguides, and configures Troop worktrees. |
+| **`cooper-rfc`** | Plans collaborative architectural initiatives, drafts RFCs & spec deltas, opens Draft PRs, and decomposes into tracks. |
 | **`cooper-new-track`** | Spawns `.worktrees/<track_id>`, inspects living specs, and drafts proposal, design, spec deltas, and plan. |
 | **`cooper-implement`** | Executes TDD loop inside worktree, records Git Notes metadata, and runs phase synchronization & checkpoints. |
 | **`cooper-review`** | Conducts Principal Software Engineer code review against spec deltas, styleguides, and test suites. |
