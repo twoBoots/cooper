@@ -77,6 +77,7 @@ If neither `conductor/` nor `openspec/` is found:
 ### 3. Native Agent Skills Installation (`.agents/skills/`)
 The installer installs self-contained project skills into `.agents/skills/`:
 * `cooper-setup/SKILL.md`: Audits and configures the environment.
+* `cooper-rfc/SKILL.md`: Plans collaborative RFCs, living spec deltas, and Draft PR reviews.
 * `cooper-new-track/SKILL.md`: Spawns worktree and plans spec deltas.
 * `cooper-implement/SKILL.md`: Executes TDD and phase sync.
 * `cooper-review/SKILL.md`: Audits implementation quality and spec delta fidelity.
