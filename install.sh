@@ -2,16 +2,14 @@
 set -e
 
 # Cooper Remote/Local Installer Script
-# Scaffolds Cooper (Cooper Hybrid SDD Workflow + Troop Worktrees) into any Git repository.
-# Handles auto-migration from existing Conductor or OpenSpec setups, or fetches baseline
-# scaffolding from twoBoots/conductor if neither exists.
+# Scaffolds Cooper (Spec-Driven Development with Living Spec Deltas + Troop Worktrees)
+# into any Git repository, including native project-local agent skills under .agents/skills/.
 #
 # Usage:
 #   curl -fsSL https://raw.githubusercontent.com/twoBoots/cooper/main/install.sh | bash
 #   or: ./install.sh [target_directory]
 
 RAW_BASE_URL="https://raw.githubusercontent.com/twoBoots/cooper/main"
-CONDUCTOR_RAW_BASE_URL="https://raw.githubusercontent.com/twoBoots/conductor/main"
 TROOP_RAW_BASE_URL="https://raw.githubusercontent.com/twoBoots/troop/main"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" 2>/dev/null)" && pwd || true)"
 TARGET_DIR="${1:-$(pwd)}"
@@ -24,7 +22,7 @@ if [ ! -d ".git" ] && ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; the
     exit 1
 fi
 
-echo "🛢️ Installing Cooper (Cooper Hybrid SDD + Troop) into $(pwd)..."
+echo "🛢️ Installing Cooper (Cooper SDD + Living Specs + Troop Worktrees) into $(pwd)..."
 
 # Helper function to fetch or copy a file from Cooper repo
 get_cooper_file() {
@@ -47,24 +45,8 @@ get_cooper_file() {
     fi
 }
 
-# Helper function to fetch template from twoBoots/conductor repo
-get_conductor_template() {
-    local filename="$1"
-    local dest="$2"
-    local dest_dir="$(dirname "$dest")"
-    if [ "$dest_dir" != "." ] && [ ! -d "$dest_dir" ]; then
-        mkdir -p "$dest_dir"
-    fi
-
-    if command -v curl >/dev/null 2>&1; then
-        curl -fsSL "$CONDUCTOR_RAW_BASE_URL/$filename" -o "$dest" 2>/dev/null || true
-    elif command -v wget >/dev/null 2>&1; then
-        wget -qO "$dest" "$CONDUCTOR_RAW_BASE_URL/$filename" 2>/dev/null || true
-    fi
-}
-
 # 1. Run Troop installer first (worktree setup, .gitaliases, .gitignore, TROOP.md)
-echo "  [1/4] Setting up Troop worktree foundation..."
+echo "  [1/5] Setting up Troop worktree foundation..."
 if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/../troop/install.sh" ]; then
     bash "$SCRIPT_DIR/../troop/install.sh" "$TARGET_DIR"
 elif command -v curl >/dev/null 2>&1; then
@@ -77,7 +59,7 @@ else
 fi
 
 # Ensure base .cooper directory tree exists
-mkdir -p .cooper/definition .cooper/code_styleguides .cooper/specs .cooper/active .cooper/archive
+mkdir -p .cooper/definition .cooper/code_styleguides .cooper/specs .cooper/active .cooper/archive .agents/skills
 
 # Relocate TROOP.md into .cooper/ to keep project root clean
 if [ -f "TROOP.md" ]; then
@@ -96,7 +78,7 @@ if [ -d "openspec" ]; then
 fi
 
 # 2. Check and Migrate Existing Setup or Fetch Baseline Scaffolding
-echo "  [2/4] Scaffolding & Migration Analysis..."
+echo "  [2/5] Scaffolding & Migration Analysis..."
 
 if [ "$CONDUCTOR_EXISTS" = true ]; then
     echo "  [→] Existing Conductor setup detected. Migrating to .cooper/ structure..."
@@ -111,7 +93,7 @@ if [ "$CONDUCTOR_EXISTS" = true ]; then
         cp -r conductor/code_styleguides/* .cooper/code_styleguides/ 2>/dev/null || true
     fi
     
-    # Migrate tracks into archive / active
+    # Migrate tracks into archive
     if [ -d "conductor/tracks" ]; then
         cp -r conductor/tracks/* .cooper/archive/ 2>/dev/null || true
     fi
@@ -132,49 +114,70 @@ fi
 
 if [ "$CONDUCTOR_EXISTS" = false ] && [ "$OPENSPEC_EXISTS" = false ]; then
     echo "  [→] Greenfield project detected (neither Conductor nor OpenSpec found)."
-    echo "  [→] Fetching baseline scaffolding from twoBoots/conductor..."
+    echo "  [→] Installing baseline Cooper templates..."
     
-    get_conductor_template "templates/product.md" ".cooper/definition/product.md"
-    get_conductor_template "templates/tech-stack.md" ".cooper/definition/tech-stack.md"
-    get_conductor_template "templates/product-guidelines.md" ".cooper/definition/product-guidelines.md"
-    get_conductor_template "templates/code_styleguides/typescript.md" ".cooper/code_styleguides/typescript.md"
-    get_conductor_template "templates/code_styleguides/python.md" ".cooper/code_styleguides/python.md"
+    get_cooper_file "templates/product.md" ".cooper/definition/product.md"
+    get_cooper_file "templates/tech-stack.md" ".cooper/definition/tech-stack.md"
+    get_cooper_file "templates/product-guidelines.md" ".cooper/definition/product-guidelines.md"
+    get_cooper_file "templates/code_styleguides/typescript.md" ".cooper/code_styleguides/typescript.md"
+    get_cooper_file "templates/code_styleguides/python.md" ".cooper/code_styleguides/python.md"
+    get_cooper_file "templates/code_styleguides/go.md" ".cooper/code_styleguides/go.md"
+    get_cooper_file "templates/code_styleguides/rust.md" ".cooper/code_styleguides/rust.md"
     
-    # Create initial product.md placeholder if template download failed
-    if [ ! -s ".cooper/definition/product.md" ]; then
-        cat << 'EOF' > .cooper/definition/product.md
-# Product Definition
-
-## Vision
-Define the core product goals and target audience.
-
-## Requirements
-- Core functional goals
-EOF
-    fi
-
-    # Create initial tech-stack.md placeholder if template download failed
-    if [ ! -s ".cooper/definition/tech-stack.md" ]; then
-        cat << 'EOF' > .cooper/definition/tech-stack.md
-# Tech Stack Definition
-
-- **Languages:** TypeScript / Python
-- **Testing:** Jest / PyTest
-- **CI/CD:** GitHub Actions
-EOF
-    fi
-
-    echo "  [✓] Initial baseline scaffolding created under .cooper/"
+    echo "  [✓] Baseline scaffolding created under .cooper/"
 fi
 
 # 3. Install Cooper Hybrid workflow specification & COOPER.md reference
-echo "  [3/4] Installing Cooper Hybrid workflow specification & COOPER.md..."
+echo "  [3/5] Installing Cooper workflow specification & COOPER.md..."
 get_cooper_file ".cooper/definition/workflow.md" ".cooper/definition/workflow.md"
 get_cooper_file ".cooper/COOPER.md" ".cooper/COOPER.md"
-echo "  [✓] Installed .cooper/definition/workflow.md & .cooper/COOPER.md"
 
-# 4. Setup AGENTS.md
-echo "  [4/4] Setting up AGENTS.md rules..."
+# Scaffold Handshake Index (.cooper/index.md)
+cat << 'EOF' > .cooper/index.md
+# Project Context (.cooper)
+
+## Definition
+- [Product Definition](./definition/product.md)
+- [Product Guidelines](./definition/product-guidelines.md)
+- [Tech Stack](./definition/tech-stack.md)
+- [Workflow](./definition/workflow.md)
+- [Code Style Guides](./code_styleguides/)
+
+## Living Specifications
+- [Capability Specs](./specs/)
+
+## Tracks
+- [Tracks Registry](./tracks.md)
+- [Active Tracks](./active/)
+- [Archive](./archive/)
+
+## Capabilities
+- [Agent Skills](../.agents/skills/)
+EOF
+
+# Initialize tracks registry if missing
+if [ ! -f ".cooper/tracks.md" ]; then
+    cat << 'EOF' > .cooper/tracks.md
+# Tracks Registry
+
+All active and completed Cooper tracks are registered below.
+
+---
+EOF
+fi
+echo "  [✓] Installed .cooper/definition/workflow.md, COOPER.md & index.md"
+
+# 4. Install Project-Local Agent Skills (.agents/skills/cooper-*)
+echo "  [4/5] Installing project-local Cooper skills into .agents/skills/..."
+get_cooper_file "skills/cooper-setup/SKILL.md" ".agents/skills/cooper-setup/SKILL.md"
+get_cooper_file "skills/cooper-new-track/SKILL.md" ".agents/skills/cooper-new-track/SKILL.md"
+get_cooper_file "skills/cooper-implement/SKILL.md" ".agents/skills/cooper-implement/SKILL.md"
+get_cooper_file "skills/cooper-review/SKILL.md" ".agents/skills/cooper-review/SKILL.md"
+get_cooper_file "skills/cooper-status/SKILL.md" ".agents/skills/cooper-status/SKILL.md"
+echo "  [✓] Installed Cooper skills (.agents/skills/cooper-{setup,new-track,implement,review,status})"
+
+# 5. Setup AGENTS.md
+echo "  [5/5] Setting up AGENTS.md rules..."
 TMP_TEMPLATE="$(mktemp)"
 if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/AGENTS.template.md" ]; then
     cp "$SCRIPT_DIR/AGENTS.template.md" "$TMP_TEMPLATE"
@@ -185,12 +188,12 @@ elif command -v wget >/dev/null 2>&1; then
 fi
 
 if [ -f "AGENTS.md" ]; then
-    if ! grep -qs "Cooper Hybrid" AGENTS.md; then
+    if ! grep -qs "Cooper" AGENTS.md; then
         echo "" >> AGENTS.md
         cat "$TMP_TEMPLATE" >> AGENTS.md
-        echo "  [✓] Appended Cooper Hybrid rules to existing AGENTS.md"
+        echo "  [✓] Appended Cooper rules to existing AGENTS.md"
     else
-        echo "  [✓] Cooper Hybrid rules already present in AGENTS.md"
+        echo "  [✓] Cooper rules already present in AGENTS.md"
     fi
 else
     cp "$TMP_TEMPLATE" AGENTS.md
@@ -199,7 +202,15 @@ fi
 rm -f "$TMP_TEMPLATE"
 
 echo ""
-echo "🛢️ Cooper Hybrid SDD successfully installed!"
+echo "🛢️ Cooper SDD Framework successfully installed!"
+echo ""
+echo "Available Project Skills (.agents/skills/):"
+echo "  - cooper-setup       : Re-audit & configure definitions/specs"
+echo "  - cooper-new-track   : Spawn worktree & draft spec deltas/plan"
+echo "  - cooper-implement   : Execute TDD cycle, Git Notes & phase sync"
+echo "  - cooper-review      : Audit changes against spec deltas & style"
+echo "  - cooper-status      : Overview of worktrees, tracks & checkpoints"
+echo ""
 echo "Workflow summary:"
 echo "  1. Start track in isolated worktree : git agent-start <track_id>"
 echo "  2. List active tracks               : git troop"

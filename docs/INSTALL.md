@@ -1,6 +1,6 @@
 # Cooper Installation & Migration Guide
 
-`install.sh` is a one-line installer that scaffolds the **Cooper Hybrid Spec-Driven Development (SDD) Framework** (`.cooper/`) and **Troop Worktree Isolation** (`.worktrees/`) into any target Git repository.
+`install.sh` is a one-line installer that scaffolds the **Cooper Spec-Driven Development (SDD) Framework** (`.cooper/`), **Troop Worktree Isolation** (`.worktrees/`), and native **Project Agent Skills** (`.agents/skills/`) into any target Git repository.
 
 ---
 
@@ -28,13 +28,14 @@ flowchart TD
     
     B -->|Conductor Exists| C["1. Auto-Migrate conductor/ -> .cooper/"]
     B -->|OpenSpec Exists| D["2. Auto-Migrate openspec/ -> .cooper/specs/"]
-    B -->|Neither Exists| E["3. Fetch Scaffolding Templates from twoBoots/conductor"]
+    B -->|Neither Exists| E["3. Scaffold Baseline Templates from Cooper"]
     
-    C --> F["Setup .cooper/ Structure & Install .cooper/COOPER.md and workflow.md"]
+    C --> F["Setup .cooper/ (COOPER.md, workflow.md, index.md)"]
     D --> F
     E --> F
     
-    F --> G["Run Troop Setup, Move TROOP.md to .cooper/, & Inject Rules into AGENTS.md"]
+    F --> G["Install Project Skills in .agents/skills/cooper-*"]
+    G --> H["Run Troop Setup, Move TROOP.md to .cooper/, & Inject Rules into AGENTS.md"]
 ```
 
 ### 1. Troop Foundation Setup
@@ -58,12 +59,14 @@ If an existing `openspec/` directory is present in the target repository:
 
 #### Scenario C: Greenfield Project (Neither Exists)
 If neither `conductor/` nor `openspec/` is found:
-* **Fetches Templates**: Dynamically fetches baseline project definitions (`product.md`, `tech-stack.md`, `product-guidelines.md`) and code styleguides (`typescript.md`, `python.md`) from `twoBoots/conductor`.
+* **Scaffolds Baseline Templates**: Installs project definitions (`product.md`, `tech-stack.md`, `product-guidelines.md`) and code styleguides (`typescript.md`, `python.md`, `go.md`, `rust.md`) from Cooper's native templates.
 * **Scaffolds `.cooper/` Directory**: Initializes the baseline directory structure:
   ```
   .cooper/
+  ├── index.md
   ├── COOPER.md
   ├── TROOP.md
+  ├── tracks.md
   ├── definition/
   ├── code_styleguides/
   ├── specs/
@@ -71,9 +74,18 @@ If neither `conductor/` nor `openspec/` is found:
   └── archive/
   ```
 
-### 3. Agent Rules Injection (`AGENTS.md`)
+### 3. Native Agent Skills Installation (`.agents/skills/`)
+The installer installs self-contained project skills into `.agents/skills/`:
+* `cooper-setup/SKILL.md`: Audits and configures the environment.
+* `cooper-new-track/SKILL.md`: Spawns worktree and plans spec deltas.
+* `cooper-implement/SKILL.md`: Executes TDD and phase sync.
+* `cooper-review/SKILL.md`: Audits implementation quality and spec delta fidelity.
+* `cooper-status/SKILL.md`: Displays active worktree and track progress.
+
+### 4. Agent Rules Injection (`AGENTS.md`)
 The installer creates or appends to `AGENTS.md` with rules instructing AI agents to follow:
 * `.cooper/COOPER.md` quick reference.
+* Native `.agents/skills/cooper-*` skill workflows.
 * `.cooper/specs/` living spec reading.
 * `.cooper/active/<track_id>/spec-deltas/` requirement diff generation.
 * TDD Red/Green/Refactor cycle with Git Notes summaries (`git notes add -m`).
