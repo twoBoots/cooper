@@ -88,8 +88,16 @@ cooper/
 
 ## 3. Core Capabilities & Workflows
 
-### 3.1 Upstream Synchronization & Agent-Guided MCP Updates
+### 3.1 Upstream Synchronization & CLI Self-Updating
 
+Cooper provides two distinct update dimensions:
+
+#### A. Binary Self-Update (`cooper update --self` / `cooper self-update`)
+- Modeled directly on `twoBoots/battery`, `cooper self-update` checks GitHub Releases for new versions of the compiled CLI binary.
+- Downloads the platform binary for the current OS/architecture, replaces the active executable in-place, and automatically applies quarantine stripping and ad-hoc codesigning on macOS.
+- Flags: `--check` (preview available version), `--force` (re-install), and `--target-version` (pin specific release tag).
+
+#### B. Project Skills & Template Synchronization (`cooper update` / `cooper sync`)
 Cooper projects record an upstream release manifest at `.cooper/manifest.json`:
 ```json
 {
@@ -102,15 +110,15 @@ Cooper projects record an upstream release manifest at `.cooper/manifest.json`:
 }
 ```
 
-When an update is checked via CLI (`cooper update`) or MCP (`cooper_check_updates`):
-1. **Fetch Latest Upstream**: Retrieves latest release manifest and assets from GitHub.
+When checking project updates via CLI (`cooper update`) or MCP (`cooper_check_updates`):
+1. **Fetch Latest Upstream**: Retrieves latest release manifest and templates from GitHub.
 2. **Compute 3-Way Diff**:
-   - `Base`: Original upstream template when project was initialized.
+   - `Base`: Original upstream template recorded in manifest.
    - `Local`: Target repository's modified file (with user customizations).
    - `Remote`: Newly released upstream template.
 3. **Agent-Guided MCP Flow**:
    - AI agent calls `cooper_diff_updates` to inspect non-conflicting enhancements and conflicting customizations.
-   - The agent explains incoming upstream improvements in conversation (e.g., *"Upstream updated `cooper-implement` with INP audit checks. You added a custom security scanner on line 42. I will merge both safely."*).
+   - The agent explains incoming upstream improvements in conversation and merges updates safely without overwriting user rules.
    - Agent calls `cooper_apply_update` with chosen merge resolutions, updating `.cooper/manifest.json`.
 
 ---
@@ -128,6 +136,7 @@ Running `cooper mcp` starts a standard JSON-RPC server over `stdio`, exposing:
 | **`cooper_check_updates`** | Checks upstream release channel for new skills, rules, or template versions. |
 | **`cooper_diff_updates`** | Computes 3-way diffs between upstream release and local customized files. |
 | **`cooper_apply_update`** | Applies upstream updates with custom preservation rules. |
+| **`cooper_self_update`** | Triggers in-place binary self-upgrade to the latest release. |
 
 ---
 
@@ -158,9 +167,32 @@ flowchart TD
 #### Tier Breakdown:
 1. **Target Directory Resolution**: Automatically prefers `/usr/local/bin` if writable, otherwise falls back to `${HOME}/.local/bin` (creating directory if missing).
 2. **Tier 1 (Local Compilation)**: If `install.sh` executes from a local clone with `main.go` and `go` is found in `$PATH`, it compiles the binary immediately: `go build -ldflags="-s -w" -o <bin_dir>/cooper .`.
-3. **Tier 2 (Pre-built Release Download)**: Detects OS (`darwin`/`linux`) and architecture (`x86_64`/`aarch64`/`arm64`) and fetches `https://github.com/twoBoots/cooper/releases/latest/download/cooper-${OS}-${ARCH}` via `curl` or `wget`.
+3. **Tier 2 (Pre-built Release Download)**: Detects OS (`darwin`/`linux`/`windows`) and architecture (`x86_64`/`aarch64`/`arm64`) and fetches `https://github.com/twoBoots/cooper/releases/latest/download/cooper-${OS}-${ARCH}` via `curl` or `wget`.
 4. **macOS Gatekeeper Integration**: Automatically applies `xattr -d com.apple.quarantine` and `codesign -s - --force` to downloaded/compiled binaries on Darwin.
 5. **Tier 3 (Zero-Binary Fallback)**: If both Tier 1 and Tier 2 fail (air-gapped environments or GitHub API rate limits), the installer completes gracefully in zero-binary mode (`.cooper/` and `.agents/skills/` only) without throwing fatal errors.
+
+---
+
+### 3.4 GitHub Actions CI & Multi-Architecture Release Automation
+
+Directly adopting Battery's GitHub Actions workflow pattern:
+
+#### 1. `.github/workflows/ci.yml` (Continuous Integration)
+- Runs on every Pull Request to `main` and on workflow calls.
+- Validates code formatting (`gofmt -l .`).
+- Runs static analysis and linting (`go vet ./...`).
+- Executes test suite with race detector and coverage report (`go test -v -race -coverprofile=coverage.out ./...`).
+
+#### 2. `.github/workflows/release.yml` (Automated Matrix Builds & Versioned Releases)
+- Triggered on tag creation (`v*`) and on pushes to `main`.
+- Compiles cross-platform static binaries using a matrix build:
+  - `linux/amd64` (`cooper-linux-x86_64`)
+  - `linux/arm64` (`cooper-linux-aarch64`)
+  - `darwin/amd64` (`cooper-darwin-x86_64`)
+  - `darwin/arm64` (`cooper-darwin-aarch64`)
+  - `windows/amd64` (`cooper-windows-x86_64.exe`)
+- Injects version metadata via Go linker flags: `-ldflags="-s -w -X github.com/twoBoots/cooper/cmd.Version=${VERSION}"`.
+- Automatically publishes binaries to GitHub Releases under version tags or updates the rolling `latest` release assets.
 
 ---
 
@@ -177,11 +209,12 @@ flowchart TD
 - **Zero Network Drift**: CLI operations default to local file validation; network access is strictly confined to `cooper update` and release checks.
 - **Fast Execution**: Written in Go with minimal startup latency (<10ms for `cooper validate` / `cooper track status`).
 - **Memory Footprint**: Low overhead (<15MB RAM for MCP server lifecycle).
+- **Code Signing & Integrity**: Automated binary checksums on release assets and automatic macOS codesigning handling.
 
 ---
 
 ## 6. Open Questions & Discussion Topics
 
-1. **Release Distribution**: Should GitHub Actions compile multi-architecture binaries and attach them as GitHub Release artifacts on version tags (`v*.*.*`)?
-2. **Default CLI Install Path**: Should `install.sh` prefer `~/.local/bin` (non-sudo) or prompt for `/usr/local/bin` if writable?
-3. **MCP Config Registration**: Should `cooper init` offer to auto-write MCP registration snippets for Cursor (`.cursor/mcp.json`), Claude Desktop (`claude_desktop_config.json`), and Antigravity IDE?
+1. **MCP Config Registration**: Should `cooper init` offer to auto-write MCP registration snippets for Cursor (`.cursor/mcp.json`), Claude Desktop (`claude_desktop_config.json`), and Antigravity IDE?
+2. **Global Alias Fallback**: Should `cooper` register shell completions for `zsh`, `bash`, and `fish` during initialization?
+

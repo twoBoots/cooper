@@ -33,3 +33,11 @@ The `cooper` CLI SHALL provide an embedded Model Context Protocol (MCP) server r
 - GIVEN an agent invoking `cooper_diff_updates`
 - WHEN inspecting upstream changes
 - THEN the MCP server MUST return structured diffs categorized by non-conflicting updates and customized conflicts, allowing the agent to guide the user interactively through selective adoption.
+
+### Requirement: Binary Self-Updating
+The `cooper` CLI SHALL support updating its own binary directly from GitHub Releases.
+
+#### Scenario: Self-Update to Latest Release
+- GIVEN a user running `cooper self-update` or `cooper update --self`
+- WHEN a newer version exists in GitHub Releases
+- THEN the CLI MUST download the platform binary for the current OS/architecture, replace the running executable in-place, and apply macOS codesigning/quarantine fixes on Darwin.
