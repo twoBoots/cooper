@@ -27,11 +27,11 @@
 
 ## Phase 3: Project Skills & Final Audit
 
-- [~] Task: Audit and update Agent Skills (`skills/` and `.agents/skills/`)
-  - [ ] Sub-task: Update `cooper-setup`, `cooper-rfc`, and `cooper-new-track` SKILL.md files
-  - [ ] Sub-task: Update `cooper-implement`, `cooper-review`, and `cooper-status` SKILL.md files
-  - [ ] Sub-task: Ensure both `skills/` and `.agents/skills/` are kept in sync
-- [ ] Task: Comprehensive Markdown Link Verification & Quality Gate
+- [x] Task: Audit and update Agent Skills (`skills/` and `.agents/skills/`) (20584f5)
+  - [x] Sub-task: Update `cooper-setup`, `cooper-rfc`, and `cooper-new-track` SKILL.md files
+  - [x] Sub-task: Update `cooper-implement`, `cooper-review`, and `cooper-status` SKILL.md files
+  - [x] Sub-task: Ensure both `skills/` and `.agents/skills/` are kept in sync
+- [~] Task: Comprehensive Markdown Link Verification & Quality Gate
   - [ ] Sub-task: Execute repository-wide markdown link audit script
   - [ ] Sub-task: Verify no broken markdown syntax or link collisions
 - [ ] Task: Phase 3 Verification & Final Checkpoint
