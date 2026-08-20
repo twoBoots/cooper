@@ -9,3 +9,8 @@ All active and completed Cooper tracks are registered below.
 - [x] **Track: Document Draft PR Rationale in Cooper RFC Lifecycle**
   - Worktree: `.worktrees/docs-rfc-draft-prs`
   - Link: [.cooper/active/docs-rfc-draft-prs/index.md](.cooper/active/docs-rfc-draft-prs/index.md)
+
+- [x] **Track: RFC PR Approval Detection Protocols & Reviewer Instructions**
+  - Worktree: `.worktrees/rfc-pr-approval-protocols`
+  - Link: [.cooper/active/rfc-pr-approval-protocols/index.md](.cooper/active/rfc-pr-approval-protocols/index.md)
+
