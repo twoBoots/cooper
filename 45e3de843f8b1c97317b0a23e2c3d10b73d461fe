@@ -1,0 +1,3 @@
+Task: Add Reference Links in Project Documentation
+Scope: README.md, docs/INSTALL.md
+Summary: Linked docs/rfc-draft-prs.md across skill reference sections and installation docs without cluttering core cheatsheets.
