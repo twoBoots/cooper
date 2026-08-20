@@ -6,7 +6,7 @@
   - [x] Sub-task: Update `skills/cooper-rfc/SKILL.md` with `### 📝 Reviewer Actions` template block in `prbody.md`
   - [x] Sub-task: Update `.agents/skills/cooper-rfc/SKILL.md` with identical template block
   - [x] Sub-task: Verify markdown formatting and structure
-- [ ] Task 1.2: Add PR Approval State Detection & Comment Triggers (Section 6)
+- [~] Task 1.2: Add PR Approval State Detection & Comment Triggers (Section 6)
   - [ ] Sub-task: Update Step 6.1 in `skills/cooper-rfc/SKILL.md` with `gh pr view --json state,reviews,reviewDecision` command
   - [ ] Sub-task: Add `/approve` comment trigger parsing instructions in Step 6.1
   - [ ] Sub-task: Update `.agents/skills/cooper-rfc/SKILL.md` to match
