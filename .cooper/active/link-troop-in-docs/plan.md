@@ -21,13 +21,13 @@
   - [x] Sub-task: Update `.cooper/definition/workflow.md` to link `[Troop](https://github.com/twoBoots/troop)` in structure & protocol sections
 - [x] Task: Update Starter Templates (`templates/`) (Verified - no Troop mentions present in starter templates)
   - [x] Sub-task: Update `templates/product.md`, `templates/tech-stack.md`, and any template files mentioning Troop
-- [~] Task: Phase 2 Verification & Checkpoint
-  - [ ] Sub-task: Run automated markdown link check across Phase 2 files
-  - [ ] Sub-task: Phase 2 Checkpoint & remote sync (`git push origin link-troop-in-docs`)
+- [x] Task: Phase 2 Verification & Checkpoint [checkpoint: a8acd2c]
+  - [x] Sub-task: Run automated markdown link check across Phase 2 files
+  - [x] Sub-task: Phase 2 Checkpoint & remote sync (`git push origin link-troop-in-docs`)
 
 ## Phase 3: Project Skills & Final Audit
 
-- [ ] Task: Audit and update Agent Skills (`skills/` and `.agents/skills/`)
+- [~] Task: Audit and update Agent Skills (`skills/` and `.agents/skills/`)
   - [ ] Sub-task: Update `cooper-setup`, `cooper-rfc`, and `cooper-new-track` SKILL.md files
   - [ ] Sub-task: Update `cooper-implement`, `cooper-review`, and `cooper-status` SKILL.md files
   - [ ] Sub-task: Ensure both `skills/` and `.agents/skills/` are kept in sync
