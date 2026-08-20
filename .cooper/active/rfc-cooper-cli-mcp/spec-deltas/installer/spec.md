@@ -2,18 +2,23 @@
 
 ## Requirements
 
-### Requirement: Optional CLI Binary Installation
-The installer SHALL optionally prompt the user to install the pre-compiled `cooper` Go CLI binary to the user's path.
+### Requirement: Tiered CLI Binary Registration & Fallback
+The installer SHALL execute a 3-tier binary installation strategy (Local Compilation -> GitHub Release Download -> Zero-Binary Fallback) without hard failures.
 
-#### Scenario: User Accepts CLI Installation
-- GIVEN the installer executes in an interactive terminal
-- WHEN prompted to install the `cooper` CLI binary and the user accepts
-- THEN the installer MUST detect host OS and architecture (e.g., `darwin/arm64`, `linux/amd64`), download the matching pre-compiled release binary, place it into `~/.local/bin/cooper` (or `/usr/local/bin`), and verify executable permissions.
+#### Scenario: Tier 1 Local Source Build
+- GIVEN the installer executes within a local source clone containing `main.go`
+- WHEN `go` is found in the user's `PATH`
+- THEN the installer MUST compile the binary locally, apply macOS codesign/quarantine fixes if on Darwin, and register the binary to `/usr/local/bin/cooper` (or `~/.local/bin/cooper`).
 
-#### Scenario: Zero-Binary Fallback on Decline or Offline
-- GIVEN the installer executes in a headless, air-gapped, or offline environment, or the user declines the CLI prompt
+#### Scenario: Tier 2 Release Binary Download
+- GIVEN no local source build is available
 - WHEN resolving installation dependencies
-- THEN the installer MUST complete successfully in file-only mode, scaffolding `.cooper/`, `.agents/skills/`, and `AGENTS.md` without requiring the binary.
+- THEN the installer MUST detect host OS/arch and attempt to download the pre-compiled binary from GitHub Releases into the target binary directory.
+
+#### Scenario: Tier 3 Zero-Binary Graceful Fallback
+- GIVEN the installer executes in an offline or air-gapped environment where compilation and download fail
+- WHEN resolving installation dependencies
+- THEN the installer MUST complete successfully in zero-binary file mode, scaffolding `.cooper/`, `.agents/skills/`, and `AGENTS.md` without throwing errors.
 
 ### Requirement: Upstream Version Manifest Generation
 The installer SHALL generate a release manifest `.cooper/manifest.json` recording the upstream base version and file hashes to enable future 3-way updates.

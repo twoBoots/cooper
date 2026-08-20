@@ -131,21 +131,36 @@ Running `cooper mcp` starts a standard JSON-RPC server over `stdio`, exposing:
 
 ---
 
-### 3.3 Progressive Installer Flow (`install.sh`)
+### 3.3 Tiered CLI Installation & Fallback Lifecycle (`install.sh`)
+
+Matching the proven architecture of `twoBoots/battery`, Cooper's `install.sh` uses a **3-Tiered Registration Strategy** with automatic fallback and zero-prompt execution:
 
 ```mermaid
 flowchart TD
     Start["Run install.sh"] --> Scaffold["1. Setup Troop & Base .cooper/ Scaffolding"]
-    Scaffold --> Prompt{"Prompt: Install cooper CLI binary? [Y/n]"}
+    Scaffold --> TargetBin["Resolve Bin Dir (/usr/local/bin if writable, else ~/.local/bin)"]
     
-    Prompt -->|Yes| DetectOS["Detect OS & Arch (darwin/linux, arm64/amd64)"]
-    DetectOS --> Download["Fetch pre-built binary from GitHub Releases to ~/.local/bin/cooper"]
-    Download --> ConfigMCP["Configure MCP in IDE / Agent settings"]
-    ConfigMCP --> Done["Finish Setup with CLI + MCP Enabled"]
+    TargetBin --> CheckGo{"Tier 1: Local Source Clone & Go present in PATH?"}
+    CheckGo -->|Yes| BuildGo["Compile locally via go build -ldflags='-s -w'"]
+    BuildGo --> PostProcess["macOS: Strip Quarantine & Ad-Hoc Codesign"]
     
-    Prompt -->|No / Offline| ZeroBin["Complete in Zero-Binary Mode (.agents/skills/ only)"]
-    ZeroBin --> DoneZero["Finish Setup (Zero-Binary File-Based)"]
+    CheckGo -->|No| FetchRel{"Tier 2: Download Release Binary from GitHub Releases?"}
+    FetchRel -->|Success| PostProcess
+    
+    PostProcess --> RegCLI["Register cooper binary globally in PATH"]
+    
+    FetchRel -->|Offline / Fail| Tier3["Tier 3: Graceful Fallback (Zero-Binary File-Based Mode)"]
+    
+    RegCLI --> Done["Finish Setup (CLI + MCP Enabled)"]
+    Tier3 --> DoneZero["Finish Setup (Zero-Binary Mode with .agents/skills/)"]
 ```
+
+#### Tier Breakdown:
+1. **Target Directory Resolution**: Automatically prefers `/usr/local/bin` if writable, otherwise falls back to `${HOME}/.local/bin` (creating directory if missing).
+2. **Tier 1 (Local Compilation)**: If `install.sh` executes from a local clone with `main.go` and `go` is found in `$PATH`, it compiles the binary immediately: `go build -ldflags="-s -w" -o <bin_dir>/cooper .`.
+3. **Tier 2 (Pre-built Release Download)**: Detects OS (`darwin`/`linux`) and architecture (`x86_64`/`aarch64`/`arm64`) and fetches `https://github.com/twoBoots/cooper/releases/latest/download/cooper-${OS}-${ARCH}` via `curl` or `wget`.
+4. **macOS Gatekeeper Integration**: Automatically applies `xattr -d com.apple.quarantine` and `codesign -s - --force` to downloaded/compiled binaries on Darwin.
+5. **Tier 3 (Zero-Binary Fallback)**: If both Tier 1 and Tier 2 fail (air-gapped environments or GitHub API rate limits), the installer completes gracefully in zero-binary mode (`.cooper/` and `.agents/skills/` only) without throwing fatal errors.
 
 ---
 
