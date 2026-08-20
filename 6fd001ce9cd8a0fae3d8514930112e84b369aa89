@@ -1,0 +1,3 @@
+Task: Task 1.2 & 1.3: Add PR Approval State Detection & Comment Triggers (Section 6)
+Scope: skills/cooper-rfc/SKILL.md, .agents/skills/cooper-rfc/SKILL.md
+Summary: Added gh pr view --json state,reviews,reviewDecision command for native approval inspection, /approve comment trigger detection, and aligned RFC graduation protocols.
