@@ -4,7 +4,7 @@
 - **Capability**: `rfc-workflow`
 
 ## Phase 1: Author Dedicated Guide (`docs/rfc-draft-prs.md`)
-- [ ] Task: Create `docs/rfc-draft-prs.md` with Executive Rationale & Comparison Matrix
+- [~] Task: Create `docs/rfc-draft-prs.md` with Executive Rationale & Comparison Matrix
   - [ ] Sub-task: Draft comparison matrix contrasting Draft RFC PR vs Regular PR
   - [ ] Sub-task: Detail SDD two-tier model separation
 - [ ] Task: Document The 3 Primary Benefits & Detailed Mechanics
