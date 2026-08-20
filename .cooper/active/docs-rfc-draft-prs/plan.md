@@ -21,6 +21,6 @@
 - [x] Task: Add Reference Links in Project Documentation (45e3de8)
   - [x] Sub-task: Update `docs/` references or table of contents
   - [x] Sub-task: Ensure links resolve cleanly without cluttering core cheatsheets
-- [x] Task: Cooper - Phase 2 Verification & Checkpoint (checkpoint_pending)
+- [x] Task: Cooper - Phase 2 Verification & Checkpoint (23390bf) [checkpoint: 23390bf]
   - [x] Sub-task: Verify all links and headings
   - [x] Sub-task: Remote sync & final checkpoint commit
