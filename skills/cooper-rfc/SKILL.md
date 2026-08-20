@@ -159,18 +159,18 @@ Once initial drafts are generated:
    ```markdown
    ## RFC: <Initiative Title> (`<rfc_id>`)
 
-   ### 🎯 Summary & Motivation
+   ### Summary & Motivation
    <Brief summary of the initiative and goals>
 
-   ### 🏛️ Proposed Architecture & Artifacts
+   ### Proposed Architecture & Artifacts
    - **RFC Document**: `.cooper/active/<rfc_id>/rfc.md`
    - **Decomposed Tracks**: `.cooper/active/<rfc_id>/tracks-breakdown.md`
    - **Impacted Living Specs**: `.cooper/specs/<capability>/spec.md`
 
-   ### ❓ Open Questions & Trade-offs
+   ### Open Questions & Trade-offs
    - <List open questions requiring team consensus>
 
-   ### 📝 Reviewer Actions
+   ### Reviewer Actions
    - **Feedback**: Leave line comments or general comments on open questions and architecture trade-offs.
    - **Approve**: Submit a standard GitHub review approval (`Approve`) or comment `/approve` once architecture and living spec deltas are aligned.
    - **Graduation**: Approval triggers track registration in `.cooper/tracks.md` and transitions the PR to Ready for Merge.

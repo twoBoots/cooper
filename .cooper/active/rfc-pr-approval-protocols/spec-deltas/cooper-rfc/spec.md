@@ -4,7 +4,7 @@
 
 + GIVEN an RFC Draft Pull Request is created by `cooper-rfc`
 + WHEN the PR body (`prbody.md`) is scaffolded
-+ THEN it MUST include a dedicated `### 📝 Reviewer Actions` section explaining feedback submission, approval mechanics (GitHub Native `Approve` or `/approve` comment), and graduation triggers.
++ THEN it MUST include a dedicated `### Reviewer Actions` section explaining feedback submission, approval mechanics (GitHub Native `Approve` or `/approve` comment), and graduation triggers.
 
 + GIVEN an AI agent checking PR review status during `cooper-rfc`
 + WHEN inspecting GitHub PR state with `gh pr view --json state,reviews,reviewDecision`

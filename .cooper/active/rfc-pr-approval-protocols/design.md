@@ -25,7 +25,7 @@ flowchart TD
 ### 2.1 `skills/cooper-rfc/SKILL.md` and `.agents/skills/cooper-rfc/SKILL.md`
 - **Step 5.3 (Open Draft Pull Request)**: Add a structured reviewer guidance block in `prbody.md`:
   ```markdown
-  ### 📝 Reviewer Actions
+  ### Reviewer Actions
   - **Feedback**: Leave line comments or general comments on open questions and architecture trade-offs.
   - **Approve**: Submit a standard GitHub review approval (`Approve`) or comment `/approve` once architecture and living spec deltas are aligned.
   - **Graduation**: Approval triggers track registration in `.cooper/tracks.md` and transitions the PR to Ready for Merge.

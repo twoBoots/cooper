@@ -11,7 +11,7 @@ The `cooper-rfc` skill SHALL scaffold clear reviewer instructions in generated D
 #### Scenario: Include Reviewer Actions Block
 - GIVEN an RFC Draft Pull Request is created by `cooper-rfc`
 - WHEN the PR body (`prbody.md`) is scaffolded
-- THEN it MUST include a dedicated `### 📝 Reviewer Actions` section explaining feedback submission, approval mechanics (GitHub Native `Approve` review or `/approve` comment trigger), and graduation triggers.
+- THEN it MUST include a dedicated `### Reviewer Actions` section explaining feedback submission, approval mechanics (GitHub Native `Approve` review or `/approve` comment trigger), and graduation triggers.
 
 ### Requirement: Automated PR Approval State Detection
 The `cooper-rfc` skill SHALL inspect GitHub Pull Request status to detect native review approvals.
