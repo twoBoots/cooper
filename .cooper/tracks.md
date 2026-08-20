@@ -15,7 +15,7 @@ All active and completed Cooper tracks are registered below.
   - Link: [.cooper/active/rfc-pr-approval-protocols/index.md](.cooper/active/rfc-pr-approval-protocols/index.md)
 
 - [x] **Track: Link Troop Mentions in Markdown Documentation to [twoBoots/troop](https://github.com/twoBoots/troop)**
-  - Worktree: `.worktrees/link-troop-in-docs`
-  - Link: [.cooper/active/link-troop-in-docs/index.md](.cooper/active/link-troop-in-docs/index.md)
+  - Archive: [.cooper/archive/link-troop-in-docs/](.cooper/archive/link-troop-in-docs/)
+
 
 
