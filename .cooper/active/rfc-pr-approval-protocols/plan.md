@@ -6,14 +6,14 @@
   - [x] Sub-task: Update `skills/cooper-rfc/SKILL.md` with `### 📝 Reviewer Actions` template block in `prbody.md`
   - [x] Sub-task: Update `.agents/skills/cooper-rfc/SKILL.md` with identical template block
   - [x] Sub-task: Verify markdown formatting and structure
-- [~] Task 1.2: Add PR Approval State Detection & Comment Triggers (Section 6)
-  - [ ] Sub-task: Update Step 6.1 in `skills/cooper-rfc/SKILL.md` with `gh pr view --json state,reviews,reviewDecision` command
-  - [ ] Sub-task: Add `/approve` comment trigger parsing instructions in Step 6.1
-  - [ ] Sub-task: Update `.agents/skills/cooper-rfc/SKILL.md` to match
-- [ ] Task 1.3: Align RFC Graduation & User Merge Gate Protocol (Step 6.2)
-  - [ ] Sub-task: Document `metadata.json` status change, track registration, `gh pr ready`, and merge handoff
-  - [ ] Sub-task: Sync `.agents/skills/cooper-rfc/SKILL.md`
-- [ ] Task 1.4: Phase 1 Verification & Checkpoint
+- [x] Task 1.2: Add PR Approval State Detection & Comment Triggers (Section 6) (6fd001c)
+  - [x] Sub-task: Update Step 6.1 in `skills/cooper-rfc/SKILL.md` with `gh pr view --json state,reviews,reviewDecision` command
+  - [x] Sub-task: Add `/approve` comment trigger parsing instructions in Step 6.1
+  - [x] Sub-task: Update `.agents/skills/cooper-rfc/SKILL.md` to match
+- [x] Task 1.3: Align RFC Graduation & User Merge Gate Protocol (Step 6.2) (6fd001c)
+  - [x] Sub-task: Document `metadata.json` status change, track registration, `gh pr ready`, and merge handoff
+  - [x] Sub-task: Sync `.agents/skills/cooper-rfc/SKILL.md`
+- [~] Task 1.4: Phase 1 Verification & Checkpoint
   - [ ] Sub-task: Verify skill syntax and step-by-step clarity
   - [ ] Sub-task: Checkpoint commit and phase sync
 
