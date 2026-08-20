@@ -32,7 +32,7 @@
 
 ## Phase 3: Installer & Packaging Verification
 
-- [~] Task 3.1: Verify Installer Sync
-  - [ ] Sub-task: Run/dry-run `install.sh` or verify skill file copies from `skills/` to `.agents/skills/`
-- [ ] Task 3.2: Phase 3 Checkpoint & Finalization
+- [x] Task 3.1: Verify Installer Sync
+  - [x] Sub-task: Run/dry-run `install.sh` or verify skill file copies from `skills/` to `.agents/skills/`
+- [~] Task 3.2: Phase 3 Checkpoint & Finalization
   - [ ] Sub-task: Run repository verification and stage for PR
