@@ -4,15 +4,15 @@
 - **Capability**: `rfc-workflow`
 
 ## Phase 1: Author Dedicated Guide (`docs/rfc-draft-prs.md`)
-- [~] Task: Create `docs/rfc-draft-prs.md` with Executive Rationale & Comparison Matrix
-  - [ ] Sub-task: Draft comparison matrix contrasting Draft RFC PR vs Regular PR
-  - [ ] Sub-task: Detail SDD two-tier model separation
-- [ ] Task: Document The 3 Primary Benefits & Detailed Mechanics
-  - [ ] Sub-task: Document Benefit 1 (Track & spec registry protection on main)
-  - [ ] Sub-task: Document Benefit 2 (Collaborative markdown, Mermaid, and diff review surface)
-  - [ ] Sub-task: Document Benefit 3 (Two-step milestone gate)
-- [ ] Task: Embed Flow Diagrams & Lifecycle Reference
-  - [ ] Sub-task: Add Mermaid sequence diagram for RFC graduation
+- [x] Task: Create `docs/rfc-draft-prs.md` with Executive Rationale & Comparison Matrix (d7188c9)
+  - [x] Sub-task: Draft comparison matrix contrasting Draft RFC PR vs Regular PR
+  - [x] Sub-task: Detail SDD two-tier model separation
+- [x] Task: Document The 3 Primary Benefits & Detailed Mechanics (d7188c9)
+  - [x] Sub-task: Document Benefit 1 (Track & spec registry protection on main)
+  - [x] Sub-task: Document Benefit 2 (Collaborative markdown, Mermaid, and diff review surface)
+  - [x] Sub-task: Document Benefit 3 (Two-step milestone gate)
+- [x] Task: Embed Flow Diagrams & Lifecycle Reference (d7188c9)
+  - [x] Sub-task: Add Mermaid sequence diagram for RFC graduation
 - [ ] Task: Cooper - Phase 1 Verification & Checkpoint
   - [ ] Sub-task: Verify markdown linting and document rendering
   - [ ] Sub-task: Checkpoint commit & Git Notes summary
