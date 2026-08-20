@@ -1,0 +1,3 @@
+Task: Comprehensive Markdown Link Verification & Quality Gate
+Scope: .cooper/specs/installer/spec.md, .cooper/active/link-troop-in-docs/index.md, .cooper/active/rfc-pr-approval-protocols/design.md, .cooper/tracks.md
+Summary: Linked remaining mentions of Troop to https://github.com/twoBoots/troop, achieving 100% link coverage across all active markdown files
