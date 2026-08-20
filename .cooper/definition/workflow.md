@@ -46,10 +46,10 @@
 
 ## Track Workflow
 
-### Track Worktree Protocol (Troop)
+### Track Worktree Protocol ([Troop](https://github.com/twoBoots/troop))
 Before starting any work on a new track:
 1. **Identify Track ID:** Determine the track ID (e.g., `extension_popup` or `auth-flow`).
-2. **Spawn Track Worktree:** Create an isolated worktree under `.worktrees/<track_id>` using Troop:
+2. **Spawn Track Worktree:** Create an isolated worktree under `.worktrees/<track_id>` using [Troop](https://github.com/twoBoots/troop):
    ```bash
    git agent-start <track_id>
    ```
