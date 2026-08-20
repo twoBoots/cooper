@@ -13,13 +13,13 @@
 - [x] Task 1.3: Align RFC Graduation & User Merge Gate Protocol (Step 6.2) (6fd001c)
   - [x] Sub-task: Document `metadata.json` status change, track registration, `gh pr ready`, and merge handoff
   - [x] Sub-task: Sync `.agents/skills/cooper-rfc/SKILL.md`
-- [~] Task 1.4: Phase 1 Verification & Checkpoint
-  - [ ] Sub-task: Verify skill syntax and step-by-step clarity
-  - [ ] Sub-task: Checkpoint commit and phase sync
+- [x] Task 1.4: Phase 1 Verification & Checkpoint [checkpoint: 895e99c]
+  - [x] Sub-task: Verify skill syntax and step-by-step clarity
+  - [x] Sub-task: Checkpoint commit and phase sync
 
 ## Phase 2: Framework Documentation & Living Specs
 
-- [ ] Task 2.1: Update `.cooper/COOPER.md` Two-Tier Planning Architecture
+- [~] Task 2.1: Update `.cooper/COOPER.md` Two-Tier Planning Architecture
   - [ ] Sub-task: Document RFC Draft PR -> Review Approval -> Track Registration -> User PR Merge -> Downstream Track execution
   - [ ] Sub-task: Ensure terminology and commands align with `cooper-rfc` skill
 - [ ] Task 2.2: Refine Principle 9 in `.cooper/definition/workflow.md`
