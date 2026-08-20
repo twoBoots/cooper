@@ -1,6 +1,6 @@
 # Cooper 🛢️🐒
 
-**Cooper** combines **OpenSpec's Living Spec Deltas** with **Conductor's** quality governance and **Troop's** worktree isolation ([troop](https://github.com/twoBoots/troop)) into a unified, agent-agnostic **Spec-Driven Development (SDD)** framework under `.cooper/`.
+**Cooper** combines **OpenSpec's Living Spec Deltas** with **Conductor's** quality governance and **[Troop's](https://github.com/twoBoots/troop)** worktree isolation into a unified, agent-agnostic **Spec-Driven Development (SDD)** framework under `.cooper/`.
 
 Cooper packages its own dedicated agent skills under `.agents/skills/`, making it 100% self-contained and free of external plugin prerequisites.
 
@@ -22,11 +22,11 @@ Alternatively, if you have this repository cloned locally:
 
 ## What `install.sh` Does
 
-1. **Troop Foundation**: Sets up shared Git aliases (`git agent-start`, `git troop`, `git agent-stop`), `.gitignore` (`.worktrees/`), and installs `TROOP.md` into `.cooper/TROOP.md`.
+1. **[Troop](https://github.com/twoBoots/troop) Foundation**: Sets up shared Git aliases (`git agent-start`, `git troop`, `git agent-stop`), `.gitignore` (`.worktrees/`), and installs `TROOP.md` into `.cooper/TROOP.md`.
 2. **Auto-Migration & Scaffolding**: Auto-migrates existing `conductor/` or `openspec/` setups to `.cooper/`, or scaffolds baseline templates from Cooper's self-contained template suite for greenfield repositories.
 3. **Cooper Specification & Handshake**: Copies workflow specifications into `.cooper/definition/workflow.md`, installs `.cooper/COOPER.md`, and creates `.cooper/index.md` as the single source of truth.
 4. **Native Agent Skills**: Installs project-local Cooper skills into `.agents/skills/` (`cooper-setup`, `cooper-rfc`, `cooper-new-track`, `cooper-implement`, `cooper-review`, `cooper-status`).
-5. **Agent Rules**: Injects Cooper SDD + Troop rules from `AGENTS.template.md` into your project's `AGENTS.md`.
+5. **Agent Rules**: Injects Cooper SDD + [Troop](https://github.com/twoBoots/troop) rules from `AGENTS.template.md` into your project's `AGENTS.md`.
 
 ## Structure
 
@@ -64,7 +64,7 @@ your-project/
 
 | Skill | Description |
 | :--- | :--- |
-| **`cooper-setup`** | Audits codebase, scaffolds `.cooper/` definitions, styleguides, and configures Troop worktrees. |
+| **`cooper-setup`** | Audits codebase, scaffolds `.cooper/` definitions, styleguides, and configures [Troop](https://github.com/twoBoots/troop) worktrees. |
 | **`cooper-rfc`** | Plans collaborative architectural initiatives, drafts RFCs & spec deltas, opens Draft PRs, and decomposes into tracks ([RFC Draft PR Guide](docs/rfc-draft-prs.md)). |
 | **`cooper-new-track`** | Spawns `.worktrees/<track_id>`, inspects living specs, and drafts proposal, design, spec deltas, and plan. |
 | **`cooper-implement`** | Executes TDD loop inside worktree, records Git Notes metadata, and runs phase synchronization & checkpoints. |

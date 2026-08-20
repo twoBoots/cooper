@@ -1,4 +1,4 @@
-# Agent Guidelines (Cooper SDD Framework + Troop Workflow)
+# Agent Guidelines (Cooper SDD Framework + [Troop](https://github.com/twoBoots/troop) Workflow)
 
 ## Operational Rules
 
@@ -8,7 +8,7 @@
    - Ground all planning in living capability specifications (`.cooper/specs/<capability>/spec.md`).
    - Every feature/change proposal MUST produce a **Spec Delta** (`.cooper/active/<track_id>/spec-deltas/<capability>/spec.md`) documenting requirement additions (`+`) and deletions (`-`) before code is written.
 
-2. **Troop Worktree Isolation Protocol**:
+2. **[Troop](https://github.com/twoBoots/troop) Worktree Isolation Protocol**:
    - Work inside an isolated worktree under `.worktrees/<track_id>`. Do NOT write feature code directly on the main repository trunk.
    - Base track worktrees off `main` using `git agent-start <track_id>`.
    - List active worktrees with `git troop`.
