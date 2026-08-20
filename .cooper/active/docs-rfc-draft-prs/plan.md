@@ -13,9 +13,9 @@
   - [x] Sub-task: Document Benefit 3 (Two-step milestone gate)
 - [x] Task: Embed Flow Diagrams & Lifecycle Reference (d7188c9)
   - [x] Sub-task: Add Mermaid sequence diagram for RFC graduation
-- [ ] Task: Cooper - Phase 1 Verification & Checkpoint
-  - [ ] Sub-task: Verify markdown linting and document rendering
-  - [ ] Sub-task: Checkpoint commit & Git Notes summary
+- [x] Task: Cooper - Phase 1 Verification & Checkpoint (7b25e0c) [checkpoint: 7b25e0c]
+  - [x] Sub-task: Verify markdown linting and document rendering
+  - [x] Sub-task: Checkpoint commit & Git Notes summary
 
 ## Phase 2: Indexing & Final Verification
 - [ ] Task: Add Reference Links in Project Documentation
