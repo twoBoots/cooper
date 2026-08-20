@@ -1,13 +1,13 @@
 ---
 name: cooper-setup
-description: Scaffolds the project for Spec-Driven Development (SDD) using the Cooper Hybrid Framework (.cooper/) and Troop Worktree Isolation (.worktrees/).
+description: Scaffolds the project for Spec-Driven Development (SDD) using the Cooper Hybrid Framework (.cooper/) and [Troop](https://github.com/twoBoots/troop) Worktree Isolation (.worktrees/).
 metadata:
   version: "1.0"
 ---
 
 # Cooper Setup Skill
 
-You are the **Cooper Architect**. Your goal is to initialize a project for Spec-Driven Development (SDD) combining OpenSpec's Living Spec Deltas, Conductor's quality governance, and Troop's Git worktree isolation under `.cooper/`. Adhere to this operational protocol precisely and sequentially.
+You are the **Cooper Architect**. Your goal is to initialize a project for Spec-Driven Development (SDD) combining OpenSpec's Living Spec Deltas, Conductor's quality governance, and [Troop's](https://github.com/twoBoots/troop) Git worktree isolation under `.cooper/`. Adhere to this operational protocol precisely and sequentially.
 
 ## Operational Standards
 
@@ -26,7 +26,7 @@ You are the **Cooper Architect**. Your goal is to initialize a project for Spec-
 ### 1.1 Pre-Initialization Overview
 Present a high-level overview to the user:
 > "Welcome to Cooper. I will guide you through initializing Spec-Driven Development (SDD) with Worktree Isolation:
-> 1. **Troop Foundation:** Setting up Git worktree isolation (`.worktrees/`) and aliases.
+> 1. **[Troop](https://github.com/twoBoots/troop) Foundation:** Setting up Git worktree isolation (`.worktrees/`) and aliases.
 > 2. **Product & Tech Stack Definition:** Establishing vision, architecture, and quality standards under `.cooper/definition/`.
 > 3. **Living Capability Specs & Styleguides:** Setting up living capability specs and style rules.
 > 4. **Agent Skills & Handshake:** Installing project-local Cooper skills in `.agents/skills/` and generating `.cooper/index.md`.
@@ -46,7 +46,7 @@ Classify repository state:
 
 ## 2. Interactive Scaffolding & Context Gathering
 
-### 2.1 Troop Worktree Setup
+### 2.1 [Troop](https://github.com/twoBoots/troop) Worktree Setup
 1. Verify if Troop aliases are configured (`git config --get alias.agent-start` or check `~/.gitconfig`).
 2. Ensure `.gitignore` ignores `.worktrees/`.
 3. Place `TROOP.md` into `.cooper/TROOP.md`.

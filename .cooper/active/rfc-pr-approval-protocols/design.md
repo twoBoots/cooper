@@ -48,7 +48,7 @@ flowchart TD
   3. AI detection of PR approval and track registration in `.cooper/tracks.md`.
   4. PR marked ready for review (`gh pr ready`).
   5. Mandatory human maintainer merge to `main`.
-  6. Downstream track execution in isolated Troop worktrees (`cooper-new-track`).
+  6. Downstream track execution in isolated [Troop](https://github.com/twoBoots/troop) worktrees (`cooper-new-track`).
 
 ### 2.3 `.cooper/definition/workflow.md`
 - Clarify Principle 9 (*Upstream Architecture vs. Track Execution*) to note the RFC-to-Track boundary and registration handoff.

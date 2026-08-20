@@ -6,7 +6,7 @@ Defines the installation, scaffolding, and repository directory structure requir
 ## Requirements
 
 ### Requirement: Troop Reference Relocation
-The installer SHALL place all Troop reference material within the `.cooper/` directory to keep the root directory uncluttered.
+The installer SHALL place all [Troop](https://github.com/twoBoots/troop) reference material within the `.cooper/` directory to keep the root directory uncluttered.
 
 #### Scenario: Relocate TROOP.md on Setup
 - GIVEN Cooper installer executes in a project

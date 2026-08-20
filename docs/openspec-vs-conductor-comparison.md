@@ -4,17 +4,17 @@
 
 As AI coding agents (Claude Code, Cursor, Gemini CLI, Antigravity, etc.) mature, software development is shifting from informal "vibe coding" (ad-hoc prompt-and-pray iterations) toward **Spec-Driven Development (SDD)**. SDD establishes explicit, human-reviewable specifications and step-by-step implementation plans before an AI agent writes application code.
 
-**Cooper** integrates the **Conductor** spec-driven framework with **Troop** Git worktree isolation (`.worktrees/`). This document outlines how the **Cooper Hybrid Framework** (`.cooper/`) incorporates **OpenSpec's Living Spec Deltas** while fully respecting Cooper's TDD, quality gates, phase synchronization protocols, and Troop worktree isolation.
+**Cooper** integrates the **Conductor** spec-driven framework with **[Troop](https://github.com/twoBoots/troop)** Git worktree isolation (`.worktrees/`). This document outlines how the **Cooper Hybrid Framework** (`.cooper/`) incorporates **OpenSpec's Living Spec Deltas** while fully respecting Cooper's TDD, quality gates, phase synchronization protocols, and Troop worktree isolation.
 
 ---
 
 ## 1. Core Framework Comparison
 
-| Dimension | Customized Conductor Approach | OpenSpec (Fission AI) | Cooper Hybrid Model (`.cooper/` + Troop) |
+| Dimension | Customized Conductor Approach | OpenSpec (Fission AI) | Cooper Hybrid Model (`.cooper/` + [Troop](https://github.com/twoBoots/troop)) |
 | :--- | :--- | :--- | :--- |
 | **Primary Focus** | Agent Orchestration & Governance | Domain Capability Specs & Spec Deltas | **Unified Spec-Driven Orchestration with Worktree Isolation** |
 | **Root Directory** | `conductor/` | `openspec/` | **`.cooper/`** |
-| **Isolation Mechanics** | Single workspace branch | Single workspace branch | **Troop Worktrees (`.worktrees/<track_id>/`)** |
+| **Isolation Mechanics** | Single workspace branch | Single workspace branch | **[Troop](https://github.com/twoBoots/troop) Worktrees (`.worktrees/<track_id>/`)** |
 | **Core Unit** | **Track** (`conductor/tracks/<id>/`) | **Capability & Change** (`openspec/specs/` & `changes/`) | **Living Specs + Active Worktree Tracks** (`.cooper/specs/` & `.cooper/active/`) |
 | **Knowledge Representation** | Append-Only Track History | Living Capability Library + Spec Deltas | **Living Capability Library + Spec Deltas** |
 | **Execution Control** | Strict TDD, style guides, checkpoints | Flexible / Agnostic | **Strict TDD, style guides, Git Notes & phase checkpoints** |
@@ -66,9 +66,9 @@ your-project/
 
 ---
 
-## 3. How the Cooper Workflow & Troop Are Respected
+## 3. How the Cooper Workflow & [Troop](https://github.com/twoBoots/troop) Are Respected
 
-### 3.1 Troop Worktree Isolation (`git agent-start` / `git agent-stop`)
+### 3.1 [Troop](https://github.com/twoBoots/troop) Worktree Isolation (`git agent-start` / `git agent-stop`)
 * **Worktree Spawning (`git agent-start <track_id>`)**:
   When a new track is initiated, Troop spawns an isolated Git worktree under `.worktrees/<track_id>`. All feature code, test additions, and track-specific `.cooper/active/<track_id>/` files are created inside that isolated worktree.
 * **Parallel Execution**:
@@ -211,7 +211,7 @@ sequenceDiagram
 
 ---
 
-## 7. Summary of Cooper + Troop Benefits
+## 7. Summary of Cooper + [Troop](https://github.com/twoBoots/troop) Benefits
 
 1. **Total Workspace Isolation**: Troop ensures agents operate in clean, isolated `.worktrees/<track_id>` directories without touching main worktree state.
 2. **Robust Phase Synchronization**: Ensures workflow rules, living specs, and phase progress remain synchronized across parallel worktrees and remote repositories.

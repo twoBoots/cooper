@@ -1,0 +1,38 @@
+# Implementation Plan: Link Troop Mentions in Markdown Documentation to twoBoots/troop
+
+## Phase 1: Core Framework Docs & Guides
+
+- [x] Task: Audit and update Root & Agent Guidelines (32ec1ad)
+  - [x] Sub-task: Update `README.md` to link first prominent Troop mention to `https://github.com/twoBoots/troop`
+  - [x] Sub-task: Update `AGENTS.md` and `AGENTS.template.md` to link `[Troop](https://github.com/twoBoots/troop)` in Section 2
+  - [x] Sub-task: Verify `CLAUDE.md` and root markdown files for Troop links
+- [x] Task: Audit and update `docs/` Markdown Files (1ee75a7)
+  - [x] Sub-task: Update `docs/INSTALL.md` to link `[Troop](https://github.com/twoBoots/troop)`
+  - [x] Sub-task: Update `docs/openspec-vs-conductor-comparison.md` to link `[Troop](https://github.com/twoBoots/troop)`
+  - [x] Sub-task: Update `docs/rfc-draft-prs.md` to link `[Troop](https://github.com/twoBoots/troop)`
+- [x] Task: Phase 1 Verification & Checkpoint [checkpoint: d61733b]
+  - [x] Sub-task: Run automated markdown link check across Phase 1 files
+  - [x] Sub-task: Phase 1 Checkpoint & remote sync (`git push origin link-troop-in-docs`)
+
+## Phase 2: Framework Definitions & Starter Templates
+
+- [x] Task: Update Cooper Internal Reference & Workflow (7c2495d)
+  - [x] Sub-task: Update `.cooper/COOPER.md` to ensure primary link and table links point to `https://github.com/twoBoots/troop`
+  - [x] Sub-task: Update `.cooper/definition/workflow.md` to link `[Troop](https://github.com/twoBoots/troop)` in structure & protocol sections
+- [x] Task: Update Starter Templates (`templates/`) (Verified - no Troop mentions present in starter templates)
+  - [x] Sub-task: Update `templates/product.md`, `templates/tech-stack.md`, and any template files mentioning Troop
+- [x] Task: Phase 2 Verification & Checkpoint [checkpoint: a8acd2c]
+  - [x] Sub-task: Run automated markdown link check across Phase 2 files
+  - [x] Sub-task: Phase 2 Checkpoint & remote sync (`git push origin link-troop-in-docs`)
+
+## Phase 3: Project Skills & Final Audit
+
+- [x] Task: Audit and update Agent Skills (`skills/` and `.agents/skills/`) (20584f5)
+  - [x] Sub-task: Update `cooper-setup`, `cooper-rfc`, and `cooper-new-track` SKILL.md files
+  - [x] Sub-task: Update `cooper-implement`, `cooper-review`, and `cooper-status` SKILL.md files
+  - [x] Sub-task: Ensure both `skills/` and `.agents/skills/` are kept in sync
+- [x] Task: Comprehensive Markdown Link Verification & Quality Gate (f75b862)
+  - [x] Sub-task: Execute repository-wide markdown link audit script
+  - [x] Sub-task: Verify no broken markdown syntax or link collisions
+- [x] Task: Phase 3 Verification & Final Checkpoint [checkpoint: dfe8a12]
+  - [x] Sub-task: Phase 3 Checkpoint & remote sync (`git push origin link-troop-in-docs`)

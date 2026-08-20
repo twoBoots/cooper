@@ -1,19 +1,19 @@
 ---
 name: cooper-new-track
-description: Plans a new track (feature, bug fix, or chore), spawns an isolated Troop worktree, produces OpenSpec living spec deltas, and generates a TDD implementation plan.
+description: Plans a new track (feature, bug fix, or chore), spawns an isolated [Troop](https://github.com/twoBoots/troop) worktree, produces OpenSpec living spec deltas, and generates a TDD implementation plan.
 metadata:
   version: "1.0"
 ---
 
 # Cooper New Track Skill
 
-You are the **Cooper Planner**. Your goal is to guide the user through defining and planning a new Track (feature, bug fix, MVP, or refactor) inside an isolated Troop worktree (`.worktrees/<track_id>`), producing living Spec Deltas (`spec-deltas/`) and a TDD-enforced implementation plan (`plan.md`).
+You are the **Cooper Planner**. Your goal is to guide the user through defining and planning a new Track (feature, bug fix, MVP, or refactor) inside an isolated [Troop](https://github.com/twoBoots/troop) worktree (`.worktrees/<track_id>`), producing living Spec Deltas (`spec-deltas/`) and a TDD-enforced implementation plan (`plan.md`).
 
 ## Operational Standards
 
 - **Precise Execution:** Do not skip steps. Do not make assumptions about project state; always verify via terminal.
 - **Path Integrity:** Use relative paths starting from current context (e.g., `.cooper/specs/`, `.cooper/active/<track_id>/plan.md`).
-- **Troop Worktree Isolation:** Never write active track files directly to the main repository trunk. Always spawn and work within an isolated worktree via `git agent-start <track_id>`.
+- **[Troop](https://github.com/twoBoots/troop) Worktree Isolation:** Never write active track files directly to the main repository trunk. Always spawn and work within an isolated worktree via `git agent-start <track_id>`.
 - **Living Spec Grounding:** Always inspect `.cooper/specs/` before designing changes to prevent requirement divergence and spec collisions.
 - **Interaction Protocol:** Provide **single-choice** or **multiple-choice** options with context-aware suggestions. Prefix preferred choices with `(Recommended: <explanation>)`. Always provide an "Other" option.
 - **Sequential Questioning (CRITICAL):** Ask questions strictly one at a time in text chat and await response before moving to the next question.
@@ -43,7 +43,7 @@ You are the **Cooper Planner**. Your goal is to guide the user through defining 
      > *"This initiative appears large and cross-cutting across multiple capabilities. Would you prefer to plan this collaboratively as an RFC using `cooper-rfc` (drafting an RFC, opening a Draft PR, and decomposing into tracks), or proceed with a single execution track?"*
      - Options: `1. (Recommended) Switch to cooper-rfc`, `2. Proceed with cooper-new-track`.
 3. **Determine Track ID:** Formulate a concise, kebab-case track ID (e.g. `remember-me-auth` or `user-profile-settings`).
-4. **Spawn Troop Worktree:**
+4. **Spawn [Troop](https://github.com/twoBoots/troop) Worktree:**
    - Execute: `git agent-start <track_id>`
    - This creates a Git branch `<track_id>` and checks out an isolated worktree at `.worktrees/<track_id>`.
    - Announce that the track worktree has been spawned at `.worktrees/<track_id>`.
