@@ -65,7 +65,7 @@ your-project/
 | Skill | Description |
 | :--- | :--- |
 | **`cooper-setup`** | Audits codebase, scaffolds `.cooper/` definitions, styleguides, and configures Troop worktrees. |
-| **`cooper-rfc`** | Plans collaborative architectural initiatives, drafts RFCs & spec deltas, opens Draft PRs, and decomposes into tracks. |
+| **`cooper-rfc`** | Plans collaborative architectural initiatives, drafts RFCs & spec deltas, opens Draft PRs, and decomposes into tracks ([RFC Draft PR Guide](docs/rfc-draft-prs.md)). |
 | **`cooper-new-track`** | Spawns `.worktrees/<track_id>`, inspects living specs, and drafts proposal, design, spec deltas, and plan. |
 | **`cooper-implement`** | Executes TDD loop inside worktree, records Git Notes metadata, and runs phase synchronization & checkpoints. |
 | **`cooper-review`** | Conducts Principal Software Engineer code review against spec deltas, styleguides, and test suites. |
