@@ -16,10 +16,10 @@
 
 ## Phase 2: Framework Definitions & Starter Templates
 
-- [~] Task: Update Cooper Internal Reference & Workflow
-  - [ ] Sub-task: Update `.cooper/COOPER.md` to ensure primary link and table links point to `https://github.com/twoBoots/troop`
-  - [ ] Sub-task: Update `.cooper/definition/workflow.md` to link `[Troop](https://github.com/twoBoots/troop)` in structure & protocol sections
-- [ ] Task: Update Starter Templates (`templates/`)
+- [x] Task: Update Cooper Internal Reference & Workflow (7c2495d)
+  - [x] Sub-task: Update `.cooper/COOPER.md` to ensure primary link and table links point to `https://github.com/twoBoots/troop`
+  - [x] Sub-task: Update `.cooper/definition/workflow.md` to link `[Troop](https://github.com/twoBoots/troop)` in structure & protocol sections
+- [~] Task: Update Starter Templates (`templates/`)
   - [ ] Sub-task: Update `templates/product.md`, `templates/tech-stack.md`, and any template files mentioning Troop
 - [ ] Task: Phase 2 Verification & Checkpoint
   - [ ] Sub-task: Run automated markdown link check across Phase 2 files
