@@ -19,9 +19,9 @@
 - [x] Task: Update Cooper Internal Reference & Workflow (7c2495d)
   - [x] Sub-task: Update `.cooper/COOPER.md` to ensure primary link and table links point to `https://github.com/twoBoots/troop`
   - [x] Sub-task: Update `.cooper/definition/workflow.md` to link `[Troop](https://github.com/twoBoots/troop)` in structure & protocol sections
-- [~] Task: Update Starter Templates (`templates/`)
-  - [ ] Sub-task: Update `templates/product.md`, `templates/tech-stack.md`, and any template files mentioning Troop
-- [ ] Task: Phase 2 Verification & Checkpoint
+- [x] Task: Update Starter Templates (`templates/`) (Verified - no Troop mentions present in starter templates)
+  - [x] Sub-task: Update `templates/product.md`, `templates/tech-stack.md`, and any template files mentioning Troop
+- [~] Task: Phase 2 Verification & Checkpoint
   - [ ] Sub-task: Run automated markdown link check across Phase 2 files
   - [ ] Sub-task: Phase 2 Checkpoint & remote sync (`git push origin link-troop-in-docs`)
 
