@@ -1,0 +1,3 @@
+Task: Audit and update docs/ Markdown Files
+Scope: docs/INSTALL.md, docs/openspec-vs-conductor-comparison.md, docs/rfc-draft-prs.md
+Summary: Linked prominent mentions of Troop to https://github.com/twoBoots/troop across docs/ guides and comparison matrices
