@@ -18,9 +18,9 @@
   - [x] Sub-task: Checkpoint commit & Git Notes summary
 
 ## Phase 2: Indexing & Final Verification
-- [ ] Task: Add Reference Links in Project Documentation
-  - [ ] Sub-task: Update `docs/` references or table of contents
-  - [ ] Sub-task: Ensure links resolve cleanly without cluttering core cheatsheets
-- [ ] Task: Cooper - Phase 2 Verification & Checkpoint
-  - [ ] Sub-task: Verify all links and headings
-  - [ ] Sub-task: Remote sync & final checkpoint commit
+- [x] Task: Add Reference Links in Project Documentation (45e3de8)
+  - [x] Sub-task: Update `docs/` references or table of contents
+  - [x] Sub-task: Ensure links resolve cleanly without cluttering core cheatsheets
+- [x] Task: Cooper - Phase 2 Verification & Checkpoint (checkpoint_pending)
+  - [x] Sub-task: Verify all links and headings
+  - [x] Sub-task: Remote sync & final checkpoint commit
