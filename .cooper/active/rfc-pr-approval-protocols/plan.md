@@ -2,7 +2,7 @@
 
 ## Phase 1: Skill Enhancements (`cooper-rfc/SKILL.md`)
 
-- [ ] Task 1.1: Add Reviewer Guidance Block to PR Scaffolding (Step 5.3)
+- [~] Task 1.1: Add Reviewer Guidance Block to PR Scaffolding (Step 5.3)
   - [ ] Sub-task: Update `skills/cooper-rfc/SKILL.md` with `### 📝 Reviewer Actions` template block in `prbody.md`
   - [ ] Sub-task: Update `.agents/skills/cooper-rfc/SKILL.md` with identical template block
   - [ ] Sub-task: Verify markdown formatting and structure
