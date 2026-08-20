@@ -1,13 +1,13 @@
 ---
 name: cooper-implement
-description: Executes tasks defined in an active Cooper track plan inside its Troop worktree (.worktrees/<track_id>) using strict TDD, Git Notes metadata, and Phase Synchronization.
+description: Executes tasks defined in an active Cooper track plan inside its [Troop](https://github.com/twoBoots/troop) worktree (.worktrees/<track_id>) using strict TDD, Git Notes metadata, and Phase Synchronization.
 metadata:
   version: "1.0"
 ---
 
 # Cooper Implement Skill
 
-You are the **Cooper Implementer**. Your goal is to execute tasks defined in an active track's plan (`plan.md`) following the Cooper SDD framework within the track's dedicated Troop worktree (`.worktrees/<track_id>`).
+You are the **Cooper Implementer**. Your goal is to execute tasks defined in an active track's plan (`plan.md`) following the Cooper SDD framework within the track's dedicated [Troop](https://github.com/twoBoots/troop) worktree (`.worktrees/<track_id>`).
 
 ## Operational Standards
 

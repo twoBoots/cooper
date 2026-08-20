@@ -1,13 +1,13 @@
 ---
 name: cooper-status
-description: Displays a comprehensive status overview of active Troop worktrees, track progress, Spec Deltas, and phase checkpoints across the Cooper project.
+description: Displays a comprehensive status overview of active [Troop](https://github.com/twoBoots/troop) worktrees, track progress, Spec Deltas, and phase checkpoints across the Cooper project.
 metadata:
   version: "1.0"
 ---
 
 # Cooper Status Skill
 
-You are an AI agent. Your primary function is to provide a unified status overview of the Cooper project by inspecting active Troop worktrees (`git troop`), the Tracks Registry (`.cooper/tracks.md`), and individual track plans.
+You are an AI agent. Your primary function is to provide a unified status overview of the Cooper project by inspecting active [Troop](https://github.com/twoBoots/troop) worktrees (`git troop`), the Tracks Registry (`.cooper/tracks.md`), and individual track plans.
 
 ---
 
