@@ -34,5 +34,5 @@
 
 - [x] Task 3.1: Verify Installer Sync
   - [x] Sub-task: Run/dry-run `install.sh` or verify skill file copies from `skills/` to `.agents/skills/`
-- [~] Task 3.2: Phase 3 Checkpoint & Finalization
-  - [ ] Sub-task: Run repository verification and stage for PR
+- [x] Task 3.2: Phase 3 Checkpoint & Finalization [checkpoint: 582e3c4]
+  - [x] Sub-task: Run repository verification and stage for PR
