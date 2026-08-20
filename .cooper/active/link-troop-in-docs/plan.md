@@ -6,11 +6,11 @@
   - [x] Sub-task: Update `README.md` to link first prominent Troop mention to `https://github.com/twoBoots/troop`
   - [x] Sub-task: Update `AGENTS.md` and `AGENTS.template.md` to link `[Troop](https://github.com/twoBoots/troop)` in Section 2
   - [x] Sub-task: Verify `CLAUDE.md` and root markdown files for Troop links
-- [~] Task: Audit and update `docs/` Markdown Files
-  - [ ] Sub-task: Update `docs/INSTALL.md` to link `[Troop](https://github.com/twoBoots/troop)`
-  - [ ] Sub-task: Update `docs/openspec-vs-conductor-comparison.md` to link `[Troop](https://github.com/twoBoots/troop)`
-  - [ ] Sub-task: Update `docs/rfc-draft-prs.md` to link `[Troop](https://github.com/twoBoots/troop)`
-- [ ] Task: Phase 1 Verification & Checkpoint
+- [x] Task: Audit and update `docs/` Markdown Files (1ee75a7)
+  - [x] Sub-task: Update `docs/INSTALL.md` to link `[Troop](https://github.com/twoBoots/troop)`
+  - [x] Sub-task: Update `docs/openspec-vs-conductor-comparison.md` to link `[Troop](https://github.com/twoBoots/troop)`
+  - [x] Sub-task: Update `docs/rfc-draft-prs.md` to link `[Troop](https://github.com/twoBoots/troop)`
+- [~] Task: Phase 1 Verification & Checkpoint
   - [ ] Sub-task: Run automated markdown link check across Phase 1 files
   - [ ] Sub-task: Phase 1 Checkpoint & remote sync (`git push origin link-troop-in-docs`)
 
