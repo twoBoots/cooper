@@ -17,5 +17,15 @@ All active and completed Cooper tracks are registered below.
 - [x] **Track: Link Troop Mentions in Markdown Documentation to [twoBoots/troop](https://github.com/twoBoots/troop)**
   - Archive: [.cooper/archive/link-troop-in-docs/](.cooper/archive/link-troop-in-docs/)
 
+- [ ] **RFC: Cooper Go CLI & MCP Server Architecture** (`rfc-cooper-cli-mcp`)
+  - RFC Doc: [.cooper/active/rfc-cooper-cli-mcp/rfc.md](.cooper/active/rfc-cooper-cli-mcp/rfc.md)
+  - Status: Approved
+  - Decomposed Tracks:
+    - [ ] Track: `track-cooper-cli-core` (Scope: Go CLI project scaffolding, Cobra command tree, and SDD syntax validator)
+    - [ ] Track: `track-cooper-updater-diff3` (Scope: CLI binary self-update, 3-way diff reconciliation engine, and manifest fingerprinting)
+    - [ ] Track: `track-cooper-embedded-mcp` (Scope: Embedded stdio MCP server exposing SDD, self-update, and 3-way diff tools)
+    - [ ] Track: `track-cooper-installer-packaging` (Scope: 3-tier install.sh script, CI validation, and GitHub Actions multi-arch release matrix)
+
+
 
 
