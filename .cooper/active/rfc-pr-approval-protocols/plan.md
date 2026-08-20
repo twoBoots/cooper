@@ -19,14 +19,14 @@
 
 ## Phase 2: Framework Documentation & Living Specs
 
-- [~] Task 2.1: Update `.cooper/COOPER.md` Two-Tier Planning Architecture
-  - [ ] Sub-task: Document RFC Draft PR -> Review Approval -> Track Registration -> User PR Merge -> Downstream Track execution
-  - [ ] Sub-task: Ensure terminology and commands align with `cooper-rfc` skill
-- [ ] Task 2.2: Refine Principle 9 in `.cooper/definition/workflow.md`
-  - [ ] Sub-task: Clarify handoff boundary from merged RFCs to downstream track workflow
-- [ ] Task 2.3: Establish Living Capability Spec for `cooper-rfc`
-  - [ ] Sub-task: Create `.cooper/specs/cooper-rfc/spec.md` with baseline requirements
-- [ ] Task 2.4: Phase 2 Verification & Checkpoint
+- [x] Task 2.1: Update `.cooper/COOPER.md` Two-Tier Planning Architecture (14170d8)
+  - [x] Sub-task: Document RFC Draft PR -> Review Approval -> Track Registration -> User PR Merge -> Downstream Track execution
+  - [x] Sub-task: Ensure terminology and commands align with `cooper-rfc` skill
+- [x] Task 2.2: Refine Principle 9 in `.cooper/definition/workflow.md` (ba0abf2)
+  - [x] Sub-task: Clarify handoff boundary from merged RFCs to downstream track workflow
+- [x] Task 2.3: Establish Living Capability Spec for `cooper-rfc` (b330f49)
+  - [x] Sub-task: Create `.cooper/specs/cooper-rfc/spec.md` with baseline requirements
+- [~] Task 2.4: Phase 2 Verification & Checkpoint
   - [ ] Sub-task: Verify living specs and documentation consistency
   - [ ] Sub-task: Checkpoint commit and phase sync
 
