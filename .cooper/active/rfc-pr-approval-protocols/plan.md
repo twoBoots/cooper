@@ -26,13 +26,13 @@
   - [x] Sub-task: Clarify handoff boundary from merged RFCs to downstream track workflow
 - [x] Task 2.3: Establish Living Capability Spec for `cooper-rfc` (b330f49)
   - [x] Sub-task: Create `.cooper/specs/cooper-rfc/spec.md` with baseline requirements
-- [~] Task 2.4: Phase 2 Verification & Checkpoint
-  - [ ] Sub-task: Verify living specs and documentation consistency
-  - [ ] Sub-task: Checkpoint commit and phase sync
+- [x] Task 2.4: Phase 2 Verification & Checkpoint [checkpoint: 1fd8b8b]
+  - [x] Sub-task: Verify living specs and documentation consistency
+  - [x] Sub-task: Checkpoint commit and phase sync
 
 ## Phase 3: Installer & Packaging Verification
 
-- [ ] Task 3.1: Verify Installer Sync
+- [~] Task 3.1: Verify Installer Sync
   - [ ] Sub-task: Run/dry-run `install.sh` or verify skill file copies from `skills/` to `.agents/skills/`
 - [ ] Task 3.2: Phase 3 Checkpoint & Finalization
   - [ ] Sub-task: Run repository verification and stage for PR
