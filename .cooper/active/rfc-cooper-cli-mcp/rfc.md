@@ -2,8 +2,9 @@
 
 - **RFC ID**: `rfc-cooper-cli-mcp`
 - **Author**: System Architect & Cooper AI
-- **Status**: In Review (Draft)
+- **Status**: Approved
 - **Created**: 2026-08-20T20:16:30+10:00
+- **Approved**: 2026-08-20T20:38:40+10:00
 
 ---
 
