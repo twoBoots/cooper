@@ -1,6 +1,6 @@
 # Cooper Installation & Migration Guide
 
-`install.sh` is a one-line installer that scaffolds the **Cooper Spec-Driven Development (SDD) Framework** (`.cooper/`), **Troop Worktree Isolation** (`.worktrees/`), and native **Project Agent Skills** (`.agents/skills/`) into any target Git repository.
+`install.sh` is a one-line installer that scaffolds the **Cooper Spec-Driven Development (SDD) Framework** (`.cooper/`), **[Troop](https://github.com/twoBoots/troop) Worktree Isolation** (`.worktrees/`), and native **Project Agent Skills** (`.agents/skills/`) into any target Git repository.
 
 ---
 
@@ -38,8 +38,8 @@ flowchart TD
     G --> H["Run Troop Setup, Move TROOP.md to .cooper/, & Inject Rules into AGENTS.md"]
 ```
 
-### 1. Troop Foundation Setup
-The installer runs the `troop` installer (`twoBoots/troop`) to establish Git worktree isolation:
+### 1. [Troop](https://github.com/twoBoots/troop) Foundation Setup
+The installer runs the Troop installer ([twoBoots/troop](https://github.com/twoBoots/troop)) to establish Git worktree isolation:
 * Sets up Git command aliases (`git agent-start <track_id>`, `git troop`, `git agent-stop <track_id>`).
 * Updates `.gitignore` to exclude `.worktrees/`.
 * Relocates `TROOP.md` reference guide to `.cooper/TROOP.md` to keep the project root clean.

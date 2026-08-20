@@ -5,7 +5,7 @@
 In the **Cooper Spec-Driven Development (SDD)** framework, software initiatives are governed by a **Two-Tier Architecture Model**:
 
 1. **Upstream Alignment (`cooper-rfc`)**: High-level problem validation, architectural trade-offs, cross-capability living spec deltas (`spec-deltas/`), and team consensus.
-2. **Downstream Execution (`cooper-new-track` & `cooper-implement`)**: Isolated Troop worktrees (`.worktrees/<track_id>`), strict Test-Driven Development (Red -> Green -> Refactor), code coverage >80%, and Phase Checkpoint synchronization.
+2. **Downstream Execution (`cooper-new-track` & `cooper-implement`)**: Isolated [Troop](https://github.com/twoBoots/troop) worktrees (`.worktrees/<track_id>`), strict Test-Driven Development (Red -> Green -> Refactor), code coverage >80%, and Phase Checkpoint synchronization.
 
 A foundational rule of the upstream tier is that **all architectural RFCs are opened as GitHub/GitLab Draft Pull Requests** (`gh pr create --draft`).
 
