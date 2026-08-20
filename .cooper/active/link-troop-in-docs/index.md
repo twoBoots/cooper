@@ -1,4 +1,4 @@
-# Track: Link Troop Mentions in Markdown Documentation to twoBoots/troop
+# Track: Link Troop Mentions in Markdown Documentation to [twoBoots/troop](https://github.com/twoBoots/troop)
 
 - **Track ID:** `link-troop-in-docs`
 - **Worktree:** `.worktrees/link-troop-in-docs`
