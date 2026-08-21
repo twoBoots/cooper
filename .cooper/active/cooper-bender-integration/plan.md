@@ -9,9 +9,9 @@
 
 ## Phase 1: Module Dependency & Self-Update CLI (`cooper update`)
 
-- [~] **Task 1.1: Dependency Scaffolding & `go.mod` Configuration**
-  - [ ] Sub-task: Add `github.com/twoBoots/bender` dependency to `go.mod`
-  - [ ] Sub-task: Run `go mod tidy` and verify package accessibility
+- [x] **Task 1.1: Dependency Scaffolding & `go.mod` Configuration** (`66bf75a`)
+  - [x] Sub-task: Add `github.com/twoBoots/bender` dependency to `go.mod`
+  - [x] Sub-task: Run `go mod tidy` and verify package accessibility
 
 - [ ] **Task 1.2: Implement `cooper update` Command**
   - [ ] Sub-task: Write unit tests in `cmd/update_test.go` covering `--check`, `--force`, `--target-version`, and error states with mocked GitHub API (Red)
