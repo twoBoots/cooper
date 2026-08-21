@@ -9,7 +9,7 @@
 
 ## Phase 1: Module Dependency & Self-Update CLI (`cooper update`)
 
-- [ ] **Task 1.1: Dependency Scaffolding & `go.mod` Configuration**
+- [~] **Task 1.1: Dependency Scaffolding & `go.mod` Configuration**
   - [ ] Sub-task: Add `github.com/twoBoots/bender` dependency to `go.mod`
   - [ ] Sub-task: Run `go mod tidy` and verify package accessibility
 
