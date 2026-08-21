@@ -12,9 +12,9 @@ var (
 // NewRootCmd initializes the root cobra command and attaches subcommands.
 func NewRootCmd() *cobra.Command {
 	rootCmd := &cobra.Command{
-		Use:   "cooper",
-		Short: "cooper - Spec-Driven Development (SDD) CLI",
-		Long:  `cooper is the CLI for the Cooper Spec-Driven Development framework and Troop worktree management.`,
+		Use:           "cooper",
+		Short:         "cooper - Spec-Driven Development (SDD) CLI",
+		Long:          `cooper is the CLI for the Cooper Spec-Driven Development framework and Troop worktree management.`,
 		SilenceUsage:  true,
 		SilenceErrors: true,
 	}
@@ -27,6 +27,8 @@ func NewRootCmd() *cobra.Command {
 	rootCmd.AddCommand(newValidateCmd())
 	rootCmd.AddCommand(newInitCmd())
 	rootCmd.AddCommand(newTrackCmd())
+	rootCmd.AddCommand(newUpdateCmd())
+	rootCmd.AddCommand(newMCPCmd())
 
 	return rootCmd
 }
