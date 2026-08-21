@@ -22,7 +22,7 @@
 
 ## Phase 2: SDD Validator Engine (`internal/validator` & `cooper validate`)
 
-- [ ] Task: Spec Delta & Living Spec Syntax Linter
+- [~] Task: Spec Delta & Living Spec Syntax Linter
   - [ ] Sub-task: Write unit tests for GIVEN/WHEN/THEN and `+`/`-` delta parsing (Red)
   - [ ] Sub-task: Implement `internal/validator/spec_linter.go` (Green)
   - [ ] Sub-task: Refactor and verify coverage >80% (Refactor)
