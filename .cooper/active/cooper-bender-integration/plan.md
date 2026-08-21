@@ -61,7 +61,7 @@
   - [x] Sub-task: Run `cooper validate` across all living capability specs and spec deltas
   - [x] Sub-task: Verify static binary compilation `go build -o bin/cooper .`
 
-- [ ] **Task 4.2: Documentation & Track Registry Update**
+- [~] **Task 4.2: Documentation & Track Registry Update**
   - [ ] Sub-task: Update `README.md` and CLI documentation with `update` and `mcp` commands
   - [ ] Sub-task: Register completed track in `.cooper/tracks.md`
 
