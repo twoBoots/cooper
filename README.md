@@ -71,6 +71,40 @@ your-project/
 | **`cooper-review`** | Conducts Principal Software Engineer code review against spec deltas, styleguides, and test suites. |
 | **`cooper-status`** | Displays real-time overview of active worktrees, track progress, and phase checkpoints. |
 
+## 🚀 CLI Commands & Model Context Protocol (MCP)
+
+`cooper` includes a compiled Go CLI and embedded stdio MCP server powered by [Bender](https://github.com/twoBoots/bender):
+
+```bash
+# Display CLI help
+cooper --help
+
+# Initialize or migrate a repository to Cooper SDD
+cooper init
+
+# Validate living capability specs, active spec deltas, and markdown links
+cooper validate
+
+# Manage SDD tracks and Troop worktrees
+cooper track new <track_id> --title "My Track"
+cooper track status
+cooper track checkpoint --phase 1 --title "Core Domain Logic"
+cooper track close <track_id>
+
+# In-place binary self-updating from GitHub Releases
+cooper update
+cooper update --check
+cooper update --force
+
+# Start stdio MCP server for AI coding assistants
+cooper mcp
+
+# Automatically configure Cooper MCP server in AI assistants (Cursor, Antigravity, Claude, Windsurf, VS Code)
+cooper mcp install
+cooper mcp install --client cursor,antigravity --non-interactive
+cooper mcp install --all
+```
+
 ## Workflow Summary
 
 1. **Spawn Track Worktree**: `git agent-start <track_id>` (or invoke `cooper-new-track`)
