@@ -36,9 +36,9 @@
   - [x] Sub-task: Implement `cmd/mcp.go` connecting stdio transport to `internal/mcp.RunMCPServer` (Green)
   - [x] Sub-task: Register `MCPCmd` in `cmd/root.go` and refactor (Refactor)
 
-- [ ] **Task 2.3: Phase 2 Verification & Checkpoint**
-  - [ ] Sub-task: Run `go test -v -cover ./internal/mcp/... ./cmd/...`
-  - [ ] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
+- [x] **Task 2.3: Phase 2 Verification & Checkpoint** (`0b3d882`) [checkpoint: 0b3d882]
+  - [x] Sub-task: Run `go test -v -cover ./internal/mcp/... ./cmd/...`
+  - [x] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
 
 ---
 
