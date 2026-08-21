@@ -1,0 +1,3 @@
+Task: Documentation & Track Registry Update
+Scope: README.md
+Summary: Documented all Cooper CLI commands (init, track, validate, update, mcp, mcp install) and Bender integration in README
