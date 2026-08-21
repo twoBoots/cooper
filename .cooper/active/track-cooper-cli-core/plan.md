@@ -26,7 +26,7 @@
   - [x] Sub-task: Write unit tests for GIVEN/WHEN/THEN and `+`/`-` delta parsing (Red)
   - [x] Sub-task: Implement `internal/validator/spec_linter.go` (Green)
   - [x] Sub-task: Refactor and verify coverage >80% (Refactor)
-- [ ] Task: Track Metadata & Tracks Registry Validator
+- [~] Task: Track Metadata & Tracks Registry Validator
   - [ ] Sub-task: Write unit tests for `metadata.json` schema and `.cooper/tracks.md` parity (Red)
   - [ ] Sub-task: Implement `internal/validator/metadata.go` (Green)
   - [ ] Sub-task: Refactor and verify coverage >80% (Refactor)
