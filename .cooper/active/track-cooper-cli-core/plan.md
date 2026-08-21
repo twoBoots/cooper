@@ -7,10 +7,10 @@
 
 ## Phase 1: Go Module, Embedded Assets & CLI Entrypoint
 
-- [~] Task: Go Module & Root CLI Scaffold
-  - [ ] Sub-task: Initialize `go.mod` (`github.com/twoBoots/cooper`) and add `github.com/spf13/cobra`
-  - [ ] Sub-task: Implement `cmd/root.go` and `main.go` with global flags
-  - [ ] Sub-task: Write unit tests for root command and version injection (`cmd/version.go`)
+- [x] Task: Go Module & Root CLI Scaffold (5b04689)
+  - [x] Sub-task: Initialize `go.mod` (`github.com/twoBoots/cooper`) and add `github.com/spf13/cobra`
+  - [x] Sub-task: Implement `cmd/root.go` and `main.go` with global flags
+  - [x] Sub-task: Write unit tests for root command and version injection (`cmd/version.go`)
 - [ ] Task: Embedded Assets & Templates Engine
   - [ ] Sub-task: Implement `internal/scaffold/embedded.go` with `go:embed` for templates and skills
   - [ ] Sub-task: Write unit tests verifying embedded assets integrity
