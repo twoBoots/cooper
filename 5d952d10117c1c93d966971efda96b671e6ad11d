@@ -1,0 +1,3 @@
+Task: Outbound Link Auditor & CLI Validate Command
+Scope: internal/validator/link_auditor.go, internal/validator/engine.go, cmd/validate.go
+Summary: Implemented markdown local link and external tool attribution auditor, comprehensive repository validation engine, and 'cooper validate' / 'cooper lint' CLI commands with text and JSON output modes and >87% test coverage.
