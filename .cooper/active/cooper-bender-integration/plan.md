@@ -57,9 +57,9 @@
 
 ## Phase 4: Integration Verification, Documentation & PR Preparation
 
-- [~] **Task 4.1: End-to-End Validation & Living Spec Linter**
-  - [ ] Sub-task: Run `cooper validate` across all living capability specs and spec deltas
-  - [ ] Sub-task: Verify static binary compilation `go build -o bin/cooper .`
+- [x] **Task 4.1: End-to-End Validation & Living Spec Linter** (`d28950b`)
+  - [x] Sub-task: Run `cooper validate` across all living capability specs and spec deltas
+  - [x] Sub-task: Verify static binary compilation `go build -o bin/cooper .`
 
 - [ ] **Task 4.2: Documentation & Track Registry Update**
   - [ ] Sub-task: Update `README.md` and CLI documentation with `update` and `mcp` commands
