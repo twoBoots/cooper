@@ -46,7 +46,7 @@
   - [x] Sub-task: Write unit tests for greenfield and brownfield migration (Red)
   - [x] Sub-task: Implement `internal/scaffold/init.go` and `cmd/init.go` (Green)
   - [x] Sub-task: Refactor and verify coverage >80% (Refactor)
-- [ ] Task: Track Lifecycle & Troop Worktree Orchestrator (`cooper track`)
+- [~] Task: Track Lifecycle & Troop Worktree Orchestrator (`cooper track`)
   - [ ] Sub-task: Write unit tests for track creation, checkpoint recording, and close (Red)
   - [ ] Sub-task: Implement `internal/track/` and `cmd/track.go` (Green)
   - [ ] Sub-task: Refactor and verify coverage >80% (Refactor)
