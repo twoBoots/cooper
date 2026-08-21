@@ -14,9 +14,9 @@
 - [x] Task: Embedded Assets & Templates Engine (dac9e32)
   - [x] Sub-task: Implement `internal/scaffold/embedded.go` with `go:embed` for templates and skills
   - [x] Sub-task: Write unit tests verifying embedded assets integrity
-- [ ] Task: Phase 1 Verification & Checkpoint
-  - [ ] Sub-task: Run unit tests and verify clean compilation
-  - [ ] Sub-task: Phase 1 Checkpoint & remote sync (`git push origin track-cooper-cli-core`)
+- [x] Task: Phase 1 Verification & Checkpoint (7cb6a16)
+  - [x] Sub-task: Run unit tests and verify clean compilation
+  - [x] Sub-task: Phase 1 Checkpoint & remote sync (`git push origin track-cooper-cli-core`) [checkpoint: 7cb6a16]
 
 ---
 
