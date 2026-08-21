@@ -49,9 +49,9 @@
   - [x] Sub-task: Implement `MCPInstallCmd` in `cmd/mcp.go` delegating to `mcp.InstallClients` for server `cooper` (Green)
   - [x] Sub-task: Refactor output formatting and verify coverage >80% (Refactor)
 
-- [ ] **Task 3.2: Phase 3 Verification & Checkpoint**
-  - [ ] Sub-task: Run full test suite `go test -v -race -cover ./...`
-  - [ ] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
+- [x] **Task 3.2: Phase 3 Verification & Checkpoint** (`ea04f0f`) [checkpoint: ea04f0f]
+  - [x] Sub-task: Run full test suite `go test -v -race -cover ./...`
+  - [x] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
 
 ---
 
