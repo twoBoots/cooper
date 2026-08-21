@@ -34,9 +34,9 @@
   - [x] Sub-task: Implement `internal/validator/link_auditor.go` for external tool links
   - [x] Sub-task: Implement `cmd/validate.go` exposing `cooper validate` and `cooper lint`
   - [x] Sub-task: Write unit and integration tests for validation CLI
-- [ ] Task: Phase 2 Verification & Checkpoint
-  - [ ] Sub-task: Run full test suite with coverage report
-  - [ ] Sub-task: Phase 2 Checkpoint & remote sync (`git push origin track-cooper-cli-core`)
+- [x] Task: Phase 2 Verification & Checkpoint (57613e5)
+  - [x] Sub-task: Run full test suite with coverage report
+  - [x] Sub-task: Phase 2 Checkpoint & remote sync (`git push origin track-cooper-cli-core`) [checkpoint: 57613e5]
 
 ---
 
