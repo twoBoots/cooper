@@ -30,10 +30,10 @@
   - [x] Sub-task: Write unit tests for `metadata.json` schema and `.cooper/tracks.md` parity (Red)
   - [x] Sub-task: Implement `internal/validator/metadata.go` (Green)
   - [x] Sub-task: Refactor and verify coverage >80% (Refactor)
-- [~] Task: Outbound Link Auditor & CLI Validate Command
-  - [ ] Sub-task: Implement `internal/validator/link_auditor.go` for external tool links
-  - [ ] Sub-task: Implement `cmd/validate.go` exposing `cooper validate` and `cooper lint`
-  - [ ] Sub-task: Write unit and integration tests for validation CLI
+- [x] Task: Outbound Link Auditor & CLI Validate Command (5d952d1)
+  - [x] Sub-task: Implement `internal/validator/link_auditor.go` for external tool links
+  - [x] Sub-task: Implement `cmd/validate.go` exposing `cooper validate` and `cooper lint`
+  - [x] Sub-task: Write unit and integration tests for validation CLI
 - [ ] Task: Phase 2 Verification & Checkpoint
   - [ ] Sub-task: Run full test suite with coverage report
   - [ ] Sub-task: Phase 2 Checkpoint & remote sync (`git push origin track-cooper-cli-core`)
