@@ -26,7 +26,7 @@
 
 ## Phase 2: Embedded MCP Server Engine & Tool Suite (`internal/mcp`)
 
-- [ ] **Task 2.1: Cooper MCP Server & SDD Tool Suite**
+- [~] **Task 2.1: Cooper MCP Server & SDD Tool Suite**
   - [ ] Sub-task: Write unit & protocol tests in `internal/mcp/server_test.go` verifying `initialize`, `tools/list`, and tool executions (`cooper_get_version`, `cooper_init_project`, `cooper_track_create`, `cooper_track_status`, `cooper_validate`, `cooper_self_update`) (Red)
   - [ ] Sub-task: Implement `internal/mcp/server.go` registering all Cooper SDD tools using `bender/pkg/mcp` (Green)
   - [ ] Sub-task: Refactor tool schemas, error handling, and verify test coverage >80% (Refactor)
