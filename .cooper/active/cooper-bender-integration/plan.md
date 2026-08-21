@@ -57,7 +57,7 @@
 
 ## Phase 4: Integration Verification, Documentation & PR Preparation
 
-- [ ] **Task 4.1: End-to-End Validation & Living Spec Linter**
+- [~] **Task 4.1: End-to-End Validation & Living Spec Linter**
   - [ ] Sub-task: Run `cooper validate` across all living capability specs and spec deltas
   - [ ] Sub-task: Verify static binary compilation `go build -o bin/cooper .`
 
