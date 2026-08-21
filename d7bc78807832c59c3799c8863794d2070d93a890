@@ -1,0 +1,3 @@
+Task: Implement cooper update Command
+Scope: cmd/root.go, cmd/update.go, cmd/update_test.go, go.mod, go.sum
+Summary: Implemented cooper update command with --check, --force, --target-version flags using bender/pkg/updater and comprehensive tests
