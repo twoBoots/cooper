@@ -26,10 +26,10 @@
   - [x] Sub-task: Write unit tests for GIVEN/WHEN/THEN and `+`/`-` delta parsing (Red)
   - [x] Sub-task: Implement `internal/validator/spec_linter.go` (Green)
   - [x] Sub-task: Refactor and verify coverage >80% (Refactor)
-- [~] Task: Track Metadata & Tracks Registry Validator
-  - [ ] Sub-task: Write unit tests for `metadata.json` schema and `.cooper/tracks.md` parity (Red)
-  - [ ] Sub-task: Implement `internal/validator/metadata.go` (Green)
-  - [ ] Sub-task: Refactor and verify coverage >80% (Refactor)
+- [x] Task: Track Metadata & Tracks Registry Validator (b0382e1)
+  - [x] Sub-task: Write unit tests for `metadata.json` schema and `.cooper/tracks.md` parity (Red)
+  - [x] Sub-task: Implement `internal/validator/metadata.go` (Green)
+  - [x] Sub-task: Refactor and verify coverage >80% (Refactor)
 - [ ] Task: Outbound Link Auditor & CLI Validate Command
   - [ ] Sub-task: Implement `internal/validator/link_auditor.go` for external tool links
   - [ ] Sub-task: Implement `cmd/validate.go` exposing `cooper validate` and `cooper lint`
