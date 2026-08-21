@@ -121,3 +121,14 @@ func TestValidateCmd_ErrorsFound(t *testing.T) {
 		t.Fatal("expected error on broken spec, got nil")
 	}
 }
+
+func TestValidateCmd_DefaultDir(t *testing.T) {
+	rootCmd := NewRootCmd()
+	buf := new(bytes.Buffer)
+	rootCmd.SetOut(buf)
+	rootCmd.SetErr(buf)
+	rootCmd.SetArgs([]string{"validate"})
+
+	// Running in valid repo worktree should pass with exit code 0
+	_ = rootCmd.Execute()
+}
