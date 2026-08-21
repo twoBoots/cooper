@@ -21,7 +21,9 @@ All active and completed Cooper tracks are registered below.
   - RFC Doc: [.cooper/active/rfc-cooper-cli-mcp/rfc.md](.cooper/active/rfc-cooper-cli-mcp/rfc.md)
   - Status: Approved
   - Decomposed Tracks:
-    - [ ] Track: `track-cooper-cli-core` (Scope: Go CLI project scaffolding, Cobra command tree, and SDD syntax validator)
+    - [x] Track: `track-cooper-cli-core` (Scope: Go CLI project scaffolding, Cobra command tree, and SDD syntax validator)
+        - Worktree: `.worktrees/track-cooper-cli-core`
+        - Link: [.cooper/active/track-cooper-cli-core/index.md](.cooper/active/track-cooper-cli-core/index.md)
     - [ ] Track: `track-cooper-updater-diff3` (Scope: CLI binary self-update, 3-way diff reconciliation engine, and manifest fingerprinting)
     - [ ] Track: `track-cooper-embedded-mcp` (Scope: Embedded stdio MCP server exposing SDD, self-update, and 3-way diff tools)
     - [ ] Track: `track-cooper-installer-packaging` (Scope: 3-tier install.sh script, CI validation, and GitHub Actions multi-arch release matrix)
