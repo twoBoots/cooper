@@ -30,7 +30,7 @@
   - [x] Sub-task: Write unit tests for `metadata.json` schema and `.cooper/tracks.md` parity (Red)
   - [x] Sub-task: Implement `internal/validator/metadata.go` (Green)
   - [x] Sub-task: Refactor and verify coverage >80% (Refactor)
-- [ ] Task: Outbound Link Auditor & CLI Validate Command
+- [~] Task: Outbound Link Auditor & CLI Validate Command
   - [ ] Sub-task: Implement `internal/validator/link_auditor.go` for external tool links
   - [ ] Sub-task: Implement `cmd/validate.go` exposing `cooper validate` and `cooper lint`
   - [ ] Sub-task: Write unit and integration tests for validation CLI
