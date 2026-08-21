@@ -13,7 +13,7 @@
   - [x] Sub-task: Add `github.com/twoBoots/bender` dependency to `go.mod`
   - [x] Sub-task: Run `go mod tidy` and verify package accessibility
 
-- [ ] **Task 1.2: Implement `cooper update` Command**
+- [~] **Task 1.2: Implement `cooper update` Command**
   - [ ] Sub-task: Write unit tests in `cmd/update_test.go` covering `--check`, `--force`, `--target-version`, and error states with mocked GitHub API (Red)
   - [ ] Sub-task: Implement `cmd/update.go` wiring `updater.SelfUpdate` with `twoBoots/cooper` defaults (Green)
   - [ ] Sub-task: Register `UpdateCmd` in `cmd/root.go` and refactor for >80% test coverage (Refactor)
