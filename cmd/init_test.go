@@ -42,12 +42,22 @@ func TestInitCmd(t *testing.T) {
 }
 
 func TestInitCmd_DefaultDir(t *testing.T) {
+	tmpDir := t.TempDir()
+	origWd, err := os.Getwd()
+	if err != nil {
+		t.Fatalf("failed to get current working directory: %v", err)
+	}
+	_ = os.Chdir(tmpDir)
+	defer func() { _ = os.Chdir(origWd) }()
+
 	rootCmd := NewRootCmd()
 	buf := new(bytes.Buffer)
 	rootCmd.SetOut(buf)
 	rootCmd.SetErr(buf)
 	rootCmd.SetArgs([]string{"init"})
 
-	// Since current repo is already initialized, running without force will safely return error
-	_ = rootCmd.Execute()
+	err = rootCmd.Execute()
+	if err != nil {
+		t.Fatalf("unexpected error initializing in default dir: %v", err)
+	}
 }
