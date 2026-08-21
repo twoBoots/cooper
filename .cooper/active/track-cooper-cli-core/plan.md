@@ -50,6 +50,6 @@
   - [x] Sub-task: Write unit tests for track creation, checkpoint recording, and close (Red)
   - [x] Sub-task: Implement `internal/track/` and `cmd/track.go` (Green)
   - [x] Sub-task: Refactor and verify coverage >80% (Refactor)
-- [ ] Task: Full Test Suite Quality Gate & Final Checkpoint
-  - [ ] Sub-task: Run `go test -v -race -coverprofile=coverage.out ./...` and assert >80% coverage
-  - [ ] Sub-task: Phase 3 Checkpoint & remote sync (`git push origin track-cooper-cli-core`)
+- [x] Task: Full Test Suite Quality Gate & Final Checkpoint (980d743)
+  - [x] Sub-task: Run `go test -v -race -coverprofile=coverage.out ./...` and assert >80% coverage
+  - [x] Sub-task: Phase 3 Checkpoint & remote sync (`git push origin track-cooper-cli-core`) [checkpoint: 980d743]
