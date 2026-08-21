@@ -18,9 +18,9 @@
   - [x] Sub-task: Implement `cmd/update.go` wiring `updater.SelfUpdate` with `twoBoots/cooper` defaults (Green)
   - [x] Sub-task: Register `UpdateCmd` in `cmd/root.go` and refactor for >80% test coverage (Refactor)
 
-- [ ] **Task 1.3: Phase 1 Verification & Checkpoint**
-  - [ ] Sub-task: Run `go test -v -cover ./cmd...`
-  - [ ] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
+- [x] **Task 1.3: Phase 1 Verification & Checkpoint** (`aa8c725`) [checkpoint: aa8c725]
+  - [x] Sub-task: Run `go test -v -cover ./cmd...`
+  - [x] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
 
 ---
 
