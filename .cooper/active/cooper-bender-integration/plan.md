@@ -44,7 +44,7 @@
 
 ## Phase 3: Multi-Client MCP Auto-Installer (`cooper mcp install`)
 
-- [ ] **Task 3.1: Implement `cooper mcp install` Command**
+- [~] **Task 3.1: Implement `cooper mcp install` Command**
   - [ ] Sub-task: Write tests in `cmd/mcp_test.go` for client auto-detection and custom `--client` / `--all` installations across mock editor configs (Red)
   - [ ] Sub-task: Implement `MCPInstallCmd` in `cmd/mcp.go` delegating to `mcp.InstallClients` for server `cooper` (Green)
   - [ ] Sub-task: Refactor output formatting and verify coverage >80% (Refactor)
