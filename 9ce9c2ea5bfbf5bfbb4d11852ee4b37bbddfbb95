@@ -1,0 +1,3 @@
+Task: Implement cooper mcp install Command
+Scope: cmd/mcp.go, cmd/mcp_test.go
+Summary: Implemented 'cooper mcp install' command using bender/pkg/mcp multi-client configuration installer supporting Cursor, Antigravity, Claude, Windsurf, and VS Code
