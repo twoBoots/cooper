@@ -31,7 +31,7 @@
   - [x] Sub-task: Implement `internal/mcp/server.go` registering all Cooper SDD tools using `bender/pkg/mcp` (Green)
   - [x] Sub-task: Refactor tool schemas, error handling, and verify test coverage >80% (Refactor)
 
-- [ ] **Task 2.2: Stdio MCP CLI Command (`cooper mcp`)**
+- [~] **Task 2.2: Stdio MCP CLI Command (`cooper mcp`)**
   - [ ] Sub-task: Write CLI unit tests in `cmd/mcp_test.go` for stdio server initiation (Red)
   - [ ] Sub-task: Implement `cmd/mcp.go` connecting stdio transport to `internal/mcp.RunMCPServer` (Green)
   - [ ] Sub-task: Register `MCPCmd` in `cmd/root.go` and refactor (Refactor)
