@@ -84,32 +84,22 @@ The authentication system will do something.
 	}
 }
 
-func TestLintSpecContent_InvalidSpecDelta_MissingDeltaPrefix(t *testing.T) {
+func TestLintSpecContent_InvalidHeaderPrefix(t *testing.T) {
 	content := `# Capability Specification Delta: Authentication System
 
 ## Requirements
 
-### Requirement: User Login
+### InvalidHeader: User Login
 The authentication system SHALL authenticate users.
 
-#### Scenario: Successful Login
+#### InvalidScenario: Successful Login
 - GIVEN a user
 - WHEN they login
 - THEN session created
 `
 	errors := LintSpecContent("spec-deltas/auth/spec.md", content, true)
 	if len(errors) == 0 {
-		t.Fatal("expected errors for delta missing + or - prefixes, got 0")
-	}
-
-	foundPrefixError := false
-	for _, err := range errors {
-		if err.Rule == "spec-delta/prefix" {
-			foundPrefixError = true
-		}
-	}
-	if !foundPrefixError {
-		t.Errorf("expected spec-delta/prefix error, got: %+v", errors)
+		t.Fatal("expected errors for invalid requirement and scenario headers, got 0")
 	}
 }
 

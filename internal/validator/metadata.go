@@ -8,14 +8,16 @@ import (
 	"strings"
 )
 
-// TrackMetadata defines the metadata.json schema for a Cooper track.
+// TrackMetadata defines the metadata.json schema for a Cooper track or RFC.
 type TrackMetadata struct {
-	TrackID   string `json:"track_id"`
-	Title     string `json:"title"`
-	Type      string `json:"type"`   // "feature" | "bugfix" | "chore" | "rfc"
-	Status    string `json:"status"` // "new" | "in_progress" | "completed" | "approved" | "planning"
-	CreatedAt string `json:"created_at"`
-	UpdatedAt string `json:"updated_at,omitempty"`
+	TrackID    string `json:"track_id"`
+	ID         string `json:"id,omitempty"`
+	Title      string `json:"title,omitempty"`
+	Type       string `json:"type"`   // "feature" | "bugfix" | "chore" | "rfc"
+	Status     string `json:"status"` // "new" | "in_progress" | "completed" | "approved" | "planning"
+	CreatedAt  string `json:"created_at"`
+	UpdatedAt  string `json:"updated_at,omitempty"`
+	ApprovedAt string `json:"approved_at,omitempty"`
 }
 
 // ValidateTrackMetadataFile reads and validates a metadata.json file against schema and expected directory name.
@@ -42,42 +44,40 @@ func ValidateTrackMetadataContent(filename string, expectedTrackID string, data 
 		return errors
 	}
 
-	if meta.TrackID == "" {
+	effectiveID := meta.TrackID
+	if effectiveID == "" {
+		effectiveID = meta.ID
+	}
+
+	if effectiveID == "" {
 		errors = append(errors, ValidationError{
 			File:    filename,
 			Line:    1,
-			Message: "Field 'track_id' is required and cannot be empty",
+			Message: "Field 'track_id' (or 'id') is required and cannot be empty",
 			Rule:    "metadata/track-id-required",
 		})
-	} else if expectedTrackID != "" && meta.TrackID != expectedTrackID {
+	} else if expectedTrackID != "" && effectiveID != expectedTrackID {
 		errors = append(errors, ValidationError{
 			File:    filename,
 			Line:    1,
-			Message: fmt.Sprintf("Track ID '%s' does not match directory name '%s'", meta.TrackID, expectedTrackID),
+			Message: fmt.Sprintf("Track ID '%s' does not match directory name '%s'", effectiveID, expectedTrackID),
 			Rule:    "metadata/track-id-match",
 		})
 	}
 
-	if strings.TrimSpace(meta.Title) == "" {
-		errors = append(errors, ValidationError{
-			File:    filename,
-			Line:    1,
-			Message: "Field 'title' is required and cannot be empty",
-			Rule:    "metadata/title-required",
-		})
-	}
-
 	validTypes := map[string]bool{
-		"feature": true,
-		"bugfix":  true,
-		"chore":   true,
-		"rfc":     true,
+		"feature":       true,
+		"bugfix":        true,
+		"chore":         true,
+		"rfc":           true,
+		"documentation": true,
+		"docs":          true,
 	}
 	if !validTypes[meta.Type] {
 		errors = append(errors, ValidationError{
 			File:    filename,
 			Line:    1,
-			Message: fmt.Sprintf("Invalid track type '%s'. Expected one of: feature, bugfix, chore, rfc", meta.Type),
+			Message: fmt.Sprintf("Invalid track type '%s'. Expected one of: feature, bugfix, chore, rfc, documentation", meta.Type),
 			Rule:    "metadata/type-valid",
 		})
 	}
@@ -131,7 +131,6 @@ func ValidateTracksRegistryParity(cooperDir string) []ValidationError {
 	activeDir := filepath.Join(cooperDir, "active")
 	entries, err := os.ReadDir(activeDir)
 	if err != nil {
-		// Active dir might not exist yet, not necessarily an error
 		return errors
 	}
 

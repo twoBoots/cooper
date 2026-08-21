@@ -15,12 +15,31 @@ func AuditMarkdownLinks(filePath string, content string, rootDir string) []Valid
 	lines := strings.Split(content, "\n")
 	fileDir := filepath.Dir(filePath)
 
+	inCodeBlock := false
+
 	for i, line := range lines {
 		lineNum := i + 1
+		trimmed := strings.TrimSpace(line)
+
+		// Handle fenced code blocks
+		if strings.HasPrefix(trimmed, "```") || strings.HasPrefix(trimmed, "~~~") {
+			inCodeBlock = !inCodeBlock
+			continue
+		}
+
+		if inCodeBlock {
+			continue
+		}
+
 		matches := linkRegex.FindAllStringSubmatch(line, -1)
 		for _, match := range matches {
 			linkText := match[1]
-			linkTarget := match[2]
+			linkTarget := strings.TrimSpace(match[2])
+
+			// Skip template placeholders e.g. <track_id>
+			if strings.Contains(linkTarget, "<") || strings.Contains(linkTarget, "{") {
+				continue
+			}
 
 			// Handle troop attribution rule
 			if strings.EqualFold(linkText, "Troop") && !strings.Contains(linkTarget, "github.com/twoBoots/troop") {
@@ -52,12 +71,22 @@ func AuditMarkdownLinks(filePath string, content string, rootDir string) []Valid
 				continue
 			}
 
-			// Resolve relative path
+			// Resolve path
 			var fullPath string
 			if filepath.IsAbs(targetPath) {
 				fullPath = targetPath
 			} else {
-				fullPath = filepath.Join(fileDir, targetPath)
+				// If target starts with relative to repo root (e.g. .cooper/...)
+				candidateRelToFile := filepath.Join(fileDir, targetPath)
+				candidateRelToRoot := filepath.Join(rootDir, targetPath)
+
+				if _, err := os.Stat(candidateRelToFile); err == nil {
+					fullPath = candidateRelToFile
+				} else if _, err := os.Stat(candidateRelToRoot); err == nil {
+					fullPath = candidateRelToRoot
+				} else {
+					fullPath = candidateRelToFile
+				}
 			}
 
 			if _, err := os.Stat(fullPath); err != nil {
@@ -84,7 +113,7 @@ func AuditRepositoryLinks(rootDir string) []ValidationError {
 		}
 		if info.IsDir() {
 			name := info.Name()
-			if name == ".git" || name == ".worktrees" || name == "node_modules" || name == "bin" {
+			if name == ".git" || name == ".worktrees" || name == "node_modules" || name == "bin" || name == "templates" || name == "assets" {
 				return filepath.SkipDir
 			}
 			return nil

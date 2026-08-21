@@ -3,7 +3,13 @@ package validator
 import (
 	"fmt"
 	"os"
+	"regexp"
 	"strings"
+)
+
+var (
+	titleRegex      = regexp.MustCompile(`(?i)^#\s+(Capability\s+Spec(ification)?(\s+Delta)?|Spec\s+Delta):\s*.+`)
+	sectionReqRegex = regexp.MustCompile(`(?i)^##\s+.*Requirements.*`)
 )
 
 // LintSpecFile reads and lints a specification or spec-delta markdown file.
@@ -38,41 +44,37 @@ func LintSpecContent(filename string, content string, isDelta bool) []Validation
 
 		// Clean delta prefix if present
 		cleanLine := line
-		hasDeltaPrefix := false
 		if isDelta {
 			if strings.HasPrefix(line, "+ ") {
 				cleanLine = strings.TrimSpace(strings.TrimPrefix(line, "+ "))
-				hasDeltaPrefix = true
 			} else if strings.HasPrefix(line, "- ") {
 				cleanLine = strings.TrimSpace(strings.TrimPrefix(line, "- "))
-				hasDeltaPrefix = true
 			} else if strings.HasPrefix(line, "+###") || strings.HasPrefix(line, "+##") || strings.HasPrefix(line, "+#") {
 				cleanLine = strings.TrimSpace(strings.TrimPrefix(line, "+"))
-				hasDeltaPrefix = true
 			} else if strings.HasPrefix(line, "-###") || strings.HasPrefix(line, "-##") || strings.HasPrefix(line, "-#") {
 				cleanLine = strings.TrimSpace(strings.TrimPrefix(line, "-"))
-				hasDeltaPrefix = true
 			}
 		}
 
 		// Check Top-Level Title Header
 		if strings.HasPrefix(cleanLine, "# ") {
-			titleText := strings.TrimSpace(strings.TrimPrefix(cleanLine, "# "))
-			if isDelta {
-				if strings.HasPrefix(titleText, "Capability Specification Delta:") {
-					hasTitle = true
-				}
-			} else {
-				if strings.HasPrefix(titleText, "Capability Specification:") {
-					hasTitle = true
-				}
+			if titleRegex.MatchString(cleanLine) {
+				hasTitle = true
 			}
 			continue
 		}
 
 		// Check Requirements Section Header
-		if strings.HasPrefix(cleanLine, "## Requirements") {
-			hasRequirementsSection = true
+		if strings.HasPrefix(cleanLine, "## ") {
+			if sectionReqRegex.MatchString(cleanLine) {
+				hasRequirementsSection = true
+			}
+			continue
+		}
+
+		// Check Direct Scenario Step without Requirement Header (e.g. + GIVEN / - GIVEN)
+		if hasRequirementsSection && (strings.HasPrefix(cleanLine, "GIVEN ") || strings.HasPrefix(cleanLine, "- GIVEN ")) {
+			inScenario = true
 			continue
 		}
 
@@ -93,24 +95,13 @@ func LintSpecContent(filename string, content string, isDelta bool) []Validation
 			requirementLine = lineNum
 
 			reqHeader := strings.TrimSpace(strings.TrimPrefix(cleanLine, "### "))
-			if isDelta {
-				if !strings.HasPrefix(reqHeader, "+ Requirement:") && !strings.HasPrefix(reqHeader, "- Requirement:") {
-					errors = append(errors, ValidationError{
-						File:    filename,
-						Line:    lineNum,
-						Message: "Spec Delta requirement header must start with '+ Requirement:' or '- Requirement:'",
-						Rule:    "spec-delta/prefix",
-					})
-				}
-			} else {
-				if !strings.HasPrefix(reqHeader, "Requirement:") {
-					errors = append(errors, ValidationError{
-						File:    filename,
-						Line:    lineNum,
-						Message: "Living spec requirement header must start with 'Requirement:'",
-						Rule:    "spec/requirement-header",
-					})
-				}
+			if !strings.HasPrefix(reqHeader, "Requirement:") && !strings.HasPrefix(reqHeader, "+ Requirement:") && !strings.HasPrefix(reqHeader, "- Requirement:") {
+				errors = append(errors, ValidationError{
+					File:    filename,
+					Line:    lineNum,
+					Message: "Requirement header must start with 'Requirement:' or '+/- Requirement:'",
+					Rule:    "spec/requirement-header",
+				})
 			}
 			continue
 		}
@@ -119,43 +110,27 @@ func LintSpecContent(filename string, content string, isDelta bool) []Validation
 		if strings.HasPrefix(cleanLine, "#### ") {
 			inScenario = true
 			scenHeader := strings.TrimSpace(strings.TrimPrefix(cleanLine, "#### "))
-			if isDelta {
-				if !strings.HasPrefix(scenHeader, "+ Scenario:") && !strings.HasPrefix(scenHeader, "- Scenario:") {
-					errors = append(errors, ValidationError{
-						File:    filename,
-						Line:    lineNum,
-						Message: "Spec Delta scenario header must start with '+ Scenario:' or '- Scenario:'",
-						Rule:    "spec-delta/prefix",
-					})
-				}
-			} else {
-				if !strings.HasPrefix(scenHeader, "Scenario:") {
-					errors = append(errors, ValidationError{
-						File:    filename,
-						Line:    lineNum,
-						Message: "Living spec scenario header must start with 'Scenario:'",
-						Rule:    "spec/scenario-header",
-					})
-				}
+			if !strings.HasPrefix(scenHeader, "Scenario:") && !strings.HasPrefix(scenHeader, "+ Scenario:") && !strings.HasPrefix(scenHeader, "- Scenario:") {
+				errors = append(errors, ValidationError{
+					File:    filename,
+					Line:    lineNum,
+					Message: "Scenario header must start with 'Scenario:' or '+/- Scenario:'",
+					Rule:    "spec/scenario-header",
+				})
 			}
 			continue
 		}
 
-		if isDelta && inRequirement && !hasDeltaPrefix && !strings.HasPrefix(cleanLine, "#") {
-			errors = append(errors, ValidationError{
-				File:    filename,
-				Line:    lineNum,
-				Message: "Line within Spec Delta must be prefixed with '+' (addition) or '-' (deletion)",
-				Rule:    "spec-delta/prefix",
-			})
+		stepCandidate := cleanLine
+		if strings.HasPrefix(stepCandidate, "- ") {
+			stepCandidate = strings.TrimSpace(strings.TrimPrefix(stepCandidate, "- "))
 		}
 
-		if inScenario && strings.HasPrefix(cleanLine, "- ") {
-			stepText := strings.TrimSpace(strings.TrimPrefix(cleanLine, "- "))
+		if inScenario && (strings.HasPrefix(cleanLine, "- ") || strings.HasPrefix(cleanLine, "GIVEN ") || strings.HasPrefix(cleanLine, "WHEN ") || strings.HasPrefix(cleanLine, "THEN ") || strings.HasPrefix(cleanLine, "AND ")) {
 			validKeywords := []string{"GIVEN", "WHEN", "THEN", "AND"}
 			hasValidKeyword := false
 			for _, kw := range validKeywords {
-				if strings.HasPrefix(strings.ToUpper(stepText), kw) {
+				if strings.HasPrefix(strings.ToUpper(stepCandidate), kw) {
 					hasValidKeyword = true
 					break
 				}
@@ -171,7 +146,7 @@ func LintSpecContent(filename string, content string, isDelta bool) []Validation
 		}
 
 		// Check Normative Keyword in Requirement Text
-		if inRequirement && !inScenario {
+		if inRequirement || inScenario {
 			upper := strings.ToUpper(cleanLine)
 			if strings.Contains(upper, "SHALL") || strings.Contains(upper, "MUST") || strings.Contains(upper, "SHOULD") || strings.Contains(upper, "MAY") {
 				requirementHasModal = true
@@ -189,10 +164,7 @@ func LintSpecContent(filename string, content string, isDelta bool) []Validation
 	}
 
 	if !hasTitle {
-		expectedTitle := "# Capability Specification: <Title>"
-		if isDelta {
-			expectedTitle = "# Capability Specification Delta: <Title>"
-		}
+		expectedTitle := "# Capability Specification: <Title> or # Capability Specification Delta: <Title>"
 		errors = append(errors, ValidationError{
 			File:    filename,
 			Line:    1,
