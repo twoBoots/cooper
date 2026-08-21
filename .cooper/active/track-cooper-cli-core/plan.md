@@ -42,7 +42,7 @@
 
 ## Phase 3: Project Scaffolding & Track Orchestrator
 
-- [ ] Task: Project Scaffolding Engine (`cooper init`)
+- [~] Task: Project Scaffolding Engine (`cooper init`)
   - [ ] Sub-task: Write unit tests for greenfield and brownfield migration (Red)
   - [ ] Sub-task: Implement `internal/scaffold/init.go` and `cmd/init.go` (Green)
   - [ ] Sub-task: Refactor and verify coverage >80% (Refactor)
