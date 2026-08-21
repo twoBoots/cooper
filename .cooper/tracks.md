@@ -27,7 +27,7 @@ All active and completed Cooper tracks are registered below.
     - [ ] Track: `track-cooper-updater-diff3` (Scope: CLI binary self-update, 3-way diff reconciliation engine, and manifest fingerprinting)
     - [ ] Track: `track-cooper-embedded-mcp` (Scope: Embedded stdio MCP server exposing SDD, self-update, and 3-way diff tools)
     - [ ] Track: `track-cooper-installer-packaging` (Scope: 3-tier install.sh script, CI validation, and GitHub Actions multi-arch release matrix)
-- [ ] **Track: Cooper Bender CLI Integration**
+- [x] **Track: Cooper Bender CLI Integration**
   - Worktree: `.worktrees/cooper-bender-integration`
   - Link: [.cooper/active/cooper-bender-integration/index.md](.cooper/active/cooper-bender-integration/index.md)
 
