@@ -11,7 +11,7 @@
   - [x] Sub-task: Initialize `go.mod` (`github.com/twoBoots/cooper`) and add `github.com/spf13/cobra`
   - [x] Sub-task: Implement `cmd/root.go` and `main.go` with global flags
   - [x] Sub-task: Write unit tests for root command and version injection (`cmd/version.go`)
-- [ ] Task: Embedded Assets & Templates Engine
+- [~] Task: Embedded Assets & Templates Engine
   - [ ] Sub-task: Implement `internal/scaffold/embedded.go` with `go:embed` for templates and skills
   - [ ] Sub-task: Write unit tests verifying embedded assets integrity
 - [ ] Task: Phase 1 Verification & Checkpoint
