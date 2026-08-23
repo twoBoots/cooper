@@ -14,9 +14,9 @@
   - [x] Sub-task: Configure Node 20 deprecation suppression env vars and Go 1.27.0 setup
   - [x] Sub-task: Add steps for `gofmt` check, `go vet ./...`, and `go test -v -coverprofile=coverage.out ./...`
 
-- [ ] **Task 1.2: Phase 1 Verification & Checkpoint**
-  - [ ] Sub-task: Run local formatting check and `go test -v -cover ./...`
-  - [ ] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
+- [x] **Task 1.2: Phase 1 Verification & Checkpoint** (`4441ee8`) [checkpoint: 4441ee8]
+  - [x] Sub-task: Run local formatting check and `go test -v -cover ./...`
+  - [x] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
 
 ---
 
