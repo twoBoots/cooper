@@ -40,9 +40,9 @@
   - [x] Sub-task: Update/verify unit tests in `cmd/version_test.go` and `cmd/update_test.go` (Red -> Green -> Refactor)
   - [x] Sub-task: Verify local multi-target cross-compilation with `CGO_ENABLED=0 GOOS=... GOARCH=... go build`
 
-- [ ] **Task 3.2: Phase 3 Verification & Checkpoint**
-  - [ ] Sub-task: Run `go test -v -race -cover ./...`
-  - [ ] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
+- [x] **Task 3.2: Phase 3 Verification & Checkpoint** (`f865371`) [checkpoint: f865371]
+  - [x] Sub-task: Run `go test -v -race -cover ./...`
+  - [x] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
 
 ---
 
