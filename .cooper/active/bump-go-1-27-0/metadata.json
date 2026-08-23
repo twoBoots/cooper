@@ -1,8 +1,8 @@
 {
   "track_id": "bump-go-1-27-0",
   "name": "Bump Go Toolchain and Runtime Baseline to 1.27.0",
-  "status": "new",
+  "status": "completed",
   "created_at": "2026-08-23T14:50:00.000000Z",
-  "updated_at": "2026-08-23T14:50:00.000000Z",
+  "updated_at": "2026-08-23T15:01:00.000000Z",
   "type": "chore"
 }

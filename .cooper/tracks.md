@@ -29,7 +29,7 @@ All active and completed Cooper tracks are registered below.
     - [ ] Track: `track-cooper-installer-packaging` (Scope: 3-tier install.sh script, CI validation, and GitHub Actions multi-arch release matrix)
 - [x] **Track: Cooper Bender CLI Integration**
   - Archive: [.cooper/archive/cooper-bender-integration/](.cooper/archive/cooper-bender-integration/)
-- [ ] **Track: Bump Go Toolchain and Runtime Baseline to 1.27.0**
+- [x] **Track: Bump Go Toolchain and Runtime Baseline to 1.27.0**
   - Worktree: `.worktrees/bump-go-1-27-0`
   - Link: [.cooper/active/bump-go-1-27-0/index.md](.cooper/active/bump-go-1-27-0/index.md)
 
