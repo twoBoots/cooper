@@ -35,7 +35,7 @@
 
 ## Phase 3: Version Baseline (`v1.0.0`) & Cross-Compilation Dry Run
 
-- [ ] **Task 3.1: Bump Version to `1.0.0` in `cmd/version.go`**
+- [~] **Task 3.1: Bump Version to `1.0.0` in `cmd/version.go`**
   - [ ] Sub-task: Update `Version` in `cmd/version.go` to `"1.0.0"`
   - [ ] Sub-task: Update/verify unit tests in `cmd/version_test.go` and `cmd/update_test.go` (Red -> Green -> Refactor)
   - [ ] Sub-task: Verify local multi-target cross-compilation with `CGO_ENABLED=0 GOOS=... GOARCH=... go build`
