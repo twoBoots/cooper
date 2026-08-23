@@ -9,10 +9,10 @@
 
 ## Phase 1: Continuous Integration Workflow (`.github/workflows/ci.yml`)
 
-- [~] **Task 1.1: Implement Reusable CI Workflow**
-  - [ ] Sub-task: Create `.github/workflows/ci.yml` with `push`, `pull_request`, and `workflow_call` triggers
-  - [ ] Sub-task: Configure Node 20 deprecation suppression env vars and Go 1.27.0 setup
-  - [ ] Sub-task: Add steps for `gofmt` check, `go vet ./...`, and `go test -v -coverprofile=coverage.out ./...`
+- [x] **Task 1.1: Implement Reusable CI Workflow** (`b49b343`)
+  - [x] Sub-task: Create `.github/workflows/ci.yml` with `push`, `pull_request`, and `workflow_call` triggers
+  - [x] Sub-task: Configure Node 20 deprecation suppression env vars and Go 1.27.0 setup
+  - [x] Sub-task: Add steps for `gofmt` check, `go vet ./...`, and `go test -v -coverprofile=coverage.out ./...`
 
 - [ ] **Task 1.2: Phase 1 Verification & Checkpoint**
   - [ ] Sub-task: Run local formatting check and `go test -v -cover ./...`
