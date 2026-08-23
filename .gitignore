@@ -6,6 +6,8 @@ bin/
 *.so
 *.dylib
 cooper
+dist/
+dist_test/
 
 # Test & Coverage
 *.out
@@ -13,6 +15,9 @@ coverage.html
 
 # Worktrees
 .worktrees/
+
+# Temporary PR Artifacts
+prbody.md
 
 # OS / Editor
 .DS_Store
