@@ -2,7 +2,7 @@
 
 ## Phase 1: Toolchain & Tech Stack Definition Updates
 
-- [ ] **Task 1: Update Go Module Toolchain Directive (`go.mod`)**
+- [~] **Task 1: Update Go Module Toolchain Directive (`go.mod`)**
   - [ ] Sub-task: Validate current module build and tests under target toolchain directive (Red)
   - [ ] Sub-task: Update `go.mod` to `go 1.27.0` and run `go mod tidy` (Green)
   - [ ] Sub-task: Verify clean compilation across all CLI packages (Refactor)
