@@ -20,3 +20,12 @@ The installer SHALL scaffold the Cooper workflow specification into `.cooper/def
 - GIVEN Cooper installer fetches workflow specification
 - WHEN resolving Cooper repository assets
 - THEN `.cooper/definition/workflow.md` MUST be fetched and placed into `.cooper/definition/workflow.md`.
+
+### Requirement: Scaffold Go Runtime Baseline
+The installer and scaffolding templates SHALL provide Go 1.27+ as the default Go runtime baseline in scaffolded tech stack definitions.
+
+#### Scenario: Scaffolding Default Tech Stack Template
+- GIVEN a user scaffolding a new Cooper project
+- WHEN `.cooper/definition/tech-stack.md` is populated from scaffold templates
+- THEN the Go runtime engine entry MUST specify `Go 1.27+`.
+
