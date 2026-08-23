@@ -52,7 +52,7 @@
   - [x] Sub-task: Run `cooper validate` across all specs and spec deltas
   - [x] Sub-task: Promote spec delta into `.cooper/specs/cli/spec.md`
 
-- [ ] **Task 4.2: Documentation & Track Registry Update**
+- [~] **Task 4.2: Documentation & Track Registry Update**
   - [ ] Sub-task: Update `README.md` with CI badge and release binary information
   - [ ] Sub-task: Update `.cooper/tracks.md` to reflect completed track
 
