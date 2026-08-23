@@ -12,7 +12,7 @@
   - [x] Sub-task: Update `.cooper/definition/tech-stack.md`, `templates/tech-stack.md`, and `internal/scaffold/assets/templates/tech-stack.md` (Green)
   - [x] Sub-task: Refactor & verify test coverage exceeds >80% (Refactor)
 
-- [ ] **Task 3: Phase 1 Verification & Checkpoint**
+- [~] **Task 3: Phase 1 Verification & Checkpoint**
   - [ ] Sub-task: Rule sync (`git fetch origin main`)
   - [ ] Sub-task: Automated test run (`go test -v ./...`)
   - [ ] Sub-task: Cooper validation check (`go run main.go validate`)
