@@ -1,0 +1,3 @@
+Task: Task 2: Synchronize Tech Stack and Scaffolding Templates
+Scope: .cooper/definition/tech-stack.md, templates/tech-stack.md, internal/scaffold/assets/templates/tech-stack.md, internal/scaffold/embedded_test.go, cmd/mcp_test.go, .gitignore
+Summary: Synchronized Go runtime baseline to 1.27+ across definition and scaffold templates, added unit tests, and isolated working directories in CLI tests.
