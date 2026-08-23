@@ -1,0 +1,61 @@
+# Implementation Plan: Automated Multi-Platform Release CI/CD Pipeline & v1.0.0 Baseline
+
+- **Track ID:** `release-ci-pipeline`
+- **Worktree:** `.worktrees/release-ci-pipeline`
+- **Spec Delta:** [`.cooper/active/release-ci-pipeline/spec-deltas/cli/spec.md`](spec-deltas/cli/spec.md)
+- **Status:** Planning
+
+---
+
+## Phase 1: Continuous Integration Workflow (`.github/workflows/ci.yml`)
+
+- [ ] **Task 1.1: Implement Reusable CI Workflow**
+  - [ ] Sub-task: Create `.github/workflows/ci.yml` with `push`, `pull_request`, and `workflow_call` triggers
+  - [ ] Sub-task: Configure Node 20 deprecation suppression env vars and Go 1.27.0 setup
+  - [ ] Sub-task: Add steps for `gofmt` check, `go vet ./...`, and `go test -v -coverprofile=coverage.out ./...`
+
+- [ ] **Task 1.2: Phase 1 Verification & Checkpoint**
+  - [ ] Sub-task: Run local formatting check and `go test -v -cover ./...`
+  - [ ] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
+
+---
+
+## Phase 2: Multi-Platform Release Workflow (`.github/workflows/release.yml`)
+
+- [ ] **Task 2.1: Implement Automated Tagging & Cross-Platform Release Matrix**
+  - [ ] Sub-task: Create `.github/workflows/release.yml` with CI dependency and `auto-tag` job extracting `Version` from `cmd/version.go`
+  - [ ] Sub-task: Configure `build-and-release` matrix for Linux (`amd64`, `arm64`), macOS (`amd64`, `arm64`), and Windows (`amd64`) with `-ldflags`
+  - [ ] Sub-task: Implement `publish-release` job uploading assets to semantic version tag and `latest` rolling release
+
+- [ ] **Task 2.2: Phase 2 Verification & Checkpoint**
+  - [ ] Sub-task: Validate YAML syntax and job dependencies
+  - [ ] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
+
+---
+
+## Phase 3: Version Baseline (`v1.0.0`) & Cross-Compilation Dry Run
+
+- [ ] **Task 3.1: Bump Version to `1.0.0` in `cmd/version.go`**
+  - [ ] Sub-task: Update `Version` in `cmd/version.go` to `"1.0.0"`
+  - [ ] Sub-task: Update/verify unit tests in `cmd/version_test.go` and `cmd/update_test.go` (Red -> Green -> Refactor)
+  - [ ] Sub-task: Verify local multi-target cross-compilation with `CGO_ENABLED=0 GOOS=... GOARCH=... go build`
+
+- [ ] **Task 3.2: Phase 3 Verification & Checkpoint**
+  - [ ] Sub-task: Run `go test -v -race -cover ./...`
+  - [ ] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
+
+---
+
+## Phase 4: Integration Verification, Spec Promotion & Track Finalization
+
+- [ ] **Task 4.1: Living Spec Validation & Promotion**
+  - [ ] Sub-task: Run `cooper validate` across all specs and spec deltas
+  - [ ] Sub-task: Promote spec delta into `.cooper/specs/cli/spec.md`
+
+- [ ] **Task 4.2: Documentation & Track Registry Update**
+  - [ ] Sub-task: Update `README.md` with CI badge and release binary information
+  - [ ] Sub-task: Update `.cooper/tracks.md` to reflect completed track
+
+- [ ] **Task 4.3: Final Phase Verification & Checkpoint**
+  - [ ] Sub-task: Run full test suite with coverage report (`go test -v -coverprofile=coverage.out ./...`)
+  - [ ] Sub-task: Perform Principal Engineer code review (`cooper-review`) and prepare PR

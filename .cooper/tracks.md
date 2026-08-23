@@ -31,5 +31,8 @@ All active and completed Cooper tracks are registered below.
   - Archive: [.cooper/archive/cooper-bender-integration/](.cooper/archive/cooper-bender-integration/)
 - [x] **Track: Bump Go Toolchain and Runtime Baseline to 1.27.0**
   - Archive: [.cooper/archive/bump-go-1-27-0/](.cooper/archive/bump-go-1-27-0/)
+- [ ] **Track: Automated Multi-Platform Release CI/CD Pipeline & v1.0.0 Baseline**
+  - Worktree: `.worktrees/release-ci-pipeline`
+  - Link: [.cooper/active/release-ci-pipeline/index.md](.cooper/active/release-ci-pipeline/index.md)
 
 
