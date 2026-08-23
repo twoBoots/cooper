@@ -22,7 +22,7 @@
 
 ## Phase 2: Multi-Platform Release Workflow (`.github/workflows/release.yml`)
 
-- [ ] **Task 2.1: Implement Automated Tagging & Cross-Platform Release Matrix**
+- [~] **Task 2.1: Implement Automated Tagging & Cross-Platform Release Matrix**
   - [ ] Sub-task: Create `.github/workflows/release.yml` with CI dependency and `auto-tag` job extracting `Version` from `cmd/version.go`
   - [ ] Sub-task: Configure `build-and-release` matrix for Linux (`amd64`, `arm64`), macOS (`amd64`, `arm64`), and Windows (`amd64`) with `-ldflags`
   - [ ] Sub-task: Implement `publish-release` job uploading assets to semantic version tag and `latest` rolling release
