@@ -52,9 +52,9 @@
   - [x] Sub-task: Run `cooper validate` across all specs and spec deltas
   - [x] Sub-task: Promote spec delta into `.cooper/specs/cli/spec.md`
 
-- [~] **Task 4.2: Documentation & Track Registry Update**
-  - [ ] Sub-task: Update `README.md` with CI badge and release binary information
-  - [ ] Sub-task: Update `.cooper/tracks.md` to reflect completed track
+- [x] **Task 4.2: Documentation & Track Registry Update** (`cf2b869`)
+  - [x] Sub-task: Update `README.md` with CI badge and release binary information
+  - [x] Sub-task: Update `.cooper/tracks.md` to reflect completed track
 
 - [ ] **Task 4.3: Final Phase Verification & Checkpoint**
   - [ ] Sub-task: Run full test suite with coverage report (`go test -v -coverprofile=coverage.out ./...`)
