@@ -9,7 +9,7 @@ import (
 
 var (
 	// Version is populated at build time via -ldflags
-	Version = "dev"
+	Version = "1.0.0"
 	// Commit is populated at build time via -ldflags
 	Commit = "none"
 	// Date is populated at build time via -ldflags
