@@ -1,5 +1,8 @@
 # Cooper 🛢️🐒
 
+[![CI](https://github.com/twoBoots/cooper/actions/workflows/ci.yml/badge.svg)](https://github.com/twoBoots/cooper/actions/workflows/ci.yml)
+[![Release](https://github.com/twoBoots/cooper/actions/workflows/release.yml/badge.svg)](https://github.com/twoBoots/cooper/releases)
+
 **Cooper** combines **OpenSpec's Living Spec Deltas** with **Conductor's** quality governance and **[Troop's](https://github.com/twoBoots/troop)** worktree isolation into a unified, agent-agnostic **Spec-Driven Development (SDD)** framework under `.cooper/`.
 
 Cooper packages its own dedicated agent skills under `.agents/skills/`, making it 100% self-contained and free of external plugin prerequisites.
