@@ -1,0 +1,151 @@
+name: Release Binary
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
+  NODE_NO_WARNINGS: "1"
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  auto-tag:
+    needs: ci
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check and push Git tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(grep -E '^\s*Version\s*=' cmd/version.go | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/')
+          if [ -z "$VERSION" ] || [ "$VERSION" = "dev" ]; then
+            VERSION="1.0.0"
+          fi
+          TAG="v${VERSION}"
+          echo "Checking if tag ${TAG} exists on origin..."
+          if git ls-remote --tags origin "refs/tags/${TAG}" | grep -q "${TAG}"; then
+            echo "Tag ${TAG} already exists on origin. Proceeding..."
+          else
+            echo "Tag ${TAG} does not exist on origin. Creating and pushing tag ${TAG}..."
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git tag -a "${TAG}" -m "Release ${TAG}"
+            git push origin "${TAG}"
+          fi
+
+  build-and-release:
+    needs: [ci, auto-tag]
+    if: always() && needs.ci.result == 'success' && (needs.auto-tag.result == 'success' || needs.auto-tag.result == 'skipped')
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - goos: linux
+            goarch: amd64
+            binary: cooper-linux-x86_64
+          - goos: linux
+            goarch: arm64
+            binary: cooper-linux-aarch64
+          - goos: darwin
+            goarch: amd64
+            binary: cooper-darwin-x86_64
+          - goos: darwin
+            goarch: arm64
+            binary: cooper-darwin-aarch64
+          - goos: windows
+            goarch: amd64
+            binary: cooper-windows-x86_64.exe
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.27.0"
+          cache: true
+
+      - name: Compile Go Binary (${{ matrix.goos }}/${{ matrix.goarch }})
+        env:
+          CGO_ENABLED: 0
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+        run: |
+          mkdir -p dist
+          VERSION=$(grep -E '^\s*Version\s*=' cmd/version.go | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/')
+          if [ -z "$VERSION" ] || [ "$VERSION" = "dev" ]; then
+            VERSION="1.0.0"
+          fi
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+          fi
+          COMMIT="${GITHUB_SHA::7}"
+          BUILD_DATE=$(date -u +%Y-%m-%d)
+          echo "Building Cooper version: ${VERSION} (${COMMIT})"
+          go build -ldflags="-s -w -X github.com/twoBoots/cooper/cmd.Version=${VERSION} -X github.com/twoBoots/cooper/cmd.Commit=${COMMIT} -X github.com/twoBoots/cooper/cmd.Date=${BUILD_DATE}" -o dist/${{ matrix.binary }} .
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.binary }}
+          path: dist/${{ matrix.binary }}
+
+  publish-release:
+    needs: build-and-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+
+      - name: Create or Update GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(grep -E '^\s*Version\s*=' cmd/version.go | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/')
+          if [ -z "$VERSION" ] || [ "$VERSION" = "dev" ]; then
+            VERSION="1.0.0"
+          fi
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+          fi
+          TAG="v${VERSION}"
+          
+          echo "Publishing release assets for semantic tag: $TAG"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release for $TAG exists. Updating release assets..."
+            gh release upload "$TAG" release-assets/* --clobber
+          else
+            echo "Release for $TAG does not exist. Creating release with assets..."
+            gh release create "$TAG" release-assets/* --title "Cooper $TAG" --notes "Automated Go binary release for Cooper $TAG"
+          fi
+          
+          echo "Publishing release assets for tag: latest"
+          if gh release view "latest" >/dev/null 2>&1; then
+            echo "Release for latest exists. Updating release assets..."
+            gh release upload "latest" release-assets/* --clobber
+          else
+            echo "Release for latest does not exist. Creating release with assets..."
+            gh release create "latest" release-assets/* --title "Cooper latest" --notes "Latest automated Go binary release for Cooper"
+          fi
