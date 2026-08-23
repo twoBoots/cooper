@@ -2,10 +2,10 @@
 
 ## Phase 1: Toolchain & Tech Stack Definition Updates
 
-- [~] **Task 1: Update Go Module Toolchain Directive (`go.mod`)**
-  - [ ] Sub-task: Validate current module build and tests under target toolchain directive (Red)
-  - [ ] Sub-task: Update `go.mod` to `go 1.27.0` and run `go mod tidy` (Green)
-  - [ ] Sub-task: Verify clean compilation across all CLI packages (Refactor)
+- [x] **Task 1: Update Go Module Toolchain Directive (`go.mod`)** (4e608a7)
+  - [x] Sub-task: Validate current module build and tests under target toolchain directive (Red)
+  - [x] Sub-task: Update `go.mod` to `go 1.27.0` and run `go mod tidy` (Green)
+  - [x] Sub-task: Verify clean compilation across all CLI packages (Refactor)
 
 - [ ] **Task 2: Synchronize Tech Stack and Scaffolding Templates**
   - [ ] Sub-task: Add unit tests verifying scaffold templates contain `Go 1.27+` runtime baseline (Red)
