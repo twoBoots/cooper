@@ -1,0 +1,3 @@
+Task: Task 2.1: Implement Automated Tagging & Cross-Platform Release Matrix
+Scope: .github/workflows/release.yml
+Summary: Implemented multi-platform release workflow with auto-tagging on main, 5-target binary matrix with -ldflags, and dual publishing to semantic tag and latest releases.
