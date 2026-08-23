@@ -27,9 +27,9 @@
   - [x] Sub-task: Configure `build-and-release` matrix for Linux (`amd64`, `arm64`), macOS (`amd64`, `arm64`), and Windows (`amd64`) with `-ldflags`
   - [x] Sub-task: Implement `publish-release` job uploading assets to semantic version tag and `latest` rolling release
 
-- [ ] **Task 2.2: Phase 2 Verification & Checkpoint**
-  - [ ] Sub-task: Validate YAML syntax and job dependencies
-  - [ ] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
+- [x] **Task 2.2: Phase 2 Verification & Checkpoint** (`03c1650`) [checkpoint: 03c1650]
+  - [x] Sub-task: Validate YAML syntax and job dependencies
+  - [x] Sub-task: Execute phase sync (`git fetch origin main`) and record checkpoint
 
 ---
 
