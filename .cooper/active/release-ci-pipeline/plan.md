@@ -48,9 +48,9 @@
 
 ## Phase 4: Integration Verification, Spec Promotion & Track Finalization
 
-- [~] **Task 4.1: Living Spec Validation & Promotion**
-  - [ ] Sub-task: Run `cooper validate` across all specs and spec deltas
-  - [ ] Sub-task: Promote spec delta into `.cooper/specs/cli/spec.md`
+- [x] **Task 4.1: Living Spec Validation & Promotion** (`eef85e0`)
+  - [x] Sub-task: Run `cooper validate` across all specs and spec deltas
+  - [x] Sub-task: Promote spec delta into `.cooper/specs/cli/spec.md`
 
 - [ ] **Task 4.2: Documentation & Track Registry Update**
   - [ ] Sub-task: Update `README.md` with CI badge and release binary information
