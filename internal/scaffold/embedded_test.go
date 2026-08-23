@@ -58,6 +58,15 @@ func TestEmbeddedAssets(t *testing.T) {
 		t.Errorf("unexpected product.md template content: %s", string(templateContent))
 	}
 
+	// Test tech-stack template Go runtime baseline
+	techStackContent, err := GetTemplate("tech-stack.md")
+	if err != nil {
+		t.Fatalf("failed to get tech-stack.md template: %v", err)
+	}
+	if !strings.Contains(string(techStackContent), "Go 1.27+") {
+		t.Errorf("expected tech-stack.md to specify Go 1.27+, got: %s", string(techStackContent))
+	}
+
 	// Test reading non-existent template
 	_, err = GetTemplate("non-existent.md")
 	if err == nil {

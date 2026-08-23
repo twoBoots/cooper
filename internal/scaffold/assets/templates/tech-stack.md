@@ -2,7 +2,7 @@
 
 ## Primary Languages & Runtime
 - **Language**: TypeScript / Python / Go / Rust
-- **Runtime / Engine**: Node.js / Python 3.11+ / Go 1.22+
+- **Runtime / Engine**: Node.js / Python 3.11+ / Go 1.27+
 
 ## Architecture & Frameworks
 - **Application Architecture**: Modular CLI / REST Service / Full-Stack Web

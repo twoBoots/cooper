@@ -94,12 +94,20 @@ func TestMCPInstallCmd_UnknownClient(t *testing.T) {
 }
 
 func TestMCPInstallCmd_CLIExecution(t *testing.T) {
+	origWd, err := os.Getwd()
+	if err == nil {
+		tmpDir := t.TempDir()
+		if err := os.Chdir(tmpDir); err == nil {
+			defer func() { _ = os.Chdir(origWd) }()
+		}
+	}
+
 	rootCmd := NewRootCmd()
 	buf := new(bytes.Buffer)
 	rootCmd.SetOut(buf)
 	rootCmd.SetArgs([]string{"mcp", "install", "--help"})
 
-	err := rootCmd.Execute()
+	err = rootCmd.Execute()
 	if err != nil {
 		t.Fatalf("unexpected error on mcp install --help: %v", err)
 	}

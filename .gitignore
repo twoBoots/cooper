@@ -18,3 +18,4 @@ coverage.html
 .DS_Store
 .vscode/
 .idea/
+.cursor/
