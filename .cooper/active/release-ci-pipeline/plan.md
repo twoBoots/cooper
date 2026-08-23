@@ -48,7 +48,7 @@
 
 ## Phase 4: Integration Verification, Spec Promotion & Track Finalization
 
-- [ ] **Task 4.1: Living Spec Validation & Promotion**
+- [~] **Task 4.1: Living Spec Validation & Promotion**
   - [ ] Sub-task: Run `cooper validate` across all specs and spec deltas
   - [ ] Sub-task: Promote spec delta into `.cooper/specs/cli/spec.md`
 
