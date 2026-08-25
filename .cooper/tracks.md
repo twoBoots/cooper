@@ -36,3 +36,6 @@ All active and completed Cooper tracks are registered below.
   - Link: [.cooper/active/release-ci-pipeline/index.md](.cooper/active/release-ci-pipeline/index.md)
 
 
+- [ ] **Track: Pre-PR Phase Commit Squashing and Verification Protocol** (`phase-squash-workflow`)
+  - Worktree: `.worktrees/phase-squash-workflow`
+  - Link: [.cooper/active/phase-squash-workflow/index.md](.cooper/active/phase-squash-workflow/index.md)
