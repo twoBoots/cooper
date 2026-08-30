@@ -3,9 +3,9 @@
 ## Phase 1: Skill Definitions & Scaffold Assets Update
 - [x] Task: Update Active Project Skills (.agents/skills/) (7fa2e9d)
   - [x] Sub-task: Update cooper-new-track, cooper-rfc, cooper-review, cooper-implement, cooper-setup, and cooper-status SKILL.md files to mandate interactive question tools and native file tools
-- [~] Task: Update Scaffold Assets (internal/scaffold/assets/)
-  - [ ] Sub-task: Update embedded skills in internal/scaffold/assets/skills/
-  - [ ] Sub-task: Update internal/scaffold/assets/AGENTS.template.md and root AGENTS.md
+- [x] Task: Update Scaffold Assets (internal/scaffold/assets/) (b70a0c3)
+  - [x] Sub-task: Update embedded skills in internal/scaffold/assets/skills/
+  - [x] Sub-task: Update internal/scaffold/assets/AGENTS.template.md and root AGENTS.md
 - [ ] Task: Update Workflow & Project Guidelines
   - [ ] Sub-task: Update .cooper/definition/workflow.md to specify interactive question tools and native file tool mandates
 - [ ] Task: Scaffold and Package Verification
