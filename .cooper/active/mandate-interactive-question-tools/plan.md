@@ -15,5 +15,5 @@
 ## Phase 2: Living Spec Integration & PR Submission
 - [x] Task: Spec Delta Validation & Review (51b2b6c)
   - [x] Sub-task: Verify living capability spec alignment (.cooper/specs/documentation/spec.md)
-- [ ] Task: Open Pull Request
+- [~] Task: Open Pull Request
   - [ ] Sub-task: Push branch and create PR linking Issue #16
