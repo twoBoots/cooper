@@ -2,6 +2,8 @@
 
 ## Capability: documentation
 
+## Requirements
+
 ### Requirement: Interactive Question & File Tool Protocols
 + When interacting with users or performing file operations during skill execution, agents MUST prioritize runtime interactive tools and native file tools over plain text or shell stream redirections.
 
