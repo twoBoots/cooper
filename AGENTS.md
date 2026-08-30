@@ -30,3 +30,7 @@
      - `cooper-implement`: Execute TDD tasks, record Git Notes, run phase checkpoints and syncs.
      - `cooper-review`: Conduct Principal Engineer code review against spec deltas, styleguides, and tests.
      - `cooper-status`: Inspect active worktrees, track progress, and phase checkpoints.
+
+6. **Interaction & Native Tool Protocols**:
+   - **Interactive Question Tools:** When presenting single-choice or multiple-choice questions, options, or confirmations, agents MUST invoke available interactive question tools (e.g. `ask_question`) rather than printing text choice lists in chat. Plain text formatting is strictly a fallback when no interactive question tool is available.
+   - **Native File Tools:** Use dedicated file tools (`view_file`, `write_to_file`, `replace_file_content`) for file operations. Do NOT use shell pipes, stream editors (`sed`, `awk`), heredocs (`cat << 'EOF'`), or stream redirections to create or modify files.
