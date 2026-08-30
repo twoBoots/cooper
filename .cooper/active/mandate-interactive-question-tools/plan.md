@@ -6,7 +6,7 @@
 - [x] Task: Update Scaffold Assets (internal/scaffold/assets/) (b70a0c3)
   - [x] Sub-task: Update embedded skills in internal/scaffold/assets/skills/
   - [x] Sub-task: Update internal/scaffold/assets/AGENTS.template.md and root AGENTS.md
-- [ ] Task: Update Workflow & Project Guidelines
+- [~] Task: Update Workflow & Project Guidelines
   - [ ] Sub-task: Update .cooper/definition/workflow.md to specify interactive question tools and native file tool mandates
 - [ ] Task: Scaffold and Package Verification
   - [ ] Sub-task: Verify scaffold tests and file structure
