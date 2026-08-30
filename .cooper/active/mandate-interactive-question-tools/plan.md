@@ -1,7 +1,7 @@
 # Implementation Plan: Mandate Interactive Question & Native File Tool Calls
 
 ## Phase 1: Skill Definitions & Scaffold Assets Update
-- [ ] Task: Update Active Project Skills (.agents/skills/)
+- [~] Task: Update Active Project Skills (.agents/skills/)
   - [ ] Sub-task: Update cooper-new-track, cooper-rfc, cooper-review, cooper-implement, cooper-setup, and cooper-status SKILL.md files to mandate interactive question tools and native file tools
 - [ ] Task: Update Scaffold Assets (internal/scaffold/assets/)
   - [ ] Sub-task: Update embedded skills in internal/scaffold/assets/skills/
