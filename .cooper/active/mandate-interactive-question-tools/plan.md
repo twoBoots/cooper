@@ -8,8 +8,8 @@
   - [x] Sub-task: Update internal/scaffold/assets/AGENTS.template.md and root AGENTS.md
 - [x] Task: Update Workflow & Project Guidelines (3c6fa0c)
   - [x] Sub-task: Update .cooper/definition/workflow.md to specify interactive question tools and native file tool mandates
-- [~] Task: Scaffold and Package Verification
-  - [ ] Sub-task: Verify scaffold tests and file structure
+- [x] Task: Scaffold and Package Verification (81da83c)
+  - [x] Sub-task: Verify scaffold tests and file structure
 - [ ] Task: Phase 1 Verification & Checkpoint
 
 ## Phase 2: Living Spec Integration & PR Submission
