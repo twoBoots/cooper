@@ -36,7 +36,7 @@ All active and completed Cooper tracks are registered below.
   - Link: [.cooper/active/release-ci-pipeline/index.md](.cooper/active/release-ci-pipeline/index.md)
 
 
-- [ ] **Track: Mandate Interactive Question & Native File Tool Calls**
+- [x] **Track: Mandate Interactive Question & Native File Tool Calls**
   - Worktree: `.worktrees/mandate-interactive-question-tools`
   - Link: [.cooper/active/mandate-interactive-question-tools/index.md](.cooper/active/mandate-interactive-question-tools/index.md)
 
