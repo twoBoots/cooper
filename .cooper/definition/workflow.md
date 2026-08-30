@@ -12,7 +12,7 @@
 8. **Non-Interactive & CI-Aware:** Prefer non-interactive commands. Use `CI=true` for watch-mode tools (tests, linters) to ensure single execution.
 9. **Upstream Architecture vs. Track Execution:** Major collaborative initiatives, epics, or cross-cutting architectural changes should first be planned and peer-reviewed upstream using `cooper-rfc`. Once approved and merged to `main`, decomposed child tracks registered in `.cooper/tracks.md` enter this Track Workflow for TDD implementation.
 10. **Interactive Question Tools:** Whenever gathering requirements, clarifying choices, or requesting user decisions/verifications, agents MUST invoke runtime interactive question tools (e.g. `ask_question`). Plain text markdown option lists in chat are strictly a fallback when no interactive tool is available.
-11. **Native File Tools Mandate:** Always use dedicated file tools (`view_file`, `write_to_file`, `replace_file_content`) for inspecting, creating, or editing workspace files. Shell heredocs, pipes, and output redirections (`cat << 'EOF'`, `echo >`, `cat >`) are strictly prohibited for file creation/edits when native file tools are present.
+11. **Native File Tools Mandate:** Always use dedicated file tools (`view_file`, `write_to_file`, `replace_file_content`) for inspecting, creating, or editing workspace files. Shell heredocs, pipes, stream editors (`sed`, `awk`), and output redirections (`cat << 'EOF'`, `echo >`, `cat >`) are strictly prohibited for file creation/edits when native file tools are present.
 
 ---
 

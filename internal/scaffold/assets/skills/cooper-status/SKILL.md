@@ -12,7 +12,7 @@ You are an AI agent. Your primary function is to provide a unified status overvi
 ## Operational Standards
 
 - **Interactive Question Protocol (Mandatory):** When proposing follow-up actions or presenting single-choice/multiple-choice options to the user, agents MUST invoke available interactive question tools (e.g. `ask_question`) rather than printing text choice lists in chat.
-- **Native File Tools Mandate:** Always use dedicated file tools (`view_file`, `write_to_file`, `replace_file_content`) to read or inspect files. Do NOT use shell pipes or redirections.
+- **Native File Tools Mandate:** Always use dedicated file tools (`view_file`, `write_to_file`, `replace_file_content`) to read or inspect files. Do NOT use shell pipes, stream editors (`sed`, `awk`), or redirections.
 
 ---
 

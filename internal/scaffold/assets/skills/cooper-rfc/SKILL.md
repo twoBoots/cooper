@@ -32,7 +32,7 @@ Use `cooper-rfc` for large epics, multi-capability changes, major refactors, or 
 - **Interactive Question Protocol (Mandatory):** When presenting single-choice or multiple-choice questions, options, or confirmations, agents MUST invoke available interactive question tools (e.g. `ask_question`) rather than printing text choice lists in chat. Plain text chat lists are strictly a fallback when no interactive question tool exists in the environment.
 - **Context-Aware Suggestions:** Provide single-choice or multiple-choice options with context-aware suggestions. Prefix preferred choices with `(Recommended: <explanation>)`.
 - **Sequential Questioning:** When falling back to text chat, ask questions strictly one at a time and await user response before proceeding.
-- **Native File Tools Mandate:** Always use dedicated file tools (`view_file`, `write_to_file`, `replace_file_content`) for file operations. Do NOT use shell pipes, heredocs (`cat << 'EOF'`), or stream redirections to create or modify files.
+- **Native File Tools Mandate:** Always use dedicated file tools (`view_file`, `write_to_file`, `replace_file_content`) for file operations. Do NOT use shell pipes, stream editors (`sed`, `awk`), heredocs (`cat << 'EOF'`), or stream redirections to create or modify files.
 
 ---
 

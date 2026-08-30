@@ -24,4 +24,4 @@
 + - GIVEN an agent runtime providing native file tools (`view_file`, `write_to_file`, `replace_file_content`)
 + - WHEN the agent needs to view, create, or edit files in the workspace
 + - THEN the agent MUST use native file tools
-+ - AND the agent MUST NOT use shell commands with heredocs, pipes, or stream redirections (`cat << 'EOF'`, `echo >`) to create or edit files.
++ - AND the agent MUST NOT use shell commands with stream editors (`sed`, `awk`), heredocs, pipes, or stream redirections (`cat << 'EOF'`, `echo >`, `cat >`) to create or edit files.

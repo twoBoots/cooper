@@ -11,7 +11,7 @@ All Cooper skills (`cooper-setup`, `cooper-rfc`, `cooper-new-track`, `cooper-imp
 
 ### 2. Native File Tools Protocol
 - **Native File Operations (Mandatory)**: File viewing, creation, and modification MUST be performed using dedicated native file tools (`view_file`, `write_to_file`, `replace_file_content`) when available.
-- **Prohibition on Shell Piping for File Edits**: Agents MUST NOT use shell commands with heredocs (`cat << 'EOF' > file`), pipes, or output redirections (`echo "..." > file`) to create or edit files when native file tools are present in the environment.
+- **Prohibition on Shell Commands & Stream Editors for File Edits**: Agents MUST NOT use shell commands with stream editors (`sed`, `awk`), heredocs (`cat << 'EOF' > file`), pipes, or output redirections (`echo "..." > file`) to create or edit files when native file tools are present in the environment.
 
 ## Target Modifications
 1. **Agent Skills**:
