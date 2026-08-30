@@ -1,0 +1,3 @@
+Task: Audit and update Agent Skills (skills/ and .agents/skills/)
+Scope: skills/cooper-{setup,rfc,new-track,implement,review,status}/SKILL.md, .agents/skills/cooper-{setup,rfc,new-track,implement,review,status}/SKILL.md
+Summary: Linked prominent mentions of Troop and worktree headings to https://github.com/twoBoots/troop across all packaged and local skills

@@ -1,0 +1,3 @@
+Task: Track Lifecycle & Troop Worktree Orchestrator (cooper track)
+Scope: internal/track/track.go, internal/track/git.go, internal/track/track_test.go, cmd/track.go, cmd/track_test.go
+Summary: Implemented track lifecycle orchestrator (cooper track new/status/checkpoint/close) with Git worktree automation, checkpoint Git Notes recording, tracks.md registry updates, and 94.5% test coverage in internal/track.

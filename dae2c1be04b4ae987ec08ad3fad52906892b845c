@@ -1,0 +1,3 @@
+Task: Cooper MCP Server & SDD Tool Suite
+Scope: internal/mcp/server.go, internal/mcp/server_test.go
+Summary: Implemented Cooper MCP server with 6 SDD tools (get_version, init_project, track_create, track_status, validate, self_update), living context resources, and 88.8% test coverage

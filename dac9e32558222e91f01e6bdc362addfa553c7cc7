@@ -1,0 +1,3 @@
+Task: Embedded Assets & Templates Engine
+Scope: internal/scaffold/embedded.go, internal/scaffold/embedded_test.go, internal/scaffold/assets/
+Summary: Embedded Cooper templates, code styleguides, agent skills, and AGENTS template using go:embed. Implemented retrieval helper functions (GetSkill, GetTemplate, GetAgentsTemplate, ListSkills, WalkAssets) with 91.7% test coverage.

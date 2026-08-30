@@ -1,0 +1,3 @@
+Task: Track Metadata & Tracks Registry Validator
+Scope: internal/validator/metadata.go, internal/validator/metadata_test.go
+Summary: Implemented TrackMetadata JSON schema validation (type, status, track_id match, timestamps) and tracks.md registry parity checks with 91% test coverage.

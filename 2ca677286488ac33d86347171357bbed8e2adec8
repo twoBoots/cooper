@@ -1,0 +1,3 @@
+Task: Project Scaffolding Engine (cooper init)
+Scope: internal/scaffold/init.go, internal/scaffold/init_test.go, cmd/init.go, cmd/init_test.go
+Summary: Implemented project scaffolding engine with greenfield repository structure generation, agent skills extraction (.agents/skills), AGENTS.md templating, and brownfield .conductor/openspec track migration with >90% test coverage.

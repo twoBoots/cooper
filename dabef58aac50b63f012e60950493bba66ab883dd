@@ -1,0 +1,3 @@
+Task: Spec Delta & Living Spec Syntax Linter
+Scope: internal/validator/types.go, internal/validator/spec_linter.go, internal/validator/spec_linter_test.go
+Summary: Implemented deterministic SDD syntax validator for living capability specs and spec deltas. Checks document title headers, requirements section, normative keywords (SHALL/MUST), scenario syntax (GIVEN/WHEN/THEN/AND), and delta +/- diff prefix integrity with 90.2% test coverage.

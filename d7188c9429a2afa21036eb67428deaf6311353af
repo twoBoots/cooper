@@ -1,0 +1,3 @@
+Task: Create docs/rfc-draft-prs.md with Executive Rationale & Comparison Matrix
+Scope: docs/rfc-draft-prs.md
+Summary: Authored dedicated guide explaining why Cooper architectural RFCs use Draft PRs, including comparison table, 3 core benefits, milestone flow, and graduation lifecycle.

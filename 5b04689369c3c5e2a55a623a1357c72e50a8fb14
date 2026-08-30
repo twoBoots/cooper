@@ -1,0 +1,3 @@
+Task: Go Module & Root CLI Scaffold
+Scope: go.mod, go.sum, main.go, cmd/root.go, cmd/version.go, cmd/version_test.go
+Summary: Initialized Go module github.com/twoBoots/cooper, set up Cobra root command with global flags (--verbose, --non-interactive), implemented version command with text and JSON format options, and added 100% test coverage.
