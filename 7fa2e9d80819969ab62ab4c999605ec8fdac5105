@@ -1,0 +1,3 @@
+Task: Update Active Project Skills (.agents/skills/)
+Scope: .agents/skills/
+Summary: Updated all 6 Cooper skills with mandatory interactive question protocol (e.g. ask_question) and native file tools mandate.
