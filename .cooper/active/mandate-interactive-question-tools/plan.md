@@ -13,7 +13,7 @@
 - [x] Task: Phase 1 Verification & Checkpoint [checkpoint: 1ae19a4]
 
 ## Phase 2: Living Spec Integration & PR Submission
-- [ ] Task: Spec Delta Validation & Review
+- [~] Task: Spec Delta Validation & Review
   - [ ] Sub-task: Verify living capability spec alignment (.cooper/specs/documentation/spec.md)
 - [ ] Task: Open Pull Request
   - [ ] Sub-task: Push branch and create PR linking Issue #16
