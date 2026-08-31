@@ -37,6 +37,5 @@ All active and completed Cooper tracks are registered below.
 
 
 - [x] **Track: Mandate Interactive Question & Native File Tool Calls**
-  - Worktree: `.worktrees/mandate-interactive-question-tools`
-  - Link: [.cooper/active/mandate-interactive-question-tools/index.md](.cooper/active/mandate-interactive-question-tools/index.md)
+  - Archive: [.cooper/archive/mandate-interactive-question-tools/](.cooper/archive/mandate-interactive-question-tools/)
 
