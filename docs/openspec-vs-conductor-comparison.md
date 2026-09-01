@@ -1,15 +1,12 @@
-# OpenSpec vs. Conductor Comparison & Cooper Hybrid Architecture Blueprint
-
 ## Executive Summary
 
-As AI coding agents (Claude Code, Cursor, Gemini CLI, Antigravity, etc.) mature, software development is shifting from informal "vibe coding" (ad-hoc prompt-and-pray iterations) toward **Spec-Driven Development (SDD)**. SDD establishes explicit, human-reviewable specifications and step-by-step implementation plans before an AI agent writes application code.
+As AI coding agents (Claude Code, Cursor, Gemini CLI, Antigravity, etc.) mature, software development is shifting toward **Spec-Driven Development (SDD)** — explicit, human-reviewable specifications and step-by-step implementation plans authored before any application code is written.
 
-**Cooper** integrates the **Conductor** spec-driven framework with **[Troop](https://github.com/twoBoots/troop)** Git worktree isolation (`.worktrees/`). This document outlines how the **Cooper Hybrid Framework** (`.cooper/`) incorporates **OpenSpec's Living Spec Deltas** while fully respecting Cooper's TDD, quality gates, phase synchronization protocols, and Troop worktree isolation.
+**Cooper** integrates the **Conductor** spec-driven framework with **[Troop](https://github.com/twoBoots/troop)** Git worktree isolation (`.worktrees/`). This document outlines how the **Cooper Hybrid Framework** (`.cooper/`) incorporates **OpenSpec's Living Spec Deltas** while respecting Cooper's TDD, quality gates, phase synchronisation protocols, and Troop worktree isolation.
 
 ---
 
 ## 1. Core Framework Comparison
-
 | Dimension | Customized Conductor Approach | OpenSpec (Fission AI) | Cooper Hybrid Model (`.cooper/` + [Troop](https://github.com/twoBoots/troop)) |
 | :--- | :--- | :--- | :--- |
 | **Primary Focus** | Agent Orchestration & Governance | Domain Capability Specs & Spec Deltas | **Unified Spec-Driven Orchestration with Worktree Isolation** |
@@ -18,19 +15,17 @@ As AI coding agents (Claude Code, Cursor, Gemini CLI, Antigravity, etc.) mature,
 | **Core Unit** | **Track** (`conductor/tracks/<id>/`) | **Capability & Change** (`openspec/specs/` & `changes/`) | **Living Specs + Active Worktree Tracks** (`.cooper/specs/` & `.cooper/active/`) |
 | **Knowledge Representation** | Append-Only Track History | Living Capability Library + Spec Deltas | **Living Capability Library + Spec Deltas** |
 | **Execution Control** | Strict TDD, style guides, checkpoints | Flexible / Agnostic | **Strict TDD, style guides, Git Notes & phase checkpoints** |
-| **Phase Synchronization** | Manual / Local | N/A | **Automatic (`git fetch origin main` & `git push origin <track_id>`)** |
+| **Phase Synchronisation** | Manual / Local | N/A | **Automatic (`git fetch origin main` & `git push origin <track_id>`)** |
 | **Agent Skills** | External Global Plugin Prerequisite | N/A | **Packaged Project-Local Skills (`.agents/skills/`)** |
 | **Scaffolding** | Full (`product.md`, `tech-stack.md`) | Minimalist | **Full Scaffolding (`.cooper/definition/`)** |
 
 ---
 
-## 2. The Cooper Hybrid Architecture (`.cooper/` & `.agents/skills/`)
-
 ```
 your-project/
 ├── .agents/
 │   └── skills/                        # Packaged Project-Local Cooper Skills
-│       ├── cooper-setup/SKILL.md      # Project initialization & scaffolding
+│       ├── cooper-setup/SKILL.md      # Project initialisation & scaffolding
 │       ├── cooper-new-track/SKILL.md  # Worktree spawning & spec delta planning
 │       ├── cooper-implement/SKILL.md  # TDD execution & phase sync
 │       ├── cooper-review/SKILL.md     # Code & spec delta review
@@ -66,15 +61,10 @@ your-project/
 
 ---
 
-## 3. How the Cooper Workflow & [Troop](https://github.com/twoBoots/troop) Are Respected
-
 ### 3.1 [Troop](https://github.com/twoBoots/troop) Worktree Isolation (`git agent-start` / `git agent-stop`)
-* **Worktree Spawning (`git agent-start <track_id>`)**:
-  When a new track is initiated, Troop spawns an isolated Git worktree under `.worktrees/<track_id>`. All feature code, test additions, and track-specific `.cooper/active/<track_id>/` files are created inside that isolated worktree.
-* **Parallel Execution**:
-  Multiple agents or human developers can work on separate tracks concurrently in distinct worktrees without branch switching or uncommitted state conflicts (`git troop` lists all active worktrees).
-* **Teardown (`git agent-stop <track_id>`)**:
-  Once the track's PR is merged and its Spec Deltas are integrated into main's `.cooper/specs/`, Troop cleans up `.worktrees/<track_id>` and deletes the local track branch.
+* **Worktree Spawning (`git agent-start <track_id>`)**: Troop spawns an isolated Git worktree under `.worktrees/<track_id>`. All feature code, test additions, and track-specific `.cooper/active/<track_id>/` files are created inside that isolated worktree.
+* **Parallel Execution**: Multiple agents or developers can work on separate tracks concurrently in distinct worktrees (`git troop` lists all active worktrees).
+* **Teardown (`git agent-stop <track_id>`)**: Once the track's PR is merged and its Spec Deltas are integrated into main's `.cooper/specs/`, Troop cleans up `.worktrees/<track_id>` and deletes the local track branch.
 
 ### 3.2 Strict TDD Red/Green/Refactor Protocol
 Each task in `.cooper/active/<track_id>/plan.md` follows Cooper's strict TDD lifecycle:
@@ -88,9 +78,7 @@ Each task in `.cooper/active/<track_id>/plan.md` follows Cooper's strict TDD lif
 
 ---
 
-## 4. Cooper Phase Completion & Synchronization Protocols
-
-Phase completion in Cooper is not a silent step; it enforces **three levels of synchronization** alongside automated and manual verification:
+Phase completion enforces **three levels of synchronisation** alongside automated and manual verification:
 
 ```mermaid
 sequenceDiagram
@@ -112,28 +100,24 @@ sequenceDiagram
     Agent->>Worktree: 4. Create Checkpoint Commit & Attach Verification Git Notes
     Agent->>Worktree: 5. Record Checkpoint SHA in plan.md [checkpoint: <sha>]
     
-    Agent->>Remote: 6. git push origin <track_id> (Remote Phase Synchronization)
+    Agent->>Remote: 6. git push origin <track_id> (Remote Phase Synchronisation)
     Note over Worktree, Remote: Phase Progress, Checkpoint SHAs & Git Notes synced to Remote
 ```
 
-### 4.1 Workflow Rule Synchronization (`git fetch origin main`)
+### 4.1 Workflow Rule Synchronisation (`git fetch origin main`)
 * At phase completion, Cooper executes `git fetch origin main`.
-* It checks if `.cooper/definition/workflow.md` (or style guides) on `origin/main` has been updated by other tracks/branches.
-* If changes exist, Cooper prompts the developer to merge or rebase `origin/main` into `.worktrees/<track_id>` so subsequent phases follow the latest project rules.
+* If `.cooper/definition/workflow.md` (or style guides) on `origin/main` has been updated by other tracks, Cooper prompts the developer to merge or rebase into `.worktrees/<track_id>` so subsequent phases follow the latest project rules.
 
-### 4.2 Living Spec Synchronization *(Hybrid Enhancement)*
+### 4.2 Living Spec Synchronisation *(Hybrid Enhancement)*
 * During the `git fetch origin main` check, Cooper checks for updates to `.cooper/specs/` on `origin/main`.
-* If a parallel track in another worktree merged into `main` and updated a living spec (e.g., `.cooper/specs/auth-session/spec.md`), Cooper pulls those spec updates into `.worktrees/<track_id>`.
+* If a parallel track merged and updated a living spec (e.g., `.cooper/specs/auth-session/spec.md`), Cooper pulls those spec updates into `.worktrees/<track_id>`.
 * This prevents **spec collisions** between parallel worktrees operating in the same codebase.
 
-### 4.3 Remote Progress & Checkpoint Synchronization (`git push origin <track_id>`)
+### 4.3 Remote Progress & Checkpoint Synchronisation (`git push origin <track_id>`)
 * Upon completing phase verification and creating the checkpoint commit (`cooper(checkpoint): Checkpoint end of Phase X`), Cooper attaches an auditable verification report using `git notes`.
-* It updates `plan.md` with `[checkpoint: <sha>]` and immediately executes `git push origin <track_id>`.
-* Remote team members, project status dashboards, and CI pipelines obtain real-time visibility into exact phase completion states.
+* It updates `plan.md` with `[checkpoint: <sha>]` and executes `git push origin <track_id>`.
 
 ---
-
-## 5. End-to-End Hybrid Lifecycle Sequence
 
 ```mermaid
 sequenceDiagram
@@ -151,7 +135,7 @@ sequenceDiagram
     Agent->>Worktree: Create .cooper/active/<track_id>/ (proposal, design, spec-deltas, plan)
     Agent->>Dev: Present Spec Delta & TDD Plan for approval
 
-    Note over Dev, Worktree: Step 2: TDD Execution & Checkpoint Synchronization
+    Note over Dev, Worktree: Step 2: TDD Execution & Checkpoint Synchronisation
     loop Every Phase in plan.md
         Agent->>Worktree: TDD Tasks (Red -> Green -> Refactor -> Git Notes)
         Agent->>Worktree: Phase Sync: git fetch origin main (sync rules & specs)
@@ -168,8 +152,6 @@ sequenceDiagram
 ```
 
 ---
-
-## 6. Artifact Specs & Examples in `.cooper/`
 
 ### 6.1 Spec Delta (`.cooper/active/<track_id>/spec-deltas/auth-session/spec.md`)
 ```diff
@@ -208,12 +190,3 @@ sequenceDiagram
   - [ ] Sub-task: Implement "Remember Me" checkbox (`src/components/LoginForm.tsx`)
 - [ ] Task: Cooper - User Manual Verification 'Phase 2: UI & Auth Integration'
 ```
-
----
-
-## 7. Summary of Cooper + [Troop](https://github.com/twoBoots/troop) Benefits
-
-1. **Total Workspace Isolation**: Troop ensures agents operate in clean, isolated `.worktrees/<track_id>` directories without touching main worktree state.
-2. **Robust Phase Synchronization**: Ensures workflow rules, living specs, and phase progress remain synchronized across parallel worktrees and remote repositories.
-3. **Strict Quality Governance**: Preserves Cooper's TDD, coverage checks (>80%), style guides, Git Notes summaries, and phase checkpoint protocols.
-4. **Persistent System Knowledge**: OpenSpec's living capability specs (`.cooper/specs/`) ensure system specifications never decay or get lost in archived tracks.
