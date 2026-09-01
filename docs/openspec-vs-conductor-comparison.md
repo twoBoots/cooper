@@ -1,3 +1,5 @@
+# OpenSpec vs. Conductor Comparison & Cooper Hybrid Architecture Blueprint
+
 ## Executive Summary
 
 As AI coding agents (Claude Code, Cursor, Gemini CLI, Antigravity, etc.) mature, software development is shifting toward **Spec-Driven Development (SDD)** — explicit, human-reviewable specifications and step-by-step implementation plans authored before any application code is written.
