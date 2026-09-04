@@ -11,22 +11,6 @@ Cooper packages its own dedicated agent skills under `.agents/skills/`, making i
 
 Cooper is an agent-agnostic Spec-Driven Development (SDD) framework and CLI. It structures AI-assisted engineering into explicit specifications, isolated Git workspaces, and strict quality controls.
 
-### Two-Tier Planning Model
-
-Cooper separates upstream architectural consensus from downstream code execution:
-
-1. **Upstream Alignment (`cooper-rfc`)**:
-   - For epics, major refactors, or cross-capability changes.
-   - Spawns `.worktrees/rfc-<name>` to draft `rfc.md`, cross-capability `spec-deltas/`, and child track breakdowns.
-   - Opens as a **Draft Pull Request** (`gh pr create --draft`). Merge is blocked by default, preventing unapproved specs or tracks from polluting `main`.
-   - Team reviews inline GIVEN/WHEN/THEN spec deltas and Mermaid diagrams without triggering heavy CI/CD pipelines.
-   - On approval (`gh pr ready`), child tracks are registered into `.cooper/tracks.md` and merged to `main`.
-2. **Downstream Execution (`cooper-new-track` & `cooper-implement`)**:
-   - Decomposed child tracks execute independently in isolated Troop worktrees (`.worktrees/<track_id>`).
-   - Follows strict TDD (Red -> Green -> Refactor), coverage thresholds (>80%), and task summaries via `git notes`.
-   - Runs phase synchronisation (`git fetch origin main`) to pull upstream spec updates before pushing checkpoint reports.
-   - Merging the track's PR integrates its Spec Deltas into `.cooper/specs/` and tears down the worktree (`git agent-stop <track_id>`).
-
 ### Core Architecture
 
 * **Living Capability Specs (`.cooper/specs/`)**: System behaviour is documented as living specifications. Changes are defined as human-reviewable Spec Deltas (`+` additions, `-` removals) before code is written.
