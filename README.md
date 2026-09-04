@@ -7,6 +7,46 @@
 
 Cooper packages its own dedicated agent skills under `.agents/skills/`, making it 100% self-contained and free of external plugin prerequisites.
 
+## Overview
+
+Cooper is an agent-agnostic Spec-Driven Development (SDD) framework and CLI. It structures AI-assisted engineering into explicit specifications, isolated Git workspaces, and strict quality controls.
+
+### Two-Tier Planning Model
+
+Cooper separates upstream architectural consensus from downstream code execution:
+
+1. **Upstream Alignment (`cooper-rfc`)**:
+   - For epics, major refactors, or cross-capability changes.
+   - Spawns `.worktrees/rfc-<name>` to draft `rfc.md`, cross-capability `spec-deltas/`, and child track breakdowns.
+   - Opens as a **Draft Pull Request** (`gh pr create --draft`). Merge is blocked by default, preventing unapproved specs or tracks from polluting `main`.
+   - Team reviews inline GIVEN/WHEN/THEN spec deltas and Mermaid diagrams without triggering heavy CI/CD pipelines.
+   - On approval (`gh pr ready`), child tracks are registered into `.cooper/tracks.md` and merged to `main`.
+2. **Downstream Execution (`cooper-new-track` & `cooper-implement`)**:
+   - Decomposed child tracks execute independently in isolated Troop worktrees (`.worktrees/<track_id>`).
+   - Follows strict TDD (Red -> Green -> Refactor), coverage thresholds (>80%), and task summaries via `git notes`.
+   - Runs phase synchronisation (`git fetch origin main`) to pull upstream spec updates before pushing checkpoint reports.
+   - Merging the track's PR integrates its Spec Deltas into `.cooper/specs/` and tears down the worktree (`git agent-stop <track_id>`).
+
+### Core Architecture
+
+* **Living Capability Specs (`.cooper/specs/`)**: System behaviour is documented as living specifications. Changes are defined as human-reviewable Spec Deltas (`+` additions, `-` removals) before code is written.
+* **Worktree Isolation (Troop)**: Work executes in dedicated worktrees (`.worktrees/<track_id>`), eliminating branch switching, stash conflicts, and dirty working trees across parallel agents.
+* **Quality & Phase Gates**: Enforces test-first implementation, test coverage checks, and remote checkpoint syncs per phase.
+* **Self-Contained Agent Skills**: Ships project-local skills (`.agents/skills/cooper-*`), Go CLI, and native stdio MCP server. Zero external plugins required.
+
+### Value Delivered
+
+| Operational Area | Without Cooper | With Cooper |
+| :--- | :--- | :--- |
+| **Architecture** | Code starts before consensus; architectural debate happens in PR code diffs. | Upstream Draft RFC PRs isolate design and spec deltas until team sign-off. |
+| **Specifications** | Prompt drift across chat sessions; stale documentation. | Living specs (`.cooper/specs/`) updated automatically via Spec Deltas on PR merge. |
+| **Workspaces** | Stash conflicts and branch collisions across concurrent agent runs. | Isolated Git worktrees per track via Troop (`.worktrees/<track_id>`). |
+| **Quality** | Bypassed test suites or unverified generation. | Strict TDD (Red -> Green -> Refactor), >80% coverage check, and Git Notes audit trails. |
+
+> 📖 **Deep Dive Documentation**:
+> - [OpenSpec vs. Conductor Comparison & Cooper Architecture Blueprint](docs/openspec-vs-conductor-comparison.md)
+> - [Why Cooper Architectural RFCs Mandate Draft Pull Requests](docs/rfc-draft-prs.md)
+
 ## Quick Start / One-Line Installation
 
 To set up **Cooper** in any Git project repository, navigate to your target project folder and run:
