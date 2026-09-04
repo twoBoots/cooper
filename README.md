@@ -7,6 +7,30 @@
 
 Cooper packages its own dedicated agent skills under `.agents/skills/`, making it 100% self-contained and free of external plugin prerequisites.
 
+## Overview
+
+Cooper is an agent-agnostic Spec-Driven Development (SDD) framework and CLI. It structures AI-assisted engineering into explicit specifications, isolated Git workspaces, and strict quality controls.
+
+### Core Architecture
+
+* **Living Capability Specs (`.cooper/specs/`)**: System behaviour is documented as living specifications. Changes are defined as human-reviewable Spec Deltas (`+` additions, `-` removals) before code is written.
+* **Worktree Isolation (Troop)**: Work executes in dedicated worktrees (`.worktrees/<track_id>`), eliminating branch switching, stash conflicts, and dirty working trees across parallel agents.
+* **Quality & Phase Gates**: Enforces test-first implementation, test coverage checks, and remote checkpoint syncs per phase.
+* **Self-Contained Agent Skills**: Ships project-local skills (`.agents/skills/cooper-*`), Go CLI, and native stdio MCP server. Zero external plugins required.
+
+### Value Delivered
+
+| Operational Area | Without Cooper | With Cooper |
+| :--- | :--- | :--- |
+| **Architecture** | Code starts before consensus; architectural debate happens in PR code diffs. | Upstream Draft RFC PRs isolate design and spec deltas until team sign-off. |
+| **Specifications** | Prompt drift across chat sessions; stale documentation. | Living specs (`.cooper/specs/`) updated automatically via Spec Deltas on PR merge. |
+| **Workspaces** | Stash conflicts and branch collisions across concurrent agent runs. | Isolated Git worktrees per track via Troop (`.worktrees/<track_id>`). |
+| **Quality** | Bypassed test suites or unverified generation. | Strict TDD (Red -> Green -> Refactor), >80% coverage check, and Git Notes audit trails. |
+
+> 📖 **Deep Dive Documentation**:
+> - [OpenSpec vs. Conductor Comparison & Cooper Architecture Blueprint](docs/openspec-vs-conductor-comparison.md)
+> - [Why Cooper Architectural RFCs Mandate Draft Pull Requests](docs/rfc-draft-prs.md)
+
 ## Quick Start / One-Line Installation
 
 To set up **Cooper** in any Git project repository, navigate to your target project folder and run:
