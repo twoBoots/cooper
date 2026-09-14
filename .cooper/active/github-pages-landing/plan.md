@@ -29,10 +29,10 @@
   - [x] Sub-task: Commit phase checkpoint and push (`git push origin github-pages-landing`)
 
 ## Phase 3: CI/CD Pipeline & Deployment Automation
-- [~] Task: GitHub Actions Pages Workflow (`.github/workflows/pages.yml`)
-  - [ ] Sub-task: Write validation test for GitHub Actions workflow syntax and permissions (Red)
-  - [ ] Sub-task: Create `.github/workflows/pages.yml` configuring Node.js setup, caching, `npm ci`, `npm run docs:build`, and GitHub Pages deployment actions (Green)
-  - [ ] Sub-task: Validate workflow file syntax and permissions against GitHub Actions guidelines (Refactor)
+- [x] Task: GitHub Actions Pages Workflow (`.github/workflows/pages.yml`) (a914fa3)
+  - [x] Sub-task: Write validation test for GitHub Actions workflow syntax and permissions (Red)
+  - [x] Sub-task: Create `.github/workflows/pages.yml` configuring Node.js setup, caching, `npm ci`, `npm run docs:build`, and GitHub Pages deployment actions (Green)
+  - [x] Sub-task: Validate workflow file syntax and permissions against GitHub Actions guidelines (Refactor)
 - [ ] Task: Phase 3 Verification & Checkpoint
   - [ ] Sub-task: Synchronize rules (`git fetch origin main`)
   - [ ] Sub-task: Execute end-to-end build (`npm run docs:build`) and test suite
