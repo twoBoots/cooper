@@ -1,7 +1,7 @@
 # Implementation Plan: Documentation Review Refinements
 
 ## Phase 1: Workflow Copy Refinements
-- [ ] Task: Apply Reviewer Copy Changes in workflow.md
+- [~] Task: Apply Reviewer Copy Changes in workflow.md
   - [ ] Sub-task: Write verification test asserting phrasing in workflow.md (Red)
   - [ ] Sub-task: Apply suggested text updates to `docs/guide/workflow.md` (Green)
   - [ ] Sub-task: Verify build and validations pass (Refactor)
