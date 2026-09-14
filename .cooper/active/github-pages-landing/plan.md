@@ -1,7 +1,7 @@
 # Implementation Plan: GitHub Pages Informative Landing Site
 
 ## Phase 1: Environment & Tooling Scaffolding
-- [ ] Task: Package Configuration & Documentation Scripts
+- [~] Task: Package Configuration & Documentation Scripts
   - [ ] Sub-task: Write automated test/script verifying documentation build and test commands (Red)
   - [ ] Sub-task: Create `package.json` with `vitepress` devDependencies and npm scripts (`docs:dev`, `docs:build`, `docs:preview`) (Green)
   - [ ] Sub-task: Install npm dependencies and verify lockfile creation (Refactor)
