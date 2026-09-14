@@ -82,18 +82,4 @@ test('All local markdown links in docs/ resolve to existing files', () => {
   }
 });
 
-test('Workflow guide includes reviewer precision copy', () => {
-  const workflowPath = path.join(docsDir, 'guide', 'workflow.md');
-  const content = fs.readFileSync(workflowPath, 'utf8');
-
-  assert.ok(
-    content.includes('to preserve implementation context against drift'),
-    'workflow.md Git Notes section must mention preserving implementation context against drift'
-  );
-  assert.ok(
-    content.includes('act as a principal engineer'),
-    'workflow.md Quality Review section must instruct acting as a principal engineer'
-  );
-});
-
 

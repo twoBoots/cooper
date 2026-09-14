@@ -37,7 +37,7 @@ When Cooper is initialized, a `.cooper/` directory is created with:
 ## Core Concepts
 
 ### 1. Living Capability Specs (`.cooper/specs/`)
-Living specs define truth for each system capability. Before code is written, any change must be articulated as a Spec Delta adding (`+`) or removing (`-`) specific GIVEN / WHEN / THEN behavioral requirements.
+Living specs define truth for each system capability. Before code is written, any change must be articulated as a Spec Delta adding (`+`) or removing (`-`) specific GIVEN / WHEN / THEN behavioral requirements (see [OpenSpec.dev](https://openspec.dev)).
 
 ### 2. Isolated Worktrees with [Troop](https://github.com/twoBoots/troop)
 Never develop features directly on the main repository trunk. Cooper uses [Troop](https://github.com/twoBoots/troop) to spin up ephemeral, isolated worktrees under `.worktrees/<track_id>`, guaranteeing reproducible builds without colliding with parallel tracks.
