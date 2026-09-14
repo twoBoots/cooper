@@ -106,9 +106,32 @@
   - [x] Sub-task: Bump `cmd/version.go` `Version` to `1.2.0`
   - [x] Sub-task: Run `cooper validate` to confirm documentation links and specs are clean
 
-- [ ] **Task 3.5: Phase 3 Verification & Checkpoint**
-  - [ ] Sub-task: Run `git fetch origin main` and reconcile
-  - [ ] Sub-task: Run full suite with coverage; confirm the gate passes on measured numbers
-  - [ ] Sub-task: Obtain explicit user verification approval via interactive question tool
-  - [ ] Sub-task: Checkpoint commit with a truthful verification Git Note; `git push origin slim-cli-validate-first`
-  - [ ] Sub-task: Hand off to `cooper-review`
+- [x] **Task 3.5: Phase 3 Verification & Checkpoint** [checkpoint: `a7c0545`]
+  - [x] Sub-task: Run `git fetch origin main` and reconcile — no upstream drift
+  - [x] Sub-task: Run full suite with coverage; confirm the gate passes on measured numbers — 93.9% against an 80% threshold
+  - [x] Sub-task: Obtain explicit user verification approval via interactive question tool
+  - [x] Sub-task: Checkpoint commit with a truthful verification Git Note; `git push origin slim-cli-validate-first`
+  - [x] Sub-task: Hand off to `cooper-review`
+
+---
+
+## Track Outcome
+
+| Measure | Before | After |
+| :--- | ---: | ---: |
+| Go source | 3,949 lines | **2,432 lines** |
+| Test coverage | 91.2% | **93.9%** |
+| CLI commands | 7 | **3** (`validate`, `update`, `version`) |
+| Scaffolders | 2 (diverged) | **1** (`install.sh`) |
+| Skill tree copies | 3 (2 diverged) | **2** (source + installed, parity-guarded) |
+| Enforcing CI gates | 0 | **2** (validate, 80% coverage) |
+
+**Defects fixed beyond the planned scope**, each found by a guard or by the validator itself:
+
+1. `track checkpoint` wrote `Automated Tests: PASSED` / `APPROVED by user` into Git Notes with nothing behind them — and the same pre-filled template lived in `cooper-implement/SKILL.md`, where the Go code had copied it from.
+2. `CreateTrack` discarded the `git worktree add` error and reported success on failure.
+3. The embedded skill tree had regressed `cooper-rfc`'s `### 6.2` heading to `## 6.2`; caught mid-port by the heading guard.
+4. `install.sh` relocated `TROOP.md` into `.cooper/` but left the `AGENTS.md` reference pointing at the old root path — every project scaffolded to date carried a dangling link.
+5. Cooper's own repository was missing `.cooper/TROOP.md` while its `COOPER.md` and `cooper-setup` skill instruct agents to read it — Cooper had never run its own installer on itself.
+
+**Left open deliberately:** RFC problem statement #1 from `rfc-cooper-cli-mcp`, *"No Safe Upstream Upgrades."* Collapsing to one skill tree removes today's drift but installs no mechanism preventing recurrence for downstream consumers. The `.cooper/manifest.json` + 3-way diff design remains unbuilt and unforeclosed; it warrants its own RFC.

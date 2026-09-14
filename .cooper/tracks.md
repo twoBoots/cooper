@@ -41,7 +41,7 @@ All active and completed Cooper tracks are registered below.
 - [x] **Track: Mandate Interactive Question & Native File Tool Calls**
   - Archive: [.cooper/archive/mandate-interactive-question-tools/](.cooper/archive/mandate-interactive-question-tools/)
 
-- [ ] **Track: Slim the Cooper CLI to a Validate-First Surface** (`slim-cli-validate-first`)
+- [x] **Track: Slim the Cooper CLI to a Validate-First Surface** (`slim-cli-validate-first`)
   - Worktree: `.worktrees/slim-cli-validate-first`
   - Link: [.cooper/active/slim-cli-validate-first/index.md](.cooper/active/slim-cli-validate-first/index.md)
   - Supersedes: `rfc-cooper-cli-mcp` (partial reversal — removes the as-built MCP server, `init`, and `track` commands)
