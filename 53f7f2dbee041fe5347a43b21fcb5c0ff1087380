@@ -1,0 +1,13 @@
+Task 2.3: Optional Non-Fatal Binary Installation in install.sh
+Scope: install.sh (restructured; added resolve_bin_dir, install_cooper_binary, _cooper_post_process_binary, relocate_troop_reference, COOPER_INSTALL_LIB_ONLY guard); cmd/installer_test.go (added)
+
+Implements the 3-tier binary install from rfc-cooper-cli-mcp that was designed but never shipped. Always returns 0: install.sh runs under 'set -e', so an unguarded failure would abort scaffolding entirely.
+
+Defect found and fixed during this task: 'cooper validate' on a freshly scaffolded project reported AGENTS.md:7 linking to TROOP.md after install.sh had relocated it to .cooper/TROOP.md. Every project scaffolded before this commit carried that dangling reference. Fixed by relocate_troop_reference, which moves the file and rewrites both markdown-link and inline-code forms idempotently. Confirmed Cooper's own AGENTS.template.md carries no TROOP reference, so step 5 cannot reintroduce it.
+
+Tests: 4 installer tests PASS (syntax, non-fatal fallback under empty PATH, troop reference relocation, side-effect-free sourcing). Full suite PASS. Coverage 93.4%. gofmt and vet clean.
+
+End-to-end verification (manual, not automated -- a full run needs network for the Troop installer, and a network-dependent CI test would be flaky):
+  install exit 0; .cooper/COOPER.md, .cooper/TROOP.md, .cooper/definition/workflow.md all present; git agent-start/troop/agent-stop registered; .gitignore excludes .worktrees/; installed binary runs; 'cooper validate' passes clean on the scaffolded project.
+
+Note: Tier 1 fell through to Tier 2 during one sandboxed e2e run (go build exit 126, non-deterministic across repeats) -- an environment artifact, not a script defect. The fallback behaved correctly, which is the point of the tiering.
