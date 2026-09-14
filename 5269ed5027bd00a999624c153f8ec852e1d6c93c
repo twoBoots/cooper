@@ -1,0 +1,4 @@
+Task 2.4 follow-up: guard self-exemption
+Scope: cmd/root_test.go
+Caught by the full suite immediately after the Task 2.4 commit: the Go-side attestation guard flagged the new markdown-side guard's own search literals. Fixed by replacing the single-file self-exemption with an explicit attestationGuardFiles list.
+Tests: full suite PASS. Coverage 93.4%. gofmt and vet clean.
