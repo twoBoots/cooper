@@ -99,12 +99,12 @@
   - [x] Sub-task: Confirm neither gate is written into scaffolded consumer projects — `install.sh` has no workflow references; e2e scaffold produced no `.github`
   - Written as an explicit `if` rather than an `&&` chain: under `set -e`, a command preceding `&&` is exempt from abort, which makes it easy to ship a gate that can never fail.
 
-- [ ] **Task 3.4: Documentation & Version Bump**
-  - [ ] Sub-task: Rewrite the `README.md` CLI section to `validate`, `update`, `version`; remove all `cooper mcp`, `cooper init`, and `cooper track` examples
-  - [ ] Sub-task: Add a removal note covering stale `cooper mcp` entries in editor MCP configs and how to remove them
-  - [ ] Sub-task: Update the README structure diagram and Value Matrix to reflect the single scaffolder
-  - [ ] Sub-task: Bump `cmd/version.go` `Version` to `1.2.0`
-  - [ ] Sub-task: Run `cooper validate` to confirm documentation links and specs are clean
+- [x] **Task 3.4: Documentation & Version Bump** (`ee7b512`)
+  - [x] Sub-task: Rewrite the `README.md` CLI section to `validate`, `update`, `version`; remove all `cooper mcp`, `cooper init`, and `cooper track` examples
+  - [x] Sub-task: Add a removal note covering stale `cooper mcp` entries in editor MCP configs and how to remove them
+  - [x] Sub-task: Update the README core-architecture bullet and `install.sh` step list to reflect the single scaffolder and the optional binary step
+  - [x] Sub-task: Bump `cmd/version.go` `Version` to `1.2.0`
+  - [x] Sub-task: Run `cooper validate` to confirm documentation links and specs are clean
 
 - [ ] **Task 3.5: Phase 3 Verification & Checkpoint**
   - [ ] Sub-task: Run `git fetch origin main` and reconcile
