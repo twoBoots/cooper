@@ -1,0 +1,10 @@
+Task 3.4: Documentation & Version Bump
+Scope: README.md (CLI section rewritten, install.sh step 6 documented, core-architecture bullet corrected); cmd/version.go (1.1.0 -> 1.2.0)
+
+README now documents validate/update/version only, explains why validation is the whole CLI, and provides an opt-in CI snippet with an explicit note that Cooper does not install the gate for you.
+
+Migration guidance added: all four removed commands enumerated under 'Removed in v1.2.0', with instructions to remove stale 'cooper' entries from the five editor MCP config locations that 'cooper mcp install' wrote (.cursor/mcp.json, ~/.claude.json, ~/.codeium/windsurf/mcp_config.json, .vscode/mcp.json, ~/.gemini/config/mcp_config.json).
+
+Verified no stale references remain: grep for 'cooper mcp|cooper init|cooper track' across README.md, docs/, AGENTS.md, AGENTS.template.md and .cooper/COOPER.md returns only the intentional removal notice. No test pinned the old version string.
+
+Tests: full suite PASS. Coverage 93.9%. gofmt clean. 'go run . validate' PASS. 'cooper version' reports 1.2.0.
