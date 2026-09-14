@@ -22,7 +22,7 @@ Or via Go:
 go install github.com/twoBoots/cooper@latest
 ```
 
-For detailed platform instructions and manual verification steps, see the [Installation Guide](/INSTALL).
+For detailed platform instructions and manual verification steps, see the [Installation Guide](../INSTALL.md).
 
 ## Initializing Cooper in a Repository
 
@@ -57,4 +57,4 @@ Every task adheres to Red -> Green -> Refactor:
 ### 4. Git Notes Metadata Tracking
 Every task execution and phase verification checkpoint is recorded directly into Git Notes on commits, preserving full machine-readable provenance.
 
-Next, explore the [Cooper Workflow & Lifecycle](/guide/workflow).
+Next, explore the [Cooper Workflow & Lifecycle](./workflow.md).

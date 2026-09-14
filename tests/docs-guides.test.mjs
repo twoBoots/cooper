@@ -51,3 +51,34 @@ test('All Troop references in docs/ link to https://github.com/twoBoots/troop', 
     }
   }
 });
+
+test('All local markdown links in docs/ resolve to existing files', () => {
+  const mdFiles = getMarkdownFiles(docsDir);
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+
+  for (const file of mdFiles) {
+    const content = fs.readFileSync(file, 'utf8');
+    const fileDir = path.dirname(file);
+    let match;
+    while ((match = linkRegex.exec(content)) !== null) {
+      const linkTarget = match[2].trim();
+      if (
+        linkTarget.startsWith('http://') ||
+        linkTarget.startsWith('https://') ||
+        linkTarget.startsWith('mailto:') ||
+        linkTarget.startsWith('#')
+      ) {
+        continue;
+      }
+      const cleanTarget = linkTarget.split('#')[0].split('?')[0];
+      if (!cleanTarget) continue;
+
+      const resolved = path.resolve(fileDir, cleanTarget);
+      assert.ok(
+        fs.existsSync(resolved),
+        `Link [${match[1]}](${linkTarget}) in ${path.relative(repoRoot, file)} points to non-existent file: ${resolved}`
+      );
+    }
+  }
+});
+

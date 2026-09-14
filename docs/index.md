@@ -65,7 +65,7 @@ Cooper structures agentic engineering into clear, verifiable phases:
 
 ## Learn More
 
-- [Getting Started Guide](/guide/getting-started)
-- [Workflow & Lifecycle Details](/guide/workflow)
-- [Installation Guide](/INSTALL)
-- [Compare with Other Frameworks](/openspec-vs-conductor-comparison)
+- [Getting Started Guide](./guide/getting-started.md)
+- [Workflow & Lifecycle Details](./guide/workflow.md)
+- [Installation Guide](./INSTALL.md)
+- [Compare with Other Frameworks](./openspec-vs-conductor-comparison.md)

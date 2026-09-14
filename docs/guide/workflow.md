@@ -16,7 +16,7 @@ When a change introduces cross-cutting architecture modifications or affects mul
 - Open a **Draft Pull Request** early to gather stakeholder and peer feedback.
 - Once approved, decompose the RFC into concrete, focused tracks.
 
-See [Draft PRs in the Cooper RFC Lifecycle](/rfc-draft-prs) for details.
+See [Draft PRs in the Cooper RFC Lifecycle](../rfc-draft-prs.md) for details.
 
 ## 2. Track Planning (`cooper-new-track`)
 For single-capability features, bug fixes, or decomposed RFC tracks:
