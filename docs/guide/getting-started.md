@@ -16,12 +16,6 @@ You can install the Cooper CLI using the official installer:
 curl -sSL https://raw.githubusercontent.com/twoBoots/cooper/main/install.sh | bash
 ```
 
-Or via Go:
-
-```bash
-go install github.com/twoBoots/cooper@latest
-```
-
 For detailed platform instructions and manual verification steps, see the [Installation Guide](../INSTALL.md).
 
 ## Initializing Cooper in a Repository
