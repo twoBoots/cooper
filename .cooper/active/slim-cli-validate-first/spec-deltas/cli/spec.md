@@ -65,16 +65,25 @@
 + The Cooper CLI SHALL additionally audit inline-code repository path references in markdown, so that documentation citing a missing file fails validation.
 
 #### Scenario: Detect Dangling Backticked Path Reference
-+ - GIVEN a markdown file citing a repository path inside an inline-code span, such as `.cooper/COOPER.md`
++ - GIVEN an operative instruction document — `AGENTS.md`, `AGENTS.template.md`, `.cooper/index.md`, `.cooper/COOPER.md`, or an agent `SKILL.md` under `skills/` or `.agents/skills/`
++ - AND it cites a repository path inside an inline-code span, such as `.cooper/COOPER.md`
 + - AND no file exists at that resolved path
 + - WHEN running `cooper validate`
 + - THEN the validator MUST report a `link/code-path-exists` violation naming the file and line
 + - AND the command MUST exit with a non-zero status.
 
-#### Scenario: Ignore Non-Path Inline Code
-+ - GIVEN a markdown file containing inline-code spans that are shell commands, glob patterns, flags, or URLs
+#### Scenario: Exempt Records, Proposals And Prose
++ - GIVEN a track document under `.cooper/active/` or `.cooper/archive/`, a capability spec, or prose under `docs/` or `README.md`
++ - AND it cites a repository path that does not exist
 + - WHEN running `cooper validate`
-+ - THEN the validator MUST NOT report `link/code-path-exists` violations for those spans.
++ - THEN the validator MUST NOT report a `link/code-path-exists` violation
++ - AND the exemption SHALL hold because an archived track correctly cites the paths that existed when it ran, and a proposal correctly describes a file that has not been built yet.
+
+#### Scenario: Ignore Non-Path Inline Code
++ - GIVEN an operative instruction document containing inline-code spans that are shell commands, glob patterns, flags, URLs, home-relative paths, template placeholders, or source-file paths
++ - WHEN running `cooper validate`
++ - THEN the validator MUST NOT report `link/code-path-exists` violations for those spans
++ - AND a span without a path separator MUST NOT be audited, so that bare command names such as `validate` are never treated as paths.
 
 ### Requirement: Automated Multi-Platform Release CI/CD Pipeline
 + The Continuous Integration pipeline SHALL additionally enforce Cooper SDD specification validity and the project's documented minimum test coverage, failing the build when either is violated.

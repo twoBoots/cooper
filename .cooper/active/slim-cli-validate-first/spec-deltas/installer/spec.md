@@ -7,11 +7,18 @@
 ### Requirement: Single Authoritative Scaffolding Mechanism
 + `install.sh` SHALL be the sole scaffolding mechanism for Cooper projects, and the repository MUST NOT retain a second scaffolder or a duplicate copy of the agent skill tree.
 
-#### Scenario: Exactly One Skill Tree Exists
+#### Scenario: Exactly One Authoritative Skill Tree Exists
 + - GIVEN the Cooper repository
 + - WHEN the agent skill sources are enumerated
-+ - THEN exactly one copy of each `cooper-*` SKILL.md MUST exist, under `skills/`
-+ - AND no embedded duplicate MUST exist under `internal/`.
++ - THEN exactly one authoritative source copy of each `cooper-*` SKILL.md MUST exist, under `skills/`
++ - AND no embedded duplicate MUST exist under `internal/`
++ - AND no `SKILL.md` MUST exist outside `skills/` and `.agents/skills/`.
+
+#### Scenario: Installed Copy Matches Its Source
++ - GIVEN Cooper's own repository, which installs its skills into `.agents/skills/` exactly as a consumer project does
++ - WHEN the installed copy is compared against its `skills/` source
++ - THEN each `.agents/skills/cooper-*/SKILL.md` MUST be byte-identical to the corresponding file under `skills/`
++ - AND any divergence MUST fail validation, because two copies drifting apart unnoticed is the defect this capability exists to prevent.
 
 #### Scenario: Newer Skill Content Is Preserved On Consolidation
 + - GIVEN two skill trees that have diverged, one carrying newer mandates than the other

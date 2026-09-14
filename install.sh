@@ -66,7 +66,7 @@ resolve_bin_dir() {
 # GitHub API, or an unwritable target directory.
 install_cooper_binary() {
     local bin_dir="${1:-}"
-    local os arch asset target
+    local os arch asset target staged downloaded
 
     if [ -z "$bin_dir" ]; then
         bin_dir="$(resolve_bin_dir)"
@@ -79,11 +79,25 @@ install_cooper_binary() {
 
     target="${bin_dir}/cooper"
 
+    # Every tier stages into a temp file and only replaces $target on success.
+    # Writing directly would truncate an already-installed binary, so a failed
+    # download on an offline or rate-limited host would silently uninstall a
+    # working cooper.
+    staged="$(_cooper_mktemp)"
+    if [ -z "$staged" ]; then
+        echo "  [i] Could not create a temporary file. Continuing in zero-binary mode."
+        return 0
+    fi
+
     # Tier 1: compile from a local clone when a Go toolchain is present.
     if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/main.go" ] && command -v go >/dev/null 2>&1; then
-        if (cd "$SCRIPT_DIR" && go build -ldflags="-s -w" -o "$target" . 2>/dev/null); then
-            _cooper_post_process_binary "$target"
-            echo "  [✓] Compiled cooper binary -> $target"
+        if (cd "$SCRIPT_DIR" && go build -ldflags="-s -w" -o "$staged" . 2>/dev/null) && [ -s "$staged" ]; then
+            if _cooper_install_staged "$staged" "$target"; then
+                echo "  [✓] Compiled cooper binary -> $target"
+                return 0
+            fi
+            echo "  [i] Could not write to $target. Continuing in zero-binary mode."
+            rm -f "$staged" 2>/dev/null || true
             return 0
         fi
         echo "  [i] Local compilation failed. Trying pre-built release asset..."
@@ -101,27 +115,58 @@ install_cooper_binary() {
 
     if [ -n "$os" ] && [ -n "$arch" ]; then
         asset="cooper-${os}-${arch}"
+        downloaded=false
+
         if command -v curl >/dev/null 2>&1; then
-            if curl -fsSL "${COOPER_RELEASE_BASE_URL}/${asset}" -o "$target" 2>/dev/null; then
-                chmod +x "$target" 2>/dev/null || true
-                _cooper_post_process_binary "$target"
-                echo "  [✓] Installed cooper binary -> $target"
-                return 0
+            if curl -fsSL "${COOPER_RELEASE_BASE_URL}/${asset}" -o "$staged" 2>/dev/null; then
+                downloaded=true
             fi
         elif command -v wget >/dev/null 2>&1; then
-            if wget -qO "$target" "${COOPER_RELEASE_BASE_URL}/${asset}" 2>/dev/null; then
-                chmod +x "$target" 2>/dev/null || true
-                _cooper_post_process_binary "$target"
+            if wget -qO "$staged" "${COOPER_RELEASE_BASE_URL}/${asset}" 2>/dev/null; then
+                downloaded=true
+            fi
+        fi
+
+        if [ "$downloaded" = true ] && [ -s "$staged" ]; then
+            if _cooper_install_staged "$staged" "$target"; then
                 echo "  [✓] Installed cooper binary -> $target"
                 return 0
             fi
+            echo "  [i] Could not write to $target. Continuing in zero-binary mode."
+            rm -f "$staged" 2>/dev/null || true
+            return 0
         fi
-        rm -f "$target" 2>/dev/null || true
     fi
 
-    # Tier 3: graceful zero-binary fallback.
+    # Tier 3: graceful zero-binary fallback. The staged file is discarded and
+    # any already-installed binary at $target is left untouched.
+    rm -f "$staged" 2>/dev/null || true
     echo "  [i] Could not obtain the cooper binary (offline, unsupported platform, or no download tool)."
     echo "  [i] Continuing in zero-binary mode. The .cooper/ workspace and agent skills work without it."
+    return 0
+}
+
+# Create a temp file, returning its path or nothing. Never fatal.
+_cooper_mktemp() {
+    if command -v mktemp >/dev/null 2>&1; then
+        mktemp 2>/dev/null || true
+    fi
+}
+
+# Move a staged binary into place, marking it executable and applying Darwin
+# Gatekeeper handling. Returns non-zero if the destination is not writable,
+# leaving any existing binary at the destination intact.
+_cooper_install_staged() {
+    local staged="$1"
+    local target="$2"
+
+    chmod +x "$staged" 2>/dev/null || true
+
+    if ! mv "$staged" "$target" 2>/dev/null; then
+        return 1
+    fi
+
+    _cooper_post_process_binary "$target"
     return 0
 }
 

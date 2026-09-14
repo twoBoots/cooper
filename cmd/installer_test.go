@@ -42,7 +42,9 @@ func TestInstallScript_BinaryInstallIsNonFatal(t *testing.T) {
 	}
 
 	// An empty PATH removes go, curl, wget, git and every other helper, which
-	// is the worst case the fallback must survive.
+	// is the worst case the fallback must survive. Note this exits early at
+	// bin-dir resolution; the download-failure path is covered separately by
+	// TestInstallScript_FailedDownloadPreservesExistingBinary.
 	emptyBin := t.TempDir()
 	target := t.TempDir()
 
@@ -65,6 +67,61 @@ echo "RETURNED:$?"
 	}
 	if !strings.Contains(string(out), "RETURNED:0") {
 		t.Errorf("expected install_cooper_binary to return 0 in zero-binary fallback, got:\n%s", out)
+	}
+}
+
+// TestInstallScript_FailedDownloadPreservesExistingBinary exercises the Tier 2
+// download-failure path with a writable bin directory, which the test above
+// does not reach.
+//
+// Writing the download straight to the destination truncates it before the
+// transfer completes, so a failed download on an offline or rate-limited host
+// silently uninstalled a working cooper. Each tier now stages into a temp file
+// and only replaces the destination on success.
+func TestInstallScript_FailedDownloadPreservesExistingBinary(t *testing.T) {
+	bash := requireBash(t)
+
+	scriptPath, err := filepath.Abs(installScript)
+	if err != nil {
+		t.Fatalf("failed resolving install.sh: %v", err)
+	}
+
+	binDir := t.TempDir()
+	existing := filepath.Join(binDir, "cooper")
+	const sentinel = "existing working cooper"
+
+	if err := os.WriteFile(existing, []byte("#!/bin/sh\necho \""+sentinel+"\"\n"), 0755); err != nil {
+		t.Fatalf("failed seeding an existing binary: %v", err)
+	}
+
+	// SCRIPT_DIR is redirected away from the repository so Tier 1 cannot
+	// compile, and the release URL is pointed at a path that cannot resolve so
+	// Tier 2 must fail.
+	program := `
+set -e
+export COOPER_INSTALL_LIB_ONLY=1
+. "` + scriptPath + `"
+SCRIPT_DIR="` + t.TempDir() + `"
+COOPER_RELEASE_BASE_URL="https://127.0.0.1:1/nonexistent"
+install_cooper_binary "` + binDir + `"
+echo "RETURNED:$?"
+`
+
+	cmd := exec.Command(bash, "-c", program)
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		t.Fatalf("install_cooper_binary aborted on download failure: %v\n%s", err, out)
+	}
+	if !strings.Contains(string(out), "RETURNED:0") {
+		t.Errorf("expected return 0 on download failure, got:\n%s", out)
+	}
+
+	data, err := os.ReadFile(existing)
+	if err != nil {
+		t.Fatalf("a failed download removed the previously installed binary at %s: %v", existing, err)
+	}
+	if !strings.Contains(string(data), sentinel) {
+		t.Errorf("a failed download corrupted the previously installed binary; content is now:\n%s", data)
 	}
 }
 
