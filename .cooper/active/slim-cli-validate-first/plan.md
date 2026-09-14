@@ -23,12 +23,12 @@
   - [x] Sub-task: Confirm both guard tests pass (Refactor)
   - Note: the `init` assertion was deferred into Task 2.2's own Red step so that each phase leaves the suite green.
 
-- [ ] **Task 1.3: Phase 1 Verification & Checkpoint**
-  - [ ] Sub-task: Run `git fetch origin main` and merge any workflow/living-spec updates
-  - [ ] Sub-task: Run `CGO_ENABLED=0 go test ./...` and record the result
-  - [ ] Sub-task: Present a manual verification guide and obtain explicit user approval via interactive question tool
-  - [ ] Sub-task: Create checkpoint commit and attach a Git Note reporting the **actual** test outcome and the **actual** recorded approval
-  - [ ] Sub-task: `git push origin slim-cli-validate-first`
+- [x] **Task 1.3: Phase 1 Verification & Checkpoint** [checkpoint: `7eed176`]
+  - [x] Sub-task: Run `git fetch origin main` and merge any workflow/living-spec updates — no upstream drift in `workflow.md` or `specs/`
+  - [x] Sub-task: Run `CGO_ENABLED=0 go test ./...` and record the result — all packages pass, 93.1% coverage
+  - [x] Sub-task: Present a manual verification guide and obtain explicit user approval via interactive question tool
+  - [x] Sub-task: Create checkpoint commit and attach a Git Note reporting the **actual** test outcome and the **actual** recorded approval
+  - [x] Sub-task: `git push origin slim-cli-validate-first`
 
 ---
 
