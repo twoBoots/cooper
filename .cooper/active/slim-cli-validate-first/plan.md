@@ -15,12 +15,13 @@
   - [x] Sub-task: Run `go mod tidy`; confirm `github.com/twoBoots/bender` is retained for `pkg/updater` and only `pkg/mcp` usage is dropped
   - [x] Sub-task: Verify `go build ./...` and `go vet ./...` pass (Refactor)
 
-- [~] **Task 1.2: Remove Track Orchestration & the Fabricating Checkpoint**
-  - [ ] Sub-task: Extend `cmd/root_test.go` asserting no `track` command is registered (Red)
-  - [ ] Sub-task: Write a guard test asserting no source file in the repository contains the literal string `Automated Tests: PASSED` (Red — enforces the new spec prohibition and prevents reintroduction)
-  - [ ] Sub-task: Delete `internal/track/`, `cmd/track.go`, `cmd/track_test.go`
-  - [ ] Sub-task: Remove the `newTrackCmd()` registration from `cmd/root.go` (Green)
-  - [ ] Sub-task: Confirm both guard tests pass (Refactor)
+- [x] **Task 1.2: Remove Track Orchestration & the Fabricating Checkpoint** (`6e335ae`)
+  - [x] Sub-task: Extend `cmd/root_test.go` asserting no `track` command is registered (Red)
+  - [x] Sub-task: Write a guard test asserting no source file in the repository contains the literal string `Automated Tests: PASSED` (Red — enforces the new spec prohibition and prevents reintroduction)
+  - [x] Sub-task: Delete `internal/track/`, `cmd/track.go`, `cmd/track_test.go`
+  - [x] Sub-task: Remove the `newTrackCmd()` registration from `cmd/root.go` (Green)
+  - [x] Sub-task: Confirm both guard tests pass (Refactor)
+  - Note: the `init` assertion was deferred into Task 2.2's own Red step so that each phase leaves the suite green.
 
 - [ ] **Task 1.3: Phase 1 Verification & Checkpoint**
   - [ ] Sub-task: Run `git fetch origin main` and merge any workflow/living-spec updates
