@@ -60,13 +60,13 @@
   - **Defect found and fixed:** `cooper validate` on a freshly scaffolded project reported `AGENTS.md:7` linking to `TROOP.md` after `install.sh` had relocated it to `.cooper/TROOP.md`. Every project scaffolded before this commit carried that dangling reference. Fixed by `relocate_troop_reference` and covered by a test.
   - **Deviation from plan:** the end-to-end scaffold assertion is verified manually, not automated. A full `install.sh` run fetches the Troop installer over the network, so a CI test would be flaky. The four hermetic installer tests cover the non-fatal contract; the e2e evidence is recorded in the task Git Note.
 
-- [~] **Task 2.4: Remove the Fabricated Attestation Template From Instructions**
-  - [ ] Sub-task: Write a test asserting no `.md` file under `skills/`, `.agents/skills/`, or `.cooper/definition/` contains the literal `Automated Tests: PASSED` or `Manual Verification: APPROVED by user` (Red — currently fails for `skills/cooper-implement/SKILL.md` and `.cooper/definition/workflow.md`)
-  - [ ] Sub-task: Replace the hardcoded Git Note template in `skills/cooper-implement/SKILL.md` §3.4 with an instruction to record the actual test command, its real outcome, and the user's actual recorded response
-  - [ ] Sub-task: Apply the same correction to `.cooper/definition/workflow.md` §"Checkpoint Commit & Git Notes" (Green)
-  - [ ] Sub-task: Confirm the guard passes and `cooper validate` stays clean (Refactor)
+- [x] **Task 2.4: Remove the Fabricated Attestation Template From Instructions** (`5adc0b5`, guard fix `5269ed5`)
+  - [x] Sub-task: Write a test asserting no `.md` file under `skills/`, `.agents/skills/`, or `.cooper/definition/` contains the literal `Automated Tests: PASSED` or `Manual Verification: APPROVED by user` (Red — failed for `skills/cooper-implement/SKILL.md` and its installed copy)
+  - [x] Sub-task: Replace the hardcoded Git Note template in `skills/cooper-implement/SKILL.md` §3.4 with an instruction to record the actual test command, its real outcome, and the user's actual recorded response (Green)
+  - [x] Sub-task: Resync `.agents/skills/` installed copy and confirm the parity guard passes (Refactor)
+  - [x] Sub-task: Confirm the guard passes and `cooper validate` stays clean
   - Rationale: `RecordCheckpoint` was implementing this template faithfully. Deleting the Go function while leaving the instruction intact just reintroduces the defect by hand at the next checkpoint.
-  - Note: per `workflow.md` guiding principle 4, changes to `workflow.md` itself must be isolated on their own branch and PR'd separately — this sub-task may need to split out.
+  - **Plan premise corrected:** `.cooper/definition/workflow.md` does **not** carry the hardcoded strings — line 128 already directs the agent to attach the actual verification report. No change was needed there, so `workflow.md` guiding principle 4 (isolated branch) did not apply and no split was required.
 
 - [ ] **Task 2.5: Phase 2 Verification & Checkpoint**
   - [ ] Sub-task: Run `git fetch origin main` and reconcile
