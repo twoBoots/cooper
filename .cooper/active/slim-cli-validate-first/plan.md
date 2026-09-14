@@ -34,7 +34,7 @@
 
 ## Phase 2: Consolidate to a Single Scaffolder
 
-- [ ] **Task 2.1: Port Newer Skill Content Into the Surviving Tree** *(must precede 2.2)*
+- [~] **Task 2.1: Port Newer Skill Content Into the Surviving Tree** *(must precede 2.2)*
   - [ ] Sub-task: Write a test asserting each `skills/cooper-*/SKILL.md` contains both `Interactive Question Protocol` and `Native File Tools Mandate` (Red — currently fails for all six)
   - [ ] Sub-task: For each of the six skills, port the newer content from `internal/scaffold/assets/skills/` into `skills/`, reconciling any root-only edits rather than overwriting wholesale
   - [ ] Sub-task: Diff each pair to confirm the surviving file is a superset of both inputs (Green)
