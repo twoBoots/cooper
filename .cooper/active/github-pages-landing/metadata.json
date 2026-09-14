@@ -1,7 +1,7 @@
 {
   "track_id": "github-pages-landing",
   "type": "feature",
-  "status": "new",
+  "status": "completed",
   "created_at": "2026-09-14T21:40:00+10:00",
   "capabilities": [
     "documentation"
