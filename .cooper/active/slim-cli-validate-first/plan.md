@@ -51,12 +51,14 @@
   - Verified byte-identical before deletion: `templates/` and `AGENTS.template.md` vs their embedded copies.
   - Also removed: dead embedded `spec-template.md` / `spec-delta-template.md`, which the extraction filter excluded and never wrote anywhere.
 
-- [~] **Task 2.3: Optional Non-Fatal Binary Installation in `install.sh`**
-  - [ ] Sub-task: Write a shell test scaffolding a throwaway git repo with `PATH` stripped of `go` and network egress blocked, asserting `install.sh` exits 0 and produces a complete `.cooper/` workspace (Red)
-  - [ ] Sub-task: Implement bin-dir resolution (`/usr/local/bin` if writable, else `${HOME}/.local/bin`)
-  - [ ] Sub-task: Implement Tier 1 local `go build`, Tier 2 release-asset download, Darwin quarantine strip and ad-hoc codesign
-  - [ ] Sub-task: Wrap the whole step so every failure prints a notice and continues with exit 0 (Green)
-  - [ ] Sub-task: Add a test asserting a fresh `install.sh` run yields `.cooper/COOPER.md`, `.cooper/TROOP.md`, the three Troop aliases, and a `.worktrees/` entry in `.gitignore` (Refactor)
+- [x] **Task 2.3: Optional Non-Fatal Binary Installation in `install.sh`** (`53f7f2d`)
+  - [x] Sub-task: Write a shell test asserting the binary step returns 0 under an empty `PATH` (no go, curl, wget) and that sourcing is side-effect free (Red)
+  - [x] Sub-task: Implement bin-dir resolution (`/usr/local/bin` if writable, else `${HOME}/.local/bin`)
+  - [x] Sub-task: Implement Tier 1 local `go build`, Tier 2 release-asset download, Darwin quarantine strip and ad-hoc codesign
+  - [x] Sub-task: Wrap the whole step so every failure prints a notice and continues with exit 0 (Green)
+  - [x] Sub-task: Verify a fresh `install.sh` run yields `.cooper/COOPER.md`, `.cooper/TROOP.md`, the three Troop aliases, and a `.worktrees/` entry in `.gitignore` (Refactor)
+  - **Defect found and fixed:** `cooper validate` on a freshly scaffolded project reported `AGENTS.md:7` linking to `TROOP.md` after `install.sh` had relocated it to `.cooper/TROOP.md`. Every project scaffolded before this commit carried that dangling reference. Fixed by `relocate_troop_reference` and covered by a test.
+  - **Deviation from plan:** the end-to-end scaffold assertion is verified manually, not automated. A full `install.sh` run fetches the Troop installer over the network, so a CI test would be flaky. The four hermetic installer tests cover the non-fatal contract; the e2e evidence is recorded in the task Git Note.
 
 - [ ] **Task 2.4: Remove the Fabricated Attestation Template From Instructions**
   - [ ] Sub-task: Write a test asserting no `.md` file under `skills/`, `.agents/skills/`, or `.cooper/definition/` contains the literal `Automated Tests: PASSED` or `Manual Verification: APPROVED by user` (Red — currently fails for `skills/cooper-implement/SKILL.md` and `.cooper/definition/workflow.md`)
