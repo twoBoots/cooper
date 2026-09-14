@@ -31,6 +31,11 @@ func AuditMarkdownLinks(filePath string, content string, rootDir string) []Valid
 			continue
 		}
 
+		// Inline-code spans naming a repository documentation file are audited
+		// alongside true markdown links; a backticked reference to a missing
+		// file is just as broken.
+		errors = append(errors, auditCodePathReferences(filePath, line, lineNum, fileDir, rootDir)...)
+
 		matches := linkRegex.FindAllStringSubmatch(line, -1)
 		for _, match := range matches {
 			linkText := match[1]
