@@ -2,7 +2,6 @@ module github.com/twoBoots/cooper
 
 go 1.27.0
 
-
 require (
 	github.com/spf13/cobra v1.10.2
 	github.com/twoBoots/bender v1.0.0
