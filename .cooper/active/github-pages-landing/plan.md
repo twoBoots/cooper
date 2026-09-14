@@ -1,10 +1,10 @@
 # Implementation Plan: GitHub Pages Informative Landing Site
 
 ## Phase 1: Environment & Tooling Scaffolding
-- [~] Task: Package Configuration & Documentation Scripts
-  - [ ] Sub-task: Write automated test/script verifying documentation build and test commands (Red)
-  - [ ] Sub-task: Create `package.json` with `vitepress` devDependencies and npm scripts (`docs:dev`, `docs:build`, `docs:preview`) (Green)
-  - [ ] Sub-task: Install npm dependencies and verify lockfile creation (Refactor)
+- [x] Task: Package Configuration & Documentation Scripts (0e66788)
+  - [x] Sub-task: Write automated test/script verifying documentation build and test commands (Red)
+  - [x] Sub-task: Create `package.json` with `vitepress` devDependencies and npm scripts (`docs:dev`, `docs:build`, `docs:preview`) (Green)
+  - [x] Sub-task: Install npm dependencies and verify lockfile creation (Refactor)
 - [ ] Task: Base VitePress Configuration
   - [ ] Sub-task: Write test asserting VitePress configuration properties (title, base path, nav, sidebar, social links) (Red)
   - [ ] Sub-task: Implement `docs/.vitepress/config.mts` with site metadata, nav bar, and sidebar structure (Green)
