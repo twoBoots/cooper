@@ -1,0 +1,3 @@
+Fix: Resolve relative markdown links in docs
+Scope: docs/index.md, docs/guide/getting-started.md, docs/guide/workflow.md, tests/docs-guides.test.mjs
+Summary: Replaced absolute web paths with valid relative .md links to satisfy cooper validate link resolution while preserving VitePress compilation.
