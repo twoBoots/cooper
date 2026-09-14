@@ -1,0 +1,3 @@
+Task: OpenSpec link and test cleanup
+Scope: docs/guide/getting-started.md, tests/docs-guides.test.mjs
+Summary: Added link to OpenSpec.dev per comment r4005967041 and removed redundant doc prose assertions per mandate.
