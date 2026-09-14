@@ -51,7 +51,7 @@
   - Verified byte-identical before deletion: `templates/` and `AGENTS.template.md` vs their embedded copies.
   - Also removed: dead embedded `spec-template.md` / `spec-delta-template.md`, which the extraction filter excluded and never wrote anywhere.
 
-- [ ] **Task 2.3: Optional Non-Fatal Binary Installation in `install.sh`**
+- [~] **Task 2.3: Optional Non-Fatal Binary Installation in `install.sh`**
   - [ ] Sub-task: Write a shell test scaffolding a throwaway git repo with `PATH` stripped of `go` and network egress blocked, asserting `install.sh` exits 0 and produces a complete `.cooper/` workspace (Red)
   - [ ] Sub-task: Implement bin-dir resolution (`/usr/local/bin` if writable, else `${HOME}/.local/bin`)
   - [ ] Sub-task: Implement Tier 1 local `go build`, Tier 2 release-asset download, Darwin quarantine strip and ad-hoc codesign
