@@ -55,6 +55,12 @@
 + - THEN the asserted outcome MUST be derived from an actual executed test invocation and an actual recorded user confirmation
 + - AND hardcoded verification text such as `Automated Tests: PASSED` MUST NOT be written without a corresponding verified result.
 
+#### Scenario: No Fabricated Attestation Templates In Agent Instructions
++ - GIVEN a Cooper agent skill or workflow definition instructing an agent to attach a checkpoint Git Note
++ - WHEN that instruction supplies the note body as a template
++ - THEN the template MUST direct the agent to record the actual test command, its real outcome, and the user's actual recorded response
++ - AND the template MUST NOT supply a pre-filled passing result or approval for the agent to copy verbatim.
+
 ### Requirement: SDD Repository Syntax Validation
 + The Cooper CLI SHALL additionally audit inline-code repository path references in markdown, so that documentation citing a missing file fails validation.
 

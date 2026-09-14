@@ -54,7 +54,15 @@
   - [ ] Sub-task: Wrap the whole step so every failure prints a notice and continues with exit 0 (Green)
   - [ ] Sub-task: Add a test asserting a fresh `install.sh` run yields `.cooper/COOPER.md`, `.cooper/TROOP.md`, the three Troop aliases, and a `.worktrees/` entry in `.gitignore` (Refactor)
 
-- [ ] **Task 2.4: Phase 2 Verification & Checkpoint**
+- [ ] **Task 2.4: Remove the Fabricated Attestation Template From Instructions**
+  - [ ] Sub-task: Write a test asserting no `.md` file under `skills/`, `.agents/skills/`, or `.cooper/definition/` contains the literal `Automated Tests: PASSED` or `Manual Verification: APPROVED by user` (Red — currently fails for `skills/cooper-implement/SKILL.md` and `.cooper/definition/workflow.md`)
+  - [ ] Sub-task: Replace the hardcoded Git Note template in `skills/cooper-implement/SKILL.md` §3.4 with an instruction to record the actual test command, its real outcome, and the user's actual recorded response
+  - [ ] Sub-task: Apply the same correction to `.cooper/definition/workflow.md` §"Checkpoint Commit & Git Notes" (Green)
+  - [ ] Sub-task: Confirm the guard passes and `cooper validate` stays clean (Refactor)
+  - Rationale: `RecordCheckpoint` was implementing this template faithfully. Deleting the Go function while leaving the instruction intact just reintroduces the defect by hand at the next checkpoint.
+  - Note: per `workflow.md` guiding principle 4, changes to `workflow.md` itself must be isolated on their own branch and PR'd separately — this sub-task may need to split out.
+
+- [ ] **Task 2.5: Phase 2 Verification & Checkpoint**
   - [ ] Sub-task: Run `git fetch origin main` and reconcile
   - [ ] Sub-task: Run full test suite and the `install.sh` scaffolding tests; record results
   - [ ] Sub-task: Manually scaffold a throwaway repo and confirm every `AGENTS.md` path reference resolves
