@@ -5,7 +5,7 @@
   - [x] Sub-task: Write automated test/script verifying documentation build and test commands (Red)
   - [x] Sub-task: Create `package.json` with `vitepress` devDependencies and npm scripts (`docs:dev`, `docs:build`, `docs:preview`) (Green)
   - [x] Sub-task: Install npm dependencies and verify lockfile creation (Refactor)
-- [ ] Task: Base VitePress Configuration
+- [~] Task: Base VitePress Configuration
   - [ ] Sub-task: Write test asserting VitePress configuration properties (title, base path, nav, sidebar, social links) (Red)
   - [ ] Sub-task: Implement `docs/.vitepress/config.mts` with site metadata, nav bar, and sidebar structure (Green)
   - [ ] Sub-task: Refactor configuration for clean maintainability (Refactor)
