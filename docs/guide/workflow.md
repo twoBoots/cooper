@@ -31,7 +31,7 @@ Work strictly inside the dedicated [Troop](https://github.com/twoBoots/troop) wo
 - **Red Phase**: Write targeted tests validating the Spec Delta requirements and ensure test failure.
 - **Green Phase**: Write the minimum necessary production code to achieve test success.
 - **Refactor Phase**: Optimize, clean code, and verify >80% test coverage.
-- **Git Notes**: Record task summary metadata (`git notes add -m`) against the task commit.
+- **Git Notes**: Record task summary metadata (`git notes add -m`) against the task commit to preserve implementation context against drift.
 - **Phase Verification Checkpoint**:
   - Run `git fetch origin main` to synchronize workflow rules and living specs.
   - Run the full automated test suite.
@@ -39,7 +39,7 @@ Work strictly inside the dedicated [Troop](https://github.com/twoBoots/troop) wo
   - Create a checkpoint commit and push (`git push origin <track_id>`).
 
 ## 4. Quality Review (`cooper-review`)
-Before opening or merging a PR:
+Before opening or merging a PR, act as a principal engineer to:
 - Audit all changed files against the track's Spec Deltas.
 - Confirm 100% adherence to project code styleguides and test coverage criteria.
 - Archive the track into `.cooper/archive/<track_id>/` upon completion.

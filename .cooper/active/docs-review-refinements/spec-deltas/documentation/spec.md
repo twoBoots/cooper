@@ -2,8 +2,8 @@
 
 ## Modified Requirements
 
-### ~ Requirement: GitHub Pages Informative Landing Site & Build Automation
-#### ~ Scenario: Workflow Guide Detail Precision
+### + Requirement: GitHub Pages Informative Landing Site & Build Automation
+#### + Scenario: Workflow Guide Detail Precision
 - GIVEN the workflow guide at `docs/guide/workflow.md`
 - WHEN describing Git Notes tracking and quality review
 - THEN it MUST explain that Git Notes preserve implementation context against drift
