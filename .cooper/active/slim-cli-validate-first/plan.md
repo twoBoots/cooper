@@ -68,12 +68,12 @@
   - Rationale: `RecordCheckpoint` was implementing this template faithfully. Deleting the Go function while leaving the instruction intact just reintroduces the defect by hand at the next checkpoint.
   - **Plan premise corrected:** `.cooper/definition/workflow.md` does **not** carry the hardcoded strings — line 128 already directs the agent to attach the actual verification report. No change was needed there, so `workflow.md` guiding principle 4 (isolated branch) did not apply and no split was required.
 
-- [ ] **Task 2.5: Phase 2 Verification & Checkpoint**
-  - [ ] Sub-task: Run `git fetch origin main` and reconcile
-  - [ ] Sub-task: Run full test suite and the `install.sh` scaffolding tests; record results
-  - [ ] Sub-task: Manually scaffold a throwaway repo and confirm every `AGENTS.md` path reference resolves
-  - [ ] Sub-task: Obtain explicit user verification approval via interactive question tool
-  - [ ] Sub-task: Checkpoint commit with a truthful verification Git Note; `git push origin slim-cli-validate-first`
+- [x] **Task 2.5: Phase 2 Verification & Checkpoint** [checkpoint: `6a510af`]
+  - [x] Sub-task: Run `git fetch origin main` and reconcile — no upstream drift
+  - [x] Sub-task: Run full test suite and the `install.sh` scaffolding tests; record results — all pass, 93.4% coverage
+  - [x] Sub-task: Manually scaffold a throwaway repo and confirm every `AGENTS.md` path reference resolves — passed after the `relocate_troop_reference` fix
+  - [x] Sub-task: Obtain explicit user verification approval via interactive question tool
+  - [x] Sub-task: Checkpoint commit with a truthful verification Git Note; `git push origin slim-cli-validate-first`
 
 ---
 
