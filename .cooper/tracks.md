@@ -46,3 +46,8 @@ All active and completed Cooper tracks are registered below.
   - Link: [.cooper/active/slim-cli-validate-first/index.md](.cooper/active/slim-cli-validate-first/index.md)
   - Supersedes: `rfc-cooper-cli-mcp` (partial reversal — removes the as-built MCP server, `init`, and `track` commands)
 
+- [ ] **Track: GitHub Pages Informative Landing Site** (`github-pages-landing`)
+  - Worktree: `.worktrees/github-pages-landing`
+  - Link: [.cooper/active/github-pages-landing/index.md](.cooper/active/github-pages-landing/index.md)
+
+
