@@ -1,0 +1,3 @@
+Task: Base VitePress Configuration
+Scope: docs/.vitepress/config.mts, tests/docs-config.test.mjs
+Summary: Created base VitePress configuration with title, description, base URL, navigation bar, sidebar, and social links.
