@@ -1,0 +1,10 @@
+Task 3.3: Wire CI Enforcement
+Scope: .github/workflows/ci.yml
+
+Two gates armed. Coverage was previously printed and ignored (exit 0 regardless), so the >80% target in workflow.md was documented but unenforced. 'cooper validate' was not run in CI at all.
+
+Implementation note: written as an explicit if-statement rather than 'awk ... && { exit 1; }'. Under set -e, a command preceding && is exempt from abort, which makes it easy to ship a gate that can never fail. The if-form is unambiguous.
+
+Verified in both directions before arming (6 cases): 93.9 pass, 100.0 pass, 80.0 pass at the boundary, 79.9 fail, 0.0 fail, empty/unparseable fail. Real coverage.out parsed correctly as 93.9. 'go run . validate' returns 1 on a deliberately malformed spec and 0 on the clean tree.
+
+Consumer-project scoping confirmed: install.sh contains no reference to workflows, ci.yml or coverage, and the Task 2.3 end-to-end scaffold produced no .github directory. No gate is injected downstream, per the installer spec delta scenario 'Enforcement Is Not Injected Into Consumer Projects'.
