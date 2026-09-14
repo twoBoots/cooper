@@ -92,11 +92,12 @@
   - **Design corrected mid-task.** The unscoped rule reported 59 issues; 40+ were correct as written (archived tracks cite paths that existed then; proposals describe files not yet built). Auditing records and prose as if they were instructions is a category error. Rescoped to operative instruction documents only — 59 findings down to 3.
   - **Real defect found and fixed:** all 3 remaining findings were one defect. Cooper's own repo was missing `.cooper/TROOP.md` while `COOPER.md:124` and `cooper-setup/SKILL.md:54` instruct agents to read it. Cooper had never run its own installer on itself, violating the "Troop Reference Relocation" requirement in its own `installer` spec.
 
-- [ ] **Task 3.3: Wire CI Enforcement**
-  - [ ] Sub-task: Add the `Validate Cooper SDD Specs` step (`go run . validate`) to `.github/workflows/ci.yml`
-  - [ ] Sub-task: Replace the decorative coverage print with the 80% enforcing gate
-  - [ ] Sub-task: Verify locally that both steps fail on a deliberately broken spec and on a synthetic sub-threshold profile, then pass on a clean tree
-  - [ ] Sub-task: Confirm neither gate is written into scaffolded consumer projects
+- [x] **Task 3.3: Wire CI Enforcement** (`e0aea99`)
+  - [x] Sub-task: Add the `Validate Cooper SDD Specs` step (`go run . validate`) to `.github/workflows/ci.yml`
+  - [x] Sub-task: Replace the decorative coverage print with the 80% enforcing gate
+  - [x] Sub-task: Verify locally that both steps fail on a deliberately broken spec and on a synthetic sub-threshold profile, then pass on a clean tree — 6-case truth table, both gates confirmed in both directions
+  - [x] Sub-task: Confirm neither gate is written into scaffolded consumer projects — `install.sh` has no workflow references; e2e scaffold produced no `.github`
+  - Written as an explicit `if` rather than an `&&` chain: under `set -e`, a command preceding `&&` is exempt from abort, which makes it easy to ship a gate that can never fail.
 
 - [ ] **Task 3.4: Documentation & Version Bump**
   - [ ] Sub-task: Rewrite the `README.md` CLI section to `validate`, `update`, `version`; remove all `cooper mcp`, `cooper init`, and `cooper track` examples
