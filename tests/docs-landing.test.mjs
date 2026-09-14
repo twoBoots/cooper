@@ -1,0 +1,32 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(__dirname, '..');
+
+test('Landing page docs/index.md exists with required layout and sections', () => {
+  const indexPath = path.join(repoRoot, 'docs', 'index.md');
+  assert.ok(fs.existsSync(indexPath), 'docs/index.md must exist');
+
+  const content = fs.readFileSync(indexPath, 'utf8');
+
+  // Home layout & hero
+  assert.ok(content.includes('layout: home'), 'docs/index.md frontmatter must declare layout: home');
+  assert.ok(content.includes('name: Cooper'), 'hero must specify name: Cooper');
+  assert.ok(content.includes('tagline:'), 'hero must specify tagline');
+
+  // Quickstart command
+  assert.ok(content.includes('curl -sSL') || content.includes('install.sh'), 'landing page must contain quickstart install command');
+
+  // Core pillars
+  assert.ok(content.includes('Spec-Driven Development') || content.includes('SDD'), 'must feature Spec-Driven Development');
+  assert.ok(content.includes('https://github.com/twoBoots/troop'), 'must link Troop to https://github.com/twoBoots/troop');
+  assert.ok(content.includes('Git Notes'), 'must highlight Git Notes metadata tracking');
+  assert.ok(content.includes('TDD'), 'must highlight TDD discipline');
+
+  // Workflow section
+  assert.ok(content.includes('Workflow') || content.includes('Lifecycle'), 'must include workflow or lifecycle section');
+});
