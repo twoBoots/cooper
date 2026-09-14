@@ -1,0 +1,3 @@
+Task: GitHub Actions Pages Workflow
+Scope: .github/workflows/pages.yml, tests/docs-workflow.test.mjs
+Summary: Created .github/workflows/pages.yml configuring Node.js 20, npm ci caching, npm run docs:build, and automated deployment to GitHub Pages via actions/deploy-pages.
