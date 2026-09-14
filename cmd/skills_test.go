@@ -70,6 +70,51 @@ func TestSkills_HeadingHierarchyIsWellFormed(t *testing.T) {
 	}
 }
 
+// TestInstructions_NoFabricatedAttestationTemplate enforces the cli spec
+// scenario "No Fabricated Attestation Templates In Agent Instructions".
+//
+// The deleted track.RecordCheckpoint was faithfully implementing the Git Note
+// template in cooper-implement's SKILL.md, which supplied a pre-filled passing
+// result and user approval for the agent to copy verbatim. Removing the Go
+// function while leaving the instruction intact would reintroduce the defect by
+// hand at the next checkpoint.
+func TestInstructions_NoFabricatedAttestationTemplate(t *testing.T) {
+	forbidden := []string{
+		"Automated Tests: PASSED",
+		"Manual Verification: APPROVED by user",
+	}
+
+	roots := []string{"../skills", "../.agents/skills", "../.cooper/definition"}
+
+	for _, root := range roots {
+		if _, err := os.Stat(root); err != nil {
+			continue
+		}
+
+		err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
+			if err != nil || info.IsDir() || !strings.HasSuffix(path, ".md") {
+				return err
+			}
+
+			data, readErr := os.ReadFile(path)
+			if readErr != nil {
+				return readErr
+			}
+			for _, needle := range forbidden {
+				if strings.Contains(string(data), needle) {
+					t.Errorf("%s supplies a pre-filled verification attestation %q; "+
+						"the template must instruct the agent to record actual outcomes",
+						filepath.ToSlash(path), needle)
+				}
+			}
+			return nil
+		})
+		if err != nil {
+			t.Fatalf("failed walking %s: %v", root, err)
+		}
+	}
+}
+
 // TestSkills_InstalledCopyMatchesSource guards the one legitimate second copy.
 // Cooper dogfoods itself, so .agents/skills holds the installed instance of its
 // own skills, exactly as a consumer project would. That copy is expected to

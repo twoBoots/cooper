@@ -60,7 +60,7 @@
   - **Defect found and fixed:** `cooper validate` on a freshly scaffolded project reported `AGENTS.md:7` linking to `TROOP.md` after `install.sh` had relocated it to `.cooper/TROOP.md`. Every project scaffolded before this commit carried that dangling reference. Fixed by `relocate_troop_reference` and covered by a test.
   - **Deviation from plan:** the end-to-end scaffold assertion is verified manually, not automated. A full `install.sh` run fetches the Troop installer over the network, so a CI test would be flaky. The four hermetic installer tests cover the non-fatal contract; the e2e evidence is recorded in the task Git Note.
 
-- [ ] **Task 2.4: Remove the Fabricated Attestation Template From Instructions**
+- [~] **Task 2.4: Remove the Fabricated Attestation Template From Instructions**
   - [ ] Sub-task: Write a test asserting no `.md` file under `skills/`, `.agents/skills/`, or `.cooper/definition/` contains the literal `Automated Tests: PASSED` or `Manual Verification: APPROVED by user` (Red — currently fails for `skills/cooper-implement/SKILL.md` and `.cooper/definition/workflow.md`)
   - [ ] Sub-task: Replace the hardcoded Git Note template in `skills/cooper-implement/SKILL.md` §3.4 with an instruction to record the actual test command, its real outcome, and the user's actual recorded response
   - [ ] Sub-task: Apply the same correction to `.cooper/definition/workflow.md` §"Checkpoint Commit & Git Notes" (Green)
