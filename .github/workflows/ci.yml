@@ -39,6 +39,24 @@ jobs:
         run: go vet ./...
 
       - name: Run Tests with Coverage
+        run: CGO_ENABLED=0 go test -v -coverprofile=coverage.out ./...
+
+      - name: Enforce Coverage Threshold
+        env:
+          COVERAGE_THRESHOLD: "80"
         run: |
-          CGO_ENABLED=0 go test -v -coverprofile=coverage.out ./...
           go tool cover -func=coverage.out
+          COVERAGE=$(go tool cover -func=coverage.out | tail -n 1 | awk '{print $3}' | tr -d '%')
+          if [ -z "$COVERAGE" ]; then
+            echo "::error::Could not parse total coverage from coverage.out"
+            exit 1
+          fi
+          echo "Total coverage: ${COVERAGE}% (threshold: ${COVERAGE_THRESHOLD}%)"
+          if awk -v c="$COVERAGE" -v t="$COVERAGE_THRESHOLD" 'BEGIN { exit (c + 0 >= t + 0) }'; then
+            echo "::error::Coverage ${COVERAGE}% is below the ${COVERAGE_THRESHOLD}% threshold"
+            exit 1
+          fi
+          echo "Coverage threshold satisfied."
+
+      - name: Validate Cooper SDD Specs
+        run: go run . validate

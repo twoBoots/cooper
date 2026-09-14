@@ -16,7 +16,7 @@ Cooper is an agent-agnostic Spec-Driven Development (SDD) framework and CLI. It 
 * **Living Capability Specs (`.cooper/specs/`)**: System behaviour is documented as living specifications. Changes are defined as human-reviewable Spec Deltas (`+` additions, `-` removals) before code is written.
 * **Worktree Isolation (Troop)**: Work executes in dedicated worktrees (`.worktrees/<track_id>`), eliminating branch switching, stash conflicts, and dirty working trees across parallel agents.
 * **Quality & Phase Gates**: Enforces test-first implementation, test coverage checks, and remote checkpoint syncs per phase.
-* **Self-Contained Agent Skills**: Ships project-local skills (`.agents/skills/cooper-*`), Go CLI, and native stdio MCP server. Zero external plugins required.
+* **Self-Contained Agent Skills**: Ships project-local skills (`.agents/skills/cooper-*`) plus an optional Go CLI for deterministic spec validation. Zero external plugins required, and no binary needed to use the framework.
 
 ### Value Delivered
 
@@ -54,6 +54,7 @@ Alternatively, if you have this repository cloned locally:
 3. **Cooper Specification & Handshake**: Copies workflow specifications into `.cooper/definition/workflow.md`, installs `.cooper/COOPER.md`, and creates `.cooper/index.md` as the single source of truth.
 4. **Native Agent Skills**: Installs project-local Cooper skills into `.agents/skills/` (`cooper-setup`, `cooper-rfc`, `cooper-new-track`, `cooper-implement`, `cooper-review`, `cooper-status`).
 5. **Agent Rules**: Injects Cooper SDD + [Troop](https://github.com/twoBoots/troop) rules from `AGENTS.template.md` into your project's `AGENTS.md`.
+6. **Optional CLI Binary**: Compiles from a local clone when Go is available, otherwise downloads the release asset for your platform (with macOS quarantine stripping and ad-hoc signing). If neither succeeds — air-gapped, rate-limited, or no writable `bin` directory — the installer reports it and completes normally in zero-binary mode.
 
 ## Structure
 
@@ -98,39 +99,54 @@ your-project/
 | **`cooper-review`** | Conducts Principal Software Engineer code review against spec deltas, styleguides, and test suites. |
 | **`cooper-status`** | Displays real-time overview of active worktrees, track progress, and phase checkpoints. |
 
-## 🚀 CLI Commands & Model Context Protocol (MCP)
+## 🚀 The `cooper` CLI
 
-`cooper` includes a compiled Go CLI and embedded stdio MCP server powered by [Bender](https://github.com/twoBoots/bender):
+Cooper's framework is markdown, and your agent is the runtime. The optional Go binary exists for the one job an agent cannot reliably do on its own output: **deterministic specification checking**.
+
+`install.sh` installs it when it can, and completes successfully when it cannot — the `.cooper/` workspace and agent skills work without it.
 
 ```bash
-# Display CLI help
-cooper --help
-
-# Initialize or migrate a repository to Cooper SDD
-cooper init
-
-# Validate living capability specs, active spec deltas, and markdown links
+# Validate living capability specs, spec deltas, track metadata,
+# registry parity, and documentation references
 cooper validate
-
-# Manage SDD tracks and Troop worktrees
-cooper track new <track_id> --title "My Track"
-cooper track status
-cooper track checkpoint --phase 1 --title "Core Domain Logic"
-cooper track close <track_id>
+cooper validate --json          # machine-readable report for CI
 
 # In-place binary self-updating from GitHub Releases
 cooper update
 cooper update --check
 cooper update --force
 
-# Start stdio MCP server for AI coding assistants
-cooper mcp
-
-# Automatically configure Cooper MCP server in AI assistants (Cursor, Antigravity, Claude, Windsurf, VS Code)
-cooper mcp install
-cooper mcp install --client cursor,antigravity --non-interactive
-cooper mcp install --all
+cooper version
+cooper --help
 ```
+
+### Why validation is the whole CLI
+
+`cooper validate` is fast, exhaustive, and costs no tokens. It catches malformed `GIVEN`/`WHEN`/`THEN` scenarios, missing normative keywords, track-ID and directory mismatches, invalid metadata, registry drift, and documentation references that point at files which do not exist. Crucially, it does this *without trusting the agent that wrote the spec*.
+
+Wire it into your own CI when you want that enforcement:
+
+```yaml
+- name: Validate Cooper SDD Specs
+  run: cooper validate
+```
+
+Cooper does not install this gate for you. Enforcement is yours to opt into.
+
+### Scaffolding and track management
+
+These are handled by `install.sh` and the agent skills respectively, not by the binary:
+
+| Task | Use |
+| :--- | :--- |
+| Scaffold or migrate a repository | `install.sh` |
+| Create a track and its worktree | `cooper-new-track` skill, `git agent-start` |
+| Execute tasks, checkpoint a phase | `cooper-implement` skill |
+| Inspect tracks and worktrees | `cooper-status` skill, `git troop` |
+
+> **Removed in v1.2.0**: `cooper init`, `cooper track *`, `cooper mcp`, and `cooper mcp install`.
+> Scaffolding moved to `install.sh` (a single source of truth — the two scaffolders had diverged), and track orchestration belongs to the skills that already performed it.
+> If you previously ran `cooper mcp install`, remove the `cooper` entry from your editor's MCP config (`.cursor/mcp.json`, `~/.claude.json`, `~/.codeium/windsurf/mcp_config.json`, `.vscode/mcp.json`, or `~/.gemini/config/mcp_config.json`); it now points at a command that no longer exists.
 
 ## Workflow Summary
 

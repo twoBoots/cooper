@@ -25,7 +25,9 @@ All active and completed Cooper tracks are registered below.
         - Worktree: `.worktrees/track-cooper-cli-core`
         - Link: [.cooper/active/track-cooper-cli-core/index.md](.cooper/active/track-cooper-cli-core/index.md)
     - [ ] Track: `track-cooper-updater-diff3` (Scope: CLI binary self-update, 3-way diff reconciliation engine, and manifest fingerprinting)
+        - Note: Binary self-update shipped via `cooper-bender-integration`. The 3-way diff and manifest fingerprinting remain unbuilt; RFC problem statement #1 ("No Safe Upstream Upgrades") is still open.
     - [ ] Track: `track-cooper-embedded-mcp` (Scope: Embedded stdio MCP server exposing SDD, self-update, and 3-way diff tools)
+        - Note: Superseded by `slim-cli-validate-first`, which removes the as-built MCP server. The as-designed upstream-sync tooling is not foreclosed.
     - [ ] Track: `track-cooper-installer-packaging` (Scope: 3-tier install.sh script, CI validation, and GitHub Actions multi-arch release matrix)
 - [x] **Track: Cooper Bender CLI Integration**
   - Archive: [.cooper/archive/cooper-bender-integration/](.cooper/archive/cooper-bender-integration/)
@@ -38,4 +40,9 @@ All active and completed Cooper tracks are registered below.
 
 - [x] **Track: Mandate Interactive Question & Native File Tool Calls**
   - Archive: [.cooper/archive/mandate-interactive-question-tools/](.cooper/archive/mandate-interactive-question-tools/)
+
+- [x] **Track: Slim the Cooper CLI to a Validate-First Surface** (`slim-cli-validate-first`)
+  - Worktree: `.worktrees/slim-cli-validate-first`
+  - Link: [.cooper/active/slim-cli-validate-first/index.md](.cooper/active/slim-cli-validate-first/index.md)
+  - Supersedes: `rfc-cooper-cli-mcp` (partial reversal — removes the as-built MCP server, `init`, and `track` commands)
 
