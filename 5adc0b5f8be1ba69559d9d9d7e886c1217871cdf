@@ -1,0 +1,7 @@
+Task 2.4: Remove the Fabricated Attestation Template From Instructions
+Scope: skills/cooper-implement/SKILL.md and .agents/skills/cooper-implement/SKILL.md (section 3.4 template rewritten); cmd/skills_test.go (guard added)
+Finding: the defect originated in the instructions, not the Go code. track.RecordCheckpoint was implementing this template faithfully. Deleting the function alone would have left the same falsified note to be written by hand at the next checkpoint.
+Correction to the plan's premise: .cooper/definition/workflow.md does NOT carry the hardcoded strings -- line 128 already directs the agent to attach the actual verification report. The isolated-branch rule for workflow.md therefore did not apply and no separate branch was needed.
+New template requires: real test command, real outcome, measured coverage, steps actually presented, user's actual response, outstanding items, plus an explicit instruction not to describe a red build as green.
+Tests: TestInstructions_NoFabricatedAttestationTemplate PASS across skills/, .agents/skills/, .cooper/definition/. Installed copy resynced and parity test PASS.
+Note: this commit briefly broke the Go-side guard (its literals collided); fixed in 5269ed5.
