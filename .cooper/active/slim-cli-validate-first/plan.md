@@ -34,11 +34,13 @@
 
 ## Phase 2: Consolidate to a Single Scaffolder
 
-- [~] **Task 2.1: Port Newer Skill Content Into the Surviving Tree** *(must precede 2.2)*
-  - [ ] Sub-task: Write a test asserting each `skills/cooper-*/SKILL.md` contains both `Interactive Question Protocol` and `Native File Tools Mandate` (Red — currently fails for all six)
-  - [ ] Sub-task: For each of the six skills, port the newer content from `internal/scaffold/assets/skills/` into `skills/`, reconciling any root-only edits rather than overwriting wholesale
-  - [ ] Sub-task: Diff each pair to confirm the surviving file is a superset of both inputs (Green)
-  - [ ] Sub-task: Confirm the mandate test passes for all six (Refactor)
+- [x] **Task 2.1: Port Newer Skill Content Into the Surviving Tree** (`db37b7b`)
+  - [x] Sub-task: Write a test asserting each `skills/cooper-*/SKILL.md` contains both `Interactive Question Protocol` and `Native File Tools Mandate` (Red — failed for all six)
+  - [x] Sub-task: For each of the six skills, port the newer content from `internal/scaffold/assets/skills/` into `skills/`, reconciling any root-only edits rather than overwriting wholesale
+  - [x] Sub-task: Diff each pair to confirm the surviving file is a superset of both inputs (Green)
+  - [x] Sub-task: Confirm the mandate test passes for all six (Refactor)
+  - Finding: the embedded copy had regressed `cooper-rfc` heading `### 6.2` to `## 6.2`; root's correct heading was restored during the reconcile. A heading-hierarchy guard now prevents recurrence.
+  - Finding: `.agents/skills/` is a legitimate third copy (Cooper's own installed instance) and was already in sync. Guarded by a new source/installed parity test.
 
 - [ ] **Task 2.2: Delete the Second Scaffolder & Duplicate Asset Tree**
   - [ ] Sub-task: Extend `cmd/root_test.go` asserting no `init` command is registered (Red)
