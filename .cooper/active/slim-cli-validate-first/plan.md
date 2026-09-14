@@ -42,12 +42,14 @@
   - Finding: the embedded copy had regressed `cooper-rfc` heading `### 6.2` to `## 6.2`; root's correct heading was restored during the reconcile. A heading-hierarchy guard now prevents recurrence.
   - Finding: `.agents/skills/` is a legitimate third copy (Cooper's own installed instance) and was already in sync. Guarded by a new source/installed parity test.
 
-- [~] **Task 2.2: Delete the Second Scaffolder & Duplicate Asset Tree**
-  - [ ] Sub-task: Extend `cmd/root_test.go` asserting no `init` command is registered (Red)
-  - [ ] Sub-task: Write a test asserting no duplicate `SKILL.md` tree exists outside `skills/` (Red)
-  - [ ] Sub-task: Delete `internal/scaffold/` (including `assets/`), `cmd/init.go`, `cmd/init_test.go`
-  - [ ] Sub-task: Remove the `newInitCmd()` registration from `cmd/root.go` (Green)
-  - [ ] Sub-task: Confirm `templates/` and `AGENTS.template.md` remain at repository root as installer sources (Refactor)
+- [x] **Task 2.2: Delete the Second Scaffolder & Duplicate Asset Tree** (`6e477ec`)
+  - [x] Sub-task: Extend `cmd/root_test.go` asserting no `init` command is registered (Red)
+  - [x] Sub-task: Write a test asserting no duplicate `SKILL.md` tree exists outside `skills/` (Red)
+  - [x] Sub-task: Delete `internal/scaffold/` (including `assets/`), `cmd/init.go`, `cmd/init_test.go`
+  - [x] Sub-task: Remove the `newInitCmd()` registration from `cmd/root.go` (Green)
+  - [x] Sub-task: Confirm `templates/` and `AGENTS.template.md` remain at repository root as installer sources (Refactor)
+  - Verified byte-identical before deletion: `templates/` and `AGENTS.template.md` vs their embedded copies.
+  - Also removed: dead embedded `spec-template.md` / `spec-delta-template.md`, which the extraction filter excluded and never wrote anywhere.
 
 - [ ] **Task 2.3: Optional Non-Fatal Binary Installation in `install.sh`**
   - [ ] Sub-task: Write a shell test scaffolding a throwaway git repo with `PATH` stripped of `go` and network egress blocked, asserting `install.sh` exits 0 and produces a complete `.cooper/` workspace (Red)
