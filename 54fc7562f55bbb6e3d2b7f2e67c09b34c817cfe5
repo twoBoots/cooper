@@ -1,0 +1,3 @@
+Task: Guides & Reference Integration
+Scope: docs/guide/getting-started.md, docs/guide/workflow.md, tests/docs-guides.test.mjs
+Summary: Created Getting Started and Workflow guides, verified that all documentation references to Troop link upstream to https://github.com/twoBoots/troop, and verified clean VitePress build.
