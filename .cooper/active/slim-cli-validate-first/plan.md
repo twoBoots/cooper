@@ -79,10 +79,11 @@
 
 ## Phase 3: Arm the Validation Gates
 
-- [ ] **Task 3.1: Measure Post-Removal Coverage Before Arming the Gate**
-  - [ ] Sub-task: Run `go test -coverprofile` across the reduced surface and record the true total
-  - [ ] Sub-task: If total is below 80%, add `internal/validator` tests until it clears — do not weaken the threshold
-  - [ ] Sub-task: Record the measured figure in this plan for the checkpoint note
+- [x] **Task 3.1: Measure Post-Removal Coverage Before Arming the Gate**
+  - [x] Sub-task: Run `go test -coverprofile` across the reduced surface and record the true total
+  - [x] Sub-task: If total is below 80%, add `internal/validator` tests until it clears — not required
+  - [x] Sub-task: Record the measured figure in this plan for the checkpoint note
+  - **Measured: 93.4%** (cmd 95.2%, internal/validator 93.5%, main.go 0%). The design's projection held — removing the well-covered `track`/`mcp`/`scaffold` packages *raised* the total from 91.2%, because the deleted command surface carried more uncovered branches than the guard tests replacing it. The 80% gate arms with 13.4 points of headroom.
 
 - [ ] **Task 3.2: Backticked Repository Path Auditing**
   - [ ] Sub-task: Write table-driven tests in `internal/validator/link_auditor_test.go` covering: a dangling backticked `.md` path (must flag), an existing backticked path (must pass), and must-not-flag cases — shell snippets, glob patterns, flags such as `--force`, URLs, and bare words with no `/` (Red)
