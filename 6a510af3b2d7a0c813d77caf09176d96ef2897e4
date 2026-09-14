@@ -1,0 +1,44 @@
+Phase 2 Checkpoint Verification
+
+Automated Tests: PASSED
+  Command:  CGO_ENABLED=0 go test ./...
+  Result:   cmd ok, internal/validator ok; 0 failures
+  Coverage: 93.4% total statements (threshold 80%)
+
+Static Analysis: PASSED
+  gofmt -l . -> clean
+  go vet ./... -> clean
+
+SDD Validation: PASSED
+  Command: go run . validate
+  Result:  specs, spec deltas, metadata, registry parity and links all valid
+
+Manual Verification: APPROVED
+  Presented: reduced command surface, internal/ contents, absence of pre-filled
+  attestation in cooper-implement, and a full install.sh scaffold into a
+  throwaway repo followed by 'cooper validate'. User approved via interactive
+  question tool and directed continuation to Phase 3.
+
+Delivered:
+  Task 2.1 (db37b7b) ported newer skill content into skills/; caught and fixed a
+    '## 6.2' heading regression present in the tree being ported from
+  Task 2.2 (6e477ec) deleted internal/scaffold and cmd/init.go -- 1707 lines
+  Task 2.3 (53f7f2d) added tiered non-fatal binary install; fixed the dangling
+    AGENTS.md -> TROOP.md reference carried by every scaffolded project to date
+  Task 2.4 (5adc0b5) replaced the fabricated checkpoint attestation template in
+    cooper-implement; guard collision fixed in 5269ed5
+
+Corrections to earlier plan premises:
+  .cooper/definition/workflow.md does NOT contain the fabricated strings; no
+    isolated branch was required.
+  A third skill copy exists at .agents/skills/ (Cooper dogfooding itself); it
+    was already in sync and is now parity-guarded.
+
+Deviation:
+  The end-to-end scaffold assertion is verified manually, not automated. A full
+  install.sh run fetches the Troop installer over the network and a
+  network-dependent CI test would be flaky. Four hermetic installer tests cover
+  the non-fatal contract instead.
+
+Outstanding at phase close: none.
+Timestamp: 2026-09-14T03:20:31Z
