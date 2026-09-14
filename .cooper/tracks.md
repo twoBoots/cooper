@@ -50,7 +50,7 @@ All active and completed Cooper tracks are registered below.
   - Worktree: `.worktrees/github-pages-landing`
   - Link: [.cooper/active/github-pages-landing/index.md](.cooper/active/github-pages-landing/index.md)
 
-- [ ] **Track: Documentation Review Refinements** (`docs-review-refinements`)
+- [x] **Track: Documentation Review Refinements** (`docs-review-refinements`)
   - Worktree: `.worktrees/docs-review-refinements`
   - Link: [.cooper/active/docs-review-refinements/index.md](.cooper/active/docs-review-refinements/index.md)
 
