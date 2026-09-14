@@ -1,0 +1,7 @@
+Task 2.1: Port Newer Skill Content Into the Surviving Tree
+Scope: skills/cooper-{setup,rfc,new-track,implement,review,status}/SKILL.md (updated); cmd/skills_test.go (added)
+Merge direction: embedded -> root. Verified embedded was the newer tree (carried Interactive Question Protocol and Native File Tools Mandate from mandate-interactive-question-tools); root was stale.
+Reconciled, not copied wholesale: embedded had regressed cooper-rfc '### 6.2' to '## 6.2'. Root's correct heading restored, so the result is a superset of both inputs. Remaining diff vs embedded is exactly that 1 heading (2 lines).
+Third copy found: .agents/skills/ is Cooper's own installed instance (dogfooding), already in sync with the ported content. Added TestSkills_InstalledCopyMatchesSource to guard it against future drift.
+Tests: TestSkills_RetainInteractiveAndFileToolMandates PASS, TestSkills_HeadingHierarchyIsWellFormed PASS (caught the regression during the port), TestSkills_InstalledCopyMatchesSource PASS. TestSkills_NoDuplicateTree still RED by design -- cleared by Task 2.2.
+gofmt clean. cooper validate PASS.
