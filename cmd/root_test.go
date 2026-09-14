@@ -52,6 +52,21 @@ func TestRootCmd_DoesNotRegisterRemovedCommands(t *testing.T) {
 	}
 }
 
+// attestationGuardFiles are the test files that search for the forbidden
+// attestation literals and therefore contain them by necessity. Everything
+// else in the repository must stay clear of them.
+var attestationGuardFiles = []string{"root_test.go", "skills_test.go"}
+
+func isAttestationGuardFile(path string) bool {
+	base := filepath.Base(path)
+	for _, guard := range attestationGuardFiles {
+		if base == guard {
+			return true
+		}
+	}
+	return false
+}
+
 // TestNoFabricatedVerificationAttestations enforces the spec requirement
 // "Prohibition On Unverified Checkpoint Attestations". The deleted
 // track.RecordCheckpoint hardcoded a passing test result and a user approval
@@ -80,8 +95,9 @@ func TestNoFabricatedVerificationAttestations(t *testing.T) {
 		if !strings.HasSuffix(path, ".go") {
 			return nil
 		}
-		// This test file necessarily contains the literals it forbids.
-		if strings.HasSuffix(path, "root_test.go") {
+		// The guard tests themselves necessarily contain the literals they
+		// forbid, in order to search for them.
+		if isAttestationGuardFile(path) {
 			return nil
 		}
 
