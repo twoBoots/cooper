@@ -8,14 +8,14 @@
 
 ## Phase 1: Remove the MCP Server & Track Orchestration
 
-- [~] **Task 1.1: Remove MCP Server & Client Installer**
-  - [ ] Sub-task: Write `cmd/root_test.go` asserting `cooper --help` lists no `mcp` command and that `NewRootCmd()` registers no subcommand named `mcp` (Red)
-  - [ ] Sub-task: Delete `internal/mcp/server.go`, `internal/mcp/server_test.go`, `cmd/mcp.go`, `cmd/mcp_test.go`
-  - [ ] Sub-task: Remove the `newMCPCmd()` registration from `cmd/root.go` (Green)
-  - [ ] Sub-task: Run `go mod tidy`; confirm `github.com/twoBoots/bender` is retained for `pkg/updater` and only `pkg/mcp` usage is dropped
-  - [ ] Sub-task: Verify `go build ./...` and `go vet ./...` pass (Refactor)
+- [x] **Task 1.1: Remove MCP Server & Client Installer** (`901e029`)
+  - [x] Sub-task: Write `cmd/root_test.go` asserting `cooper --help` lists no `mcp` command and that `NewRootCmd()` registers no subcommand named `mcp` (Red)
+  - [x] Sub-task: Delete `internal/mcp/server.go`, `internal/mcp/server_test.go`, `cmd/mcp.go`, `cmd/mcp_test.go`
+  - [x] Sub-task: Remove the `newMCPCmd()` registration from `cmd/root.go` (Green)
+  - [x] Sub-task: Run `go mod tidy`; confirm `github.com/twoBoots/bender` is retained for `pkg/updater` and only `pkg/mcp` usage is dropped
+  - [x] Sub-task: Verify `go build ./...` and `go vet ./...` pass (Refactor)
 
-- [ ] **Task 1.2: Remove Track Orchestration & the Fabricating Checkpoint**
+- [~] **Task 1.2: Remove Track Orchestration & the Fabricating Checkpoint**
   - [ ] Sub-task: Extend `cmd/root_test.go` asserting no `track` command is registered (Red)
   - [ ] Sub-task: Write a guard test asserting no source file in the repository contains the literal string `Automated Tests: PASSED` (Red — enforces the new spec prohibition and prevents reintroduction)
   - [ ] Sub-task: Delete `internal/track/`, `cmd/track.go`, `cmd/track_test.go`
