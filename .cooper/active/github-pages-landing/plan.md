@@ -23,10 +23,10 @@
   - [x] Sub-task: Write test enforcing that all documentation pages referencing Troop link to `https://github.com/twoBoots/troop` (Red)
   - [x] Sub-task: Create `docs/guide/getting-started.md` and `docs/guide/workflow.md`, updating links to existing repository documentation (Green)
   - [x] Sub-task: Run link integrity validation to ensure zero dead links (Refactor)
-- [ ] Task: Phase 2 Verification & Checkpoint
-  - [ ] Sub-task: Synchronize rules (`git fetch origin main`)
-  - [ ] Sub-task: Run full doc build and validation tests
-  - [ ] Sub-task: Commit phase checkpoint and push (`git push origin github-pages-landing`)
+- [x] Task: Phase 2 Verification & Checkpoint (2a84cfd) [checkpoint: 2a84cfd]
+  - [x] Sub-task: Synchronize rules (`git fetch origin main`)
+  - [x] Sub-task: Run full doc build and validation tests
+  - [x] Sub-task: Commit phase checkpoint and push (`git push origin github-pages-landing`)
 
 ## Phase 3: CI/CD Pipeline & Deployment Automation
 - [ ] Task: GitHub Actions Pages Workflow (`.github/workflows/pages.yml`)
