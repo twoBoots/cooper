@@ -1,0 +1,3 @@
+Task: Informative Landing Page Content
+Scope: docs/index.md, tests/docs-landing.test.mjs
+Summary: Created VitePress home landing page with hero, quickstart snippet, core pillars (Cooper SDD, Troop worktrees, Git Notes, TDD), lifecycle diagram, and verification test.
