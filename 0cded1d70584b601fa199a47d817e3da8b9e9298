@@ -1,0 +1,3 @@
+Refactor: Streamline install snippets in docs
+Scope: docs/guide/getting-started.md, docs/index.md
+Summary: Removed redundant 'go install' commands per review comment r4005947516, standardizing on the official curl installer.
