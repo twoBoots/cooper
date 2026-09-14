@@ -29,7 +29,10 @@ Use `cooper-rfc` for large epics, multi-capability changes, major refactors, or 
 - **[Troop](https://github.com/twoBoots/troop) Worktree Isolation:** Spawn a dedicated RFC worktree via `git agent-start <rfc_id>` to keep the main trunk clean.
 - **Living Spec Grounding:** Always inspect all relevant capability specs under `.cooper/specs/` before proposing changes.
 - **Draft PR Collaboration:** Leverage GitHub/GitLab Draft PRs (`gh pr create --draft`) as the collaborative review surface for RFC markdown and spec diffs.
-- **Sequential Questioning (CRITICAL):** Ask discovery questions strictly one at a time in text chat and await user response before proceeding.
+- **Interactive Question Protocol (Mandatory):** When presenting single-choice or multiple-choice questions, options, or confirmations, agents MUST invoke available interactive question tools (e.g. `ask_question`) rather than printing text choice lists in chat. Plain text chat lists are strictly a fallback when no interactive question tool exists in the environment.
+- **Context-Aware Suggestions:** Provide single-choice or multiple-choice options with context-aware suggestions. Prefix preferred choices with `(Recommended: <explanation>)`.
+- **Sequential Questioning:** When falling back to text chat, ask questions strictly one at a time and await user response before proceeding.
+- **Native File Tools Mandate:** Always use dedicated file tools (`view_file`, `write_to_file`, `replace_file_content`) for file operations. Do NOT use shell pipes, stream editors (`sed`, `awk`), heredocs (`cat << 'EOF'`), or stream redirections to create or modify files.
 
 ---
 
@@ -66,7 +69,7 @@ Use `cooper-rfc` for large epics, multi-capability changes, major refactors, or 
 
 ## 3. Interactive Architectural Discovery
 
-Conduct a focused discovery session (asking questions one at a time) covering:
+Conduct a focused discovery session using interactive question tools (e.g. `ask_question`, falling back to single text chat questions if unavailable) covering:
 
 1. **Problem Statement & Motivation:** What problem does this solve, who does it impact, and why now?
 2. **Architectural Alternatives Considered:** What approaches were evaluated (e.g., Approach A vs Approach B) and what are the trade-offs?
@@ -80,7 +83,7 @@ Conduct a focused discovery session (asking questions one at a time) covering:
 
 ## 4. Draft RFC Artifacts
 
-Inside `.worktrees/<rfc_id>/.cooper/active/<rfc_id>/`, generate:
+Inside `.worktrees/<rfc_id>/.cooper/active/<rfc_id>/` (using native file tools like `write_to_file`), generate:
 
 ### 4.1 `rfc.md` (The Architecture & Design Proposal)
 ```markdown
