@@ -11,10 +11,9 @@ import (
 // track. They duplicated the Cooper agent skills or wrapped local shell
 // operations, and MUST NOT be reintroduced without a spec delta.
 //
-// Phase 1 removed "mcp" and "track". Phase 2 Task 2.2 removes "init" as part
-// of collapsing the two scaffolders, and adds it to this list as its own Red
-// step so that each phase leaves the suite green.
-var removedCommands = []string{"track", "mcp"}
+// Phase 1 removed "mcp" and "track". Phase 2 Task 2.2 removed "init" as part
+// of collapsing the two scaffolders onto install.sh.
+var removedCommands = []string{"track", "mcp", "init"}
 
 // retainedCommands are the three commands that constitute Cooper's
 // validate-first surface.

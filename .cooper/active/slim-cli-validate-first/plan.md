@@ -42,7 +42,7 @@
   - Finding: the embedded copy had regressed `cooper-rfc` heading `### 6.2` to `## 6.2`; root's correct heading was restored during the reconcile. A heading-hierarchy guard now prevents recurrence.
   - Finding: `.agents/skills/` is a legitimate third copy (Cooper's own installed instance) and was already in sync. Guarded by a new source/installed parity test.
 
-- [ ] **Task 2.2: Delete the Second Scaffolder & Duplicate Asset Tree**
+- [~] **Task 2.2: Delete the Second Scaffolder & Duplicate Asset Tree**
   - [ ] Sub-task: Extend `cmd/root_test.go` asserting no `init` command is registered (Red)
   - [ ] Sub-task: Write a test asserting no duplicate `SKILL.md` tree exists outside `skills/` (Red)
   - [ ] Sub-task: Delete `internal/scaffold/` (including `assets/`), `cmd/init.go`, `cmd/init_test.go`
