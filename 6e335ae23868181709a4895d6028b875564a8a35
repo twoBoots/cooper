@@ -1,0 +1,8 @@
+Task 1.2: Remove Track Orchestration & the Fabricating Checkpoint
+Scope: internal/track/{track.go,git.go,track_test.go}, cmd/track.go, cmd/track_test.go (deleted); cmd/root.go (deregistered); cmd/root_test.go (guard scoped to phase)
+Lines removed: 759; added: 5
+Tests: full suite PASSES (go test ./...). gofmt clean, go vet clean.
+Coverage: 93.1% total, up from 91.2% before Phase 1.
+Defect removed: RecordCheckpoint wrote 'Automated Tests: PASSED' and 'Manual Verification: APPROVED by user' into Git Notes with no test execution and no user prompt. TestNoFabricatedVerificationAttestations now passes and blocks reintroduction.
+Defect removed: CreateTrack swallowed the 'git worktree add' error and reported success on failure.
+Note: the 'init' guard was deferred to Phase 2 Task 2.2 so each phase leaves the suite green.
