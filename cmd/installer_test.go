@@ -68,6 +68,71 @@ echo "RETURNED:$?"
 	}
 }
 
+// TestInstallScript_RelocatesTroopReferences enforces the installer spec
+// requirement "Troop Reference Relocation" together with the scaffolding
+// scenario that every path referenced by the installed AGENTS.md must exist.
+//
+// install.sh moves TROOP.md into .cooper/TROOP.md, but the AGENTS.md written by
+// the Troop installer links to the original root path. Relocating the file
+// without rewriting the reference leaves a dangling link that 'cooper validate'
+// reports in every freshly scaffolded project.
+func TestInstallScript_RelocatesTroopReferences(t *testing.T) {
+	bash := requireBash(t)
+
+	scriptPath, err := filepath.Abs(installScript)
+	if err != nil {
+		t.Fatalf("failed resolving install.sh: %v", err)
+	}
+
+	target := t.TempDir()
+
+	agentsPath := filepath.Join(target, "AGENTS.md")
+	original := "# Agent Guidelines\n\nSee [Troop Reference](TROOP.md) for worktree commands.\nAlso see `TROOP.md` for details.\n"
+	if err := os.WriteFile(agentsPath, []byte(original), 0644); err != nil {
+		t.Fatalf("failed seeding AGENTS.md: %v", err)
+	}
+	if err := os.WriteFile(filepath.Join(target, "TROOP.md"), []byte("# Troop\n"), 0644); err != nil {
+		t.Fatalf("failed seeding TROOP.md: %v", err)
+	}
+	if err := os.MkdirAll(filepath.Join(target, ".cooper"), 0755); err != nil {
+		t.Fatalf("failed creating .cooper: %v", err)
+	}
+
+	program := `
+set -e
+export COOPER_INSTALL_LIB_ONLY=1
+. "` + scriptPath + `"
+cd "` + target + `"
+relocate_troop_reference
+`
+
+	cmd := exec.Command(bash, "-c", program)
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		t.Fatalf("relocate_troop_reference failed: %v\n%s", err, out)
+	}
+
+	if _, statErr := os.Stat(filepath.Join(target, ".cooper", "TROOP.md")); statErr != nil {
+		t.Errorf("TROOP.md was not relocated into .cooper/: %v", statErr)
+	}
+
+	updated, err := os.ReadFile(agentsPath)
+	if err != nil {
+		t.Fatalf("failed reading AGENTS.md: %v", err)
+	}
+
+	got := string(updated)
+	if strings.Contains(got, "](TROOP.md)") {
+		t.Errorf("AGENTS.md still contains a dangling markdown link to the relocated TROOP.md:\n%s", got)
+	}
+	if strings.Contains(got, "`TROOP.md`") {
+		t.Errorf("AGENTS.md still contains a dangling inline-code reference to the relocated TROOP.md:\n%s", got)
+	}
+	if !strings.Contains(got, ".cooper/TROOP.md") {
+		t.Errorf("AGENTS.md does not reference the relocated .cooper/TROOP.md:\n%s", got)
+	}
+}
+
 // TestInstallScript_LibraryModeDoesNotScaffold asserts the sourcing guard used
 // by the test above does not itself perform an installation, so sourcing the
 // script is side-effect free.
