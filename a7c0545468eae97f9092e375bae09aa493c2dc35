@@ -1,0 +1,54 @@
+Phase 3 Checkpoint Verification
+
+Automated Tests: PASSED
+  Command:  CGO_ENABLED=0 go test ./...
+  Result:   cmd ok, internal/validator ok; 0 failures
+  Coverage: 93.9% total statements (threshold 80%)
+
+Static Analysis: PASSED
+  gofmt -l . -> clean
+  go vet ./... -> clean
+
+SDD Validation: PASSED
+  Command: go run . validate
+  Result:  specs, spec deltas, metadata, registry parity and links all valid
+
+CI Gate Verification: PASSED (both directions, before arming)
+  Coverage gate: 93.9 pass, 100.0 pass, 80.0 pass at boundary, 79.9 fail,
+                 0.0 fail, unparseable fail
+  Validate gate: exit 1 on a deliberately malformed spec, exit 0 on clean tree
+  Consumer scoping: install.sh writes no workflow files; e2e scaffold produced
+                 no .github directory
+
+Manual Verification: APPROVED
+  Presented: version 1.2.0, clean validate, the two new ci.yml gates, the README
+  removal notice, and git notes showing measured results throughout. User
+  approved via interactive question tool and directed track closure followed by
+  cooper-review.
+
+Delivered:
+  Task 3.1            measured post-removal coverage at 93.4% before arming the
+                      80% gate; no additional tests required
+  Task 3.2 (fa2bc00)  added link/code-path-exists; narrowed scope after the
+                      first run showed 40+ false positives; found and fixed a
+                      real defect -- Cooper's own repo was missing
+                      .cooper/TROOP.md while its COOPER.md and cooper-setup
+                      skill instruct agents to read it
+  Task 3.3 (e0aea99)  armed the coverage and validate gates in ci.yml
+  Task 3.4 (ee7b512)  rewrote README CLI docs, added v1.2.0 removal and
+                      migration notice, bumped version
+
+Design deviation from design.md section 2.3:
+  The backticked-path rule is scoped to operative instruction documents only,
+  not all markdown. Unscoped it reported 59 issues of which 40+ were correct as
+  written: archived tracks cite paths that existed when they ran, and proposals
+  describe files not yet built. Auditing records and prose as instructions is a
+  category error. Scoping took the repository from 59 findings to 3.
+
+Track totals across Phases 1-3:
+  Go source 3949 -> 2432 lines; coverage 91.2% -> 93.9%
+  Command surface: init, track, mcp, mcp install, validate, update, version
+                -> validate, update, version
+
+Outstanding at phase close: none.
+Timestamp: 2026-09-14T03:28:24Z
