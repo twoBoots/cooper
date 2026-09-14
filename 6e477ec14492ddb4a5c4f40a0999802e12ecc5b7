@@ -1,0 +1,9 @@
+Task 2.2: Delete the Second Scaffolder & Duplicate Asset Tree
+Scope: internal/scaffold/{init.go,embedded.go,init_test.go,embedded_test.go,assets/} and cmd/{init.go,init_test.go} deleted; cmd/root.go deregistered newInitCmd
+Lines removed: 1707 across 24 files
+Pre-deletion verification: templates/ and AGENTS.template.md confirmed byte-identical to their embedded copies (diff -rq clean). Skill content was already ported to skills/ in Task 2.1, so no content was lost.
+Tests: full suite PASS. TestRootCmd_DoesNotRegisterRemovedCommands and TestSkills_NoDuplicateTree now green.
+Coverage: 93.4% total (up from 93.1%); threshold 80%.
+gofmt clean, go vet clean, go build OK, cooper validate PASS.
+Surface: 'cooper --help' now lists validate, update, version only.
+Go source: 3949 -> 1866 lines (2083 removed across Phases 1-2).
