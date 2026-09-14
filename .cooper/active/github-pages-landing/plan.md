@@ -19,7 +19,7 @@
   - [x] Sub-task: Write validation tests checking landing page hero content, quickstart snippet, and core pillars (Red)
   - [x] Sub-task: Implement `docs/index.md` with hero banner, quickstart code block, feature cards (Cooper SDD, Troop worktrees, Git Notes, TDD), and workflow diagram (Green)
   - [x] Sub-task: Refactor styling and verify clean layout (Refactor)
-- [ ] Task: Guides & Reference Integration
+- [~] Task: Guides & Reference Integration
   - [ ] Sub-task: Write test enforcing that all documentation pages referencing Troop link to `https://github.com/twoBoots/troop` (Red)
   - [ ] Sub-task: Create `docs/guide/getting-started.md` and `docs/guide/workflow.md`, updating links to existing repository documentation (Green)
   - [ ] Sub-task: Run link integrity validation to ensure zero dead links (Refactor)
