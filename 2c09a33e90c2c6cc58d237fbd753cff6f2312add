@@ -1,0 +1,14 @@
+Review remediation: High + Medium findings from cooper-review
+Scope: install.sh, cmd/installer_test.go, spec-deltas/cli/spec.md, spec-deltas/installer/spec.md
+
+HIGH (correctness, reproduced): failed download destroyed an existing cooper binary. 'curl -o $target' truncates before the transfer completes and the failure path then rm'd it, so re-running install.sh offline or rate-limited silently uninstalled a working binary. Fixed by staging every tier into a temp file and replacing the destination only on success. Re-ran the original reproduction: binary now survives.
+
+MEDIUM (test validity): TestInstallScript_BinaryInstallIsNonFatal passed via the no-bin-dir branch, not the download-failure branch, because an empty PATH also removes mkdir. It could not have caught the High finding. Added TestInstallScript_FailedDownloadPreservesExistingBinary covering the real path with a writable bin dir.
+
+MEDIUM (spec fidelity) x2: two delta scenarios asserted behaviour the implementation does not have and would have merged into .cooper/specs/ as false requirements.
+  cli: 'a markdown file' -> operative instruction documents, plus a new scenario recording the records/proposals/prose exemption and its rationale.
+  installer: 'exactly one copy' -> one authoritative source under skills/ plus byte-identical installed parity, since .agents/skills/ legitimately holds a second copy.
+
+LOW findings not actioned per user direction: slash-less reference boundary (already covered by an existing must-not-flag test case and now stated in the amended spec); sed/awk usage in install.sh and ci.yml where no native file tool exists.
+
+Tests: full suite PASS, 5 installer tests. Coverage 93.9%. gofmt clean, vet clean, 'go run . validate' PASS.
