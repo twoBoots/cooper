@@ -1,0 +1,3 @@
+Task: Apply Reviewer Copy Changes in workflow.md
+Scope: docs/guide/workflow.md, tests/docs-guides.test.mjs
+Summary: Applied PR #22 review suggestions to docs/guide/workflow.md clarifying Git Notes purpose against drift and principal engineer posture in review.
