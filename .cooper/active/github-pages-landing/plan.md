@@ -15,7 +15,7 @@
   - [x] Sub-task: Commit phase checkpoint and push (`git push origin github-pages-landing`)
 
 ## Phase 2: Landing Page & Documentation Structure
-- [ ] Task: Informative Landing Page Content (`docs/index.md`)
+- [~] Task: Informative Landing Page Content (`docs/index.md`)
   - [ ] Sub-task: Write validation tests checking landing page hero content, quickstart snippet, and core pillars (Red)
   - [ ] Sub-task: Implement `docs/index.md` with hero banner, quickstart code block, feature cards (Cooper SDD, Troop worktrees, Git Notes, TDD), and workflow diagram (Green)
   - [ ] Sub-task: Refactor styling and verify clean layout (Refactor)
