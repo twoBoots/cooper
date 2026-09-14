@@ -1,0 +1,6 @@
+Task 1.1: Remove MCP Server & Client Installer
+Scope: internal/mcp/server.go, internal/mcp/server_test.go, cmd/mcp.go, cmd/mcp_test.go (deleted); cmd/root.go (deregistered); cmd/root_test.go (added)
+Lines removed: 1021; added: 99
+Tests: go build ./... OK, go vet ./... OK. Full suite passes except the two intentional Red guards for Task 1.2 (track command still registered, internal/track/track.go still contains fabricated attestation strings).
+Verified: 'cooper --help' no longer lists mcp. go mod tidy retained bender for pkg/updater.
+Rationale: as-built MCP tools wrapped local shell operations; the three upstream-sync tools that justified the surface in rfc-cooper-cli-mcp were never implemented.
