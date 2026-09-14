@@ -85,10 +85,12 @@
   - [x] Sub-task: Record the measured figure in this plan for the checkpoint note
   - **Measured: 93.4%** (cmd 95.2%, internal/validator 93.5%, main.go 0%). The design's projection held — removing the well-covered `track`/`mcp`/`scaffold` packages *raised* the total from 91.2%, because the deleted command surface carried more uncovered branches than the guard tests replacing it. The 80% gate arms with 13.4 points of headroom.
 
-- [ ] **Task 3.2: Backticked Repository Path Auditing**
-  - [ ] Sub-task: Write table-driven tests in `internal/validator/link_auditor_test.go` covering: a dangling backticked `.md` path (must flag), an existing backticked path (must pass), and must-not-flag cases — shell snippets, glob patterns, flags such as `--force`, URLs, and bare words with no `/` (Red)
-  - [ ] Sub-task: Implement `link/code-path-exists` in `link_auditor.go` under the §2.3 conservative rules (Green)
-  - [ ] Sub-task: Run `cooper validate` against the whole repository and resolve any genuine dangling references it now surfaces (Refactor)
+- [x] **Task 3.2: Backticked Repository Path Auditing** (`fa2bc00`)
+  - [x] Sub-task: Write table-driven tests covering a dangling backticked `.md` path (must flag), an existing backticked path (must pass), and 9 must-not-flag cases — shell snippets, globs, flags, URLs, bare words, pipes, home-relative paths, template placeholders, source extensions (Red)
+  - [x] Sub-task: Implement `link/code-path-exists` under the §2.3 conservative rules (Green)
+  - [x] Sub-task: Run `cooper validate` against the whole repository and resolve any genuine dangling references it now surfaces (Refactor)
+  - **Design corrected mid-task.** The unscoped rule reported 59 issues; 40+ were correct as written (archived tracks cite paths that existed then; proposals describe files not yet built). Auditing records and prose as if they were instructions is a category error. Rescoped to operative instruction documents only — 59 findings down to 3.
+  - **Real defect found and fixed:** all 3 remaining findings were one defect. Cooper's own repo was missing `.cooper/TROOP.md` while `COOPER.md:124` and `cooper-setup/SKILL.md:54` instruct agents to read it. Cooper had never run its own installer on itself, violating the "Troop Reference Relocation" requirement in its own `installer` spec.
 
 - [ ] **Task 3.3: Wire CI Enforcement**
   - [ ] Sub-task: Add the `Validate Cooper SDD Specs` step (`go run . validate`) to `.github/workflows/ci.yml`
