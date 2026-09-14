@@ -1,0 +1,12 @@
+Task 3.2: Backticked Repository Path Auditing
+Scope: internal/validator/code_path_auditor.go and code_path_auditor_test.go (added); internal/validator/link_auditor.go (wired in); .cooper/TROOP.md (added)
+
+New rule: link/code-path-exists.
+
+Design correction made mid-task. The first implementation audited every markdown file and reported 59 issues. Breakdown: 28 in .cooper/archive, 12 in .cooper/active, 7 in docs/INSTALL.md, the rest scattered prose. Inspection showed 40+ were correct as written -- archived tracks cite paths that existed when they ran, and proposals describe files not yet built. Auditing records and prose as if they were instructions is a category error. The rule was rescoped to operative instruction documents only (AGENTS.md, AGENTS.template.md, .cooper/index.md, .cooper/COOPER.md, skills/**/SKILL.md, .agents/skills/**/SKILL.md), taking the repo from 59 findings to 3.
+
+Real defect found and fixed: all 3 remaining findings were the same one. Cooper's own repository was missing .cooper/TROOP.md while .cooper/COOPER.md:124 and skills/cooper-setup/SKILL.md:54 instruct agents to read it. Cooper had never run its own installer on itself, violating the 'Troop Reference Relocation' requirement in its own installer spec. Installed the exact file install.sh produces (70 lines), verified via the Task 2.3 end-to-end scaffold.
+
+Tests: 15 table-driven cases covering the dangling case, the existing case, and 9 must-not-flag cases (shell snippets, flags, globs, URLs, bare words, pipes, home-relative, placeholders, source extensions), plus fenced-block exemption and operative-vs-exempt scoping across 13 paths.
+Coverage: 93.9% total (up from 93.4%); internal/validator 94.2%.
+gofmt clean, vet clean, 'go run . validate' PASS.
