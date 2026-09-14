@@ -36,12 +36,6 @@ Install the Cooper CLI with a single command:
 curl -sSL https://raw.githubusercontent.com/twoBoots/cooper/main/install.sh | bash
 ```
 
-Or build from source using Go:
-
-```bash
-go install github.com/twoBoots/cooper@latest
-```
-
 ---
 
 ## The Cooper Lifecycle
