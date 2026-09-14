@@ -8,7 +8,7 @@
 
 ## Phase 1: Remove the MCP Server & Track Orchestration
 
-- [ ] **Task 1.1: Remove MCP Server & Client Installer**
+- [~] **Task 1.1: Remove MCP Server & Client Installer**
   - [ ] Sub-task: Write `cmd/root_test.go` asserting `cooper --help` lists no `mcp` command and that `NewRootCmd()` registers no subcommand named `mcp` (Red)
   - [ ] Sub-task: Delete `internal/mcp/server.go`, `internal/mcp/server_test.go`, `cmd/mcp.go`, `cmd/mcp_test.go`
   - [ ] Sub-task: Remove the `newMCPCmd()` registration from `cmd/root.go` (Green)
