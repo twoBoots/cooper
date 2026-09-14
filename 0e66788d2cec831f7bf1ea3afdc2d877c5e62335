@@ -1,0 +1,3 @@
+Task: Package Configuration & Documentation Scripts
+Scope: package.json, package-lock.json, tests/docs-package.test.mjs, .gitignore
+Summary: Configured npm package with vitepress devDependencies, documentation scripts (docs:dev, docs:build, docs:preview, test), and automated unit tests.
