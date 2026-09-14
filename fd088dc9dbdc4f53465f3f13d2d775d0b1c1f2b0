@@ -1,0 +1,3 @@
+Task: Prohibit stream editors (sed, awk)
+Scope: .agents/skills/, internal/scaffold/assets/, .cooper/definition/workflow.md, AGENTS.md
+Summary: Explicitly banned sed and awk stream editing in favor of native file tools.

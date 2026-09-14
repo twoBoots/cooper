@@ -1,0 +1,3 @@
+Task: Scaffold and Package Verification
+Scope: internal/..., .cooper/active/mandate-interactive-question-tools/spec-deltas/
+Summary: Verified all internal unit tests pass and cooper CLI repository validation passes with zero issues.
