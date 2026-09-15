@@ -192,3 +192,4 @@ sequenceDiagram
   - [ ] Sub-task: Implement "Remember Me" checkbox (`src/components/LoginForm.tsx`)
 - [ ] Task: Cooper - User Manual Verification 'Phase 2: UI & Auth Integration'
 ```
+

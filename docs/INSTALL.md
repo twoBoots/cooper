@@ -91,4 +91,5 @@ The installer creates or appends to `AGENTS.md` with rules instructing AI agents
 * `.cooper/active/<track_id>/spec-deltas/` requirement diff generation.
 * TDD Red/Green/Refactor cycle with Git Notes summaries (`git notes add -m`).
 * Phase completion synchronization (`git fetch origin main` & `git push origin <track_id>`).
-* Troop worktree isolation (`.worktrees/<track_id>`).
+* [Troop](https://github.com/twoBoots/troop) worktree isolation (`.worktrees/<track_id>`).
+

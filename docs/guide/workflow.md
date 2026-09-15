@@ -44,3 +44,4 @@ Before opening or merging a PR, act as a principal engineer to:
 - Confirm 100% adherence to project code styleguides and test coverage criteria.
 - Archive the track into `.cooper/archive/<track_id>/` upon completion.
 - Tear down the worktree cleanly using `git agent-stop <track_id>`.
+

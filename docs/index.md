@@ -16,10 +16,10 @@ hero:
 features:
   - icon: 📑
     title: Living Capability Specs
-    details: Ground agent planning in living specs (.cooper/specs/). Changes produce explicit Spec Deltas (+ / -) before code is written.
+    details: Ground agent planning in living specs under <code>.cooper/specs/</code>. Changes produce explicit Spec Deltas (+ / -) before code is written.
   - icon: 🌲
     title: Worktree Isolation
-    details: Isolate parallel tracks inside dedicated Git worktrees via [Troop](https://github.com/twoBoots/troop), keeping trunk clean.
+    details: Isolate parallel tracks inside dedicated Git worktrees via <a href="https://github.com/twoBoots/troop" target="_blank" rel="noopener">Troop</a>, keeping trunk clean.
   - icon: 🎯
     title: TDD Quality Gates
     details: Enforce the Red -> Green -> Refactor cycle, maintain >80% code coverage, and enforce phase verification checkpoints.
@@ -63,3 +63,4 @@ Cooper structures agentic engineering into clear, verifiable phases:
 - [Workflow & Lifecycle Details](./guide/workflow.md)
 - [Installation Guide](./INSTALL.md)
 - [Compare with Other Frameworks](./openspec-vs-conductor-comparison.md)
+

@@ -52,3 +52,4 @@ Every task adheres to Red -> Green -> Refactor:
 Every task execution and phase verification checkpoint is recorded directly into Git Notes on commits, preserving full machine-readable provenance.
 
 Next, explore the [Cooper Workflow & Lifecycle](./workflow.md).
+

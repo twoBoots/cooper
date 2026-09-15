@@ -126,3 +126,4 @@ Because the RFC is in a Draft PR on an isolated branch, closing the PR cleanly a
 
 ### What if child track scopes change during review?
 Child tracks are only registered in `.cooper/tracks.md` *after* team approval is granted in Step 5. Prior to that, tracks in `tracks-breakdown.md` can be split, merged, reordered, or deleted freely without polluting the master track registry.
+
