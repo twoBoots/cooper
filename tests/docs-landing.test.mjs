@@ -23,7 +23,10 @@ test('Landing page docs/index.md exists with required layout and sections', () =
 
   // Core pillars
   assert.ok(content.includes('Spec-Driven Development') || content.includes('SDD'), 'must feature Spec-Driven Development');
-  assert.ok(content.includes('https://github.com/twoBoots/troop'), 'must link Troop to https://github.com/twoBoots/troop');
+  assert.ok(
+    content.includes('https://github.com/twoBoots/troop') || content.includes('https://twoboots.github.io/troop'),
+    'must link Troop to https://github.com/twoBoots/troop or https://twoboots.github.io/troop'
+  );
   assert.ok(content.includes('Git Notes'), 'must highlight Git Notes metadata tracking');
   assert.ok(content.includes('TDD'), 'must highlight TDD discipline');
 

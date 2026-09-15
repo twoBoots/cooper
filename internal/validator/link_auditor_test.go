@@ -16,6 +16,7 @@ func TestAuditMarkdownLinks_Valid(t *testing.T) {
 	content := `# Document
 - Link to [Target](./target.md)
 - External link to [Troop](https://github.com/twoBoots/troop)
+- Portal link to [Troop](https://twoboots.github.io/troop)
 `
 	docPath := filepath.Join(tmpDir, "doc.md")
 	errs := AuditMarkdownLinks(docPath, content, tmpDir)

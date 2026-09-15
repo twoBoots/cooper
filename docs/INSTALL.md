@@ -1,6 +1,6 @@
 # Cooper Installation & Migration Guide
 
-`install.sh` is a one-line installer that scaffolds the **Cooper Spec-Driven Development (SDD) Framework** (`.cooper/`), **[Troop](https://github.com/twoBoots/troop) Worktree Isolation** (`.worktrees/`), and native **Project Agent Skills** (`.agents/skills/`) into any target Git repository.
+`install.sh` is a one-line installer that scaffolds the **Cooper Spec-Driven Development (SDD) Framework** (`.cooper/`), **[Troop](https://twoboots.github.io/troop) Worktree Isolation** (`.worktrees/`), and native **Project Agent Skills** (`.agents/skills/`) into any target Git repository.
 
 ---
 
@@ -38,7 +38,7 @@ flowchart TD
     G --> H["Run Troop Setup, Move TROOP.md to .cooper/, & Inject Rules into AGENTS.md"]
 ```
 
-### 1. [Troop](https://github.com/twoBoots/troop) Foundation Setup
+### 1. [Troop](https://twoboots.github.io/troop) Foundation Setup
 The installer runs the Troop installer ([twoBoots/troop](https://github.com/twoBoots/troop)) to establish Git worktree isolation:
 * Sets up Git command aliases (`git agent-start <track_id>`, `git troop`, `git agent-stop <track_id>`).
 * Updates `.gitignore` to exclude `.worktrees/`.
@@ -86,9 +86,9 @@ The installer installs self-contained project skills into `.agents/skills/`:
 ### 4. Agent Rules Injection (`AGENTS.md`)
 The installer creates or appends to `AGENTS.md` with rules instructing AI agents to follow:
 * `.cooper/COOPER.md` quick reference.
-* Native `.agents/skills/cooper-*` skill workflows.
+* Native `/cooper-*` skill workflows (`/cooper-setup`, `/cooper-rfc`, `/cooper-new-track`, `/cooper-implement`, `/cooper-review`, `/cooper-status`).
 * `.cooper/specs/` living spec reading.
 * `.cooper/active/<track_id>/spec-deltas/` requirement diff generation.
 * TDD Red/Green/Refactor cycle with Git Notes summaries (`git notes add -m`).
 * Phase completion synchronization (`git fetch origin main` & `git push origin <track_id>`).
-* Troop worktree isolation (`.worktrees/<track_id>`).
+* [Troop](https://twoboots.github.io/troop) worktree isolation (`.worktrees/<track_id>`).

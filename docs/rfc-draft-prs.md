@@ -4,8 +4,8 @@
 
 In the **Cooper Spec-Driven Development (SDD)** framework, software initiatives are governed by a **Two-Tier Architecture Model**:
 
-1. **Upstream Alignment (`cooper-rfc`)**: High-level problem validation, architectural trade-offs, cross-capability living spec deltas (`spec-deltas/`), and team consensus.
-2. **Downstream Execution (`cooper-new-track` & `cooper-implement`)**: Isolated [Troop](https://github.com/twoBoots/troop) worktrees (`.worktrees/<track_id>`), strict Test-Driven Development (Red -> Green -> Refactor), code coverage >80%, and Phase Checkpoint synchronization.
+1. **Upstream Alignment (`/cooper-rfc`)**: High-level problem validation, architectural trade-offs, cross-capability living spec deltas (`spec-deltas/`), and team consensus.
+2. **Downstream Execution (`/cooper-new-track` & `/cooper-implement`)**: Isolated [Troop](https://twoboots.github.io/troop) worktrees (`.worktrees/<track_id>`), strict Test-Driven Development (Red -> Green -> Refactor), code coverage >80%, and Phase Checkpoint synchronization.
 
 A foundational rule of the upstream tier is that **all architectural RFCs are opened as GitHub/GitLab Draft Pull Requests** (`gh pr create --draft`).
 
@@ -110,12 +110,12 @@ The complete lifecycle from architectural conception to code execution follows s
 [6. Maintainer Merges to main] ──► Downstream tracks unlocked for cooper-new-track & cooper-implement
 ```
 
-1. **RFC Scoping & Spawning (`cooper-rfc`)**: The architect or AI agent creates an isolated RFC workspace (`.worktrees/rfc-<name>`) and drafts `rfc.md`, cross-capability `spec-deltas/`, and `tracks-breakdown.md`.
+1. **RFC Scoping & Spawning (`/cooper-rfc`)**: The architect or AI agent creates an isolated RFC workspace (`.worktrees/rfc-<name>`) and drafts `rfc.md`, cross-capability `spec-deltas/`, and `tracks-breakdown.md`.
 2. **Draft PR Submission (`gh pr create --draft`)**: The RFC branch is pushed, and a Draft PR is opened with the `rfc` label.
 3. **Collaborative Review & Feedback Synthesis**: The team reviews the design, and the agent synthesizes PR comments into revised RFC documents and living spec diffs.
 4. **Team Approval**: Once consensus is achieved and all open questions are resolved, reviewers approve the PR.
 5. **Track Registration & Graduation**: The finalized child tracks are appended to `.cooper/tracks.md`, and the PR is marked ready (`gh pr ready`).
-6. **Merge to `main` & Track Execution**: A maintainer merges the PR into `main`. Downstream developers and agents can now pick up individual child tracks in their own isolated worktrees using `cooper-new-track` and `cooper-implement`.
+6. **Merge to `main` & Track Execution**: A maintainer merges the PR into `main`. Downstream developers and agents can now pick up individual child tracks in their own isolated worktrees using `/cooper-new-track` and `/cooper-implement`.
 
 ---
 
