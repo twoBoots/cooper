@@ -60,3 +60,4 @@ Cooper is suggestive, not prescriptive. It provides guardrails to keep agents gr
 :::
 
 Next, explore the [Cooper Workflow & Lifecycle](./workflow.md).
+

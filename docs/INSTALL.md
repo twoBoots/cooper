@@ -92,3 +92,4 @@ The installer creates or appends to `AGENTS.md` with rules instructing AI agents
 * TDD Red/Green/Refactor cycle with Git Notes summaries (`git notes add -m`).
 * Phase completion synchronization (`git fetch origin main` & `git push origin <track_id>`).
 * [Troop](https://twoboots.github.io/troop) worktree isolation (`.worktrees/<track_id>`).
+
