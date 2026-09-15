@@ -1,7 +1,9 @@
 import { defineConfig } from 'vitepress';
+import { withMermaid } from 'vitepress-plugin-mermaid';
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default withMermaid(
+  defineConfig({
   title: 'Cooper',
   description: 'Spec-Driven Development (SDD) & Troop Worktree Isolation Framework',
   base: process.env.VITEPRESS_BASE || '/cooper/',
@@ -11,7 +13,9 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'Workflow', link: '/guide/workflow' },
       { text: 'Installation', link: '/INSTALL' },
-      { text: 'Comparisons', link: '/openspec-vs-conductor-comparison' }
+      { text: 'Comparisons', link: '/openspec-vs-conductor-comparison' },
+      { text: 'Troop', link: 'https://twoboots.github.io/troop' },
+      { text: 'OpenSpec', link: 'https://openspec.dev' }
     ],
     sidebar: [
       {
@@ -41,5 +45,5 @@ export default defineConfig({
       provider: 'local'
     }
   }
-});
+}));
 

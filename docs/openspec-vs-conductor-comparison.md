@@ -4,16 +4,17 @@
 
 As AI coding agents (Claude Code, Cursor, Gemini CLI, Antigravity, etc.) mature, software development is shifting toward **Spec-Driven Development (SDD)** — explicit, human-reviewable specifications and step-by-step implementation plans authored before any application code is written.
 
-**Cooper** integrates the **Conductor** spec-driven framework with **[Troop](https://github.com/twoBoots/troop)** Git worktree isolation (`.worktrees/`). This document outlines how the **Cooper Hybrid Framework** (`.cooper/`) incorporates **OpenSpec's Living Spec Deltas** while respecting Cooper's TDD, quality gates, phase synchronisation protocols, and Troop worktree isolation.
+**Cooper** is a **suggestive, agent-agnostic hybrid** uniting **[OpenSpec](https://openspec.dev)**'s living capability specifications and spec deltas with **Conductor**'s quality governance and verification gates, paired with **[Troop](https://twoboots.github.io/troop)** Git worktree isolation (`.worktrees/`). Cooper provides guardrails without being prescriptive, empowering teams to adapt skills, workflows, and tech stacks to their project needs.
 
 ---
 
 ## 1. Core Framework Comparison
-| Dimension | Customized Conductor Approach | OpenSpec (Fission AI) | Cooper Hybrid Model (`.cooper/` + [Troop](https://github.com/twoBoots/troop)) |
+| Dimension | Customized Conductor Approach | OpenSpec (Fission AI) | Cooper Hybrid Model (`.cooper/` + [Troop](https://twoboots.github.io/troop)) |
 | :--- | :--- | :--- | :--- |
-| **Primary Focus** | Agent Orchestration & Governance | Domain Capability Specs & Spec Deltas | **Unified Spec-Driven Orchestration with Worktree Isolation** |
+| **Philosophy & Ethos** | Prescriptive Orchestration | Agnostic Specification | **Suggestive Hybrid: Agent-Agnostic & Customizable** |
+| **Primary Focus** | Agent Orchestration & Governance | Domain Capability Specs & Spec Deltas | **Living Capability Specs + Quality Governance & Gates** |
 | **Root Directory** | `conductor/` | `openspec/` | **`.cooper/`** |
-| **Isolation Mechanics** | Single workspace branch | Single workspace branch | **[Troop](https://github.com/twoBoots/troop) Worktrees (`.worktrees/<track_id>/`)** |
+| **Isolation Mechanics** | Single workspace branch | Single workspace branch | **[Troop](https://twoboots.github.io/troop) Worktrees (`.worktrees/<track_id>/`)** |
 | **Core Unit** | **Track** (`conductor/tracks/<id>/`) | **Capability & Change** (`openspec/specs/` & `changes/`) | **Living Specs + Active Worktree Tracks** (`.cooper/specs/` & `.cooper/active/`) |
 | **Knowledge Representation** | Append-Only Track History | Living Capability Library + Spec Deltas | **Living Capability Library + Spec Deltas** |
 | **Execution Control** | Strict TDD, style guides, checkpoints | Flexible / Agnostic | **Strict TDD, style guides, Git Notes & phase checkpoints** |
@@ -63,7 +64,7 @@ your-project/
 
 ---
 
-### 3.1 [Troop](https://github.com/twoBoots/troop) Worktree Isolation (`git agent-start` / `git agent-stop`)
+### 3.1 [Troop](https://twoboots.github.io/troop) Worktree Isolation (`git agent-start` / `git agent-stop`)
 * **Worktree Spawning (`git agent-start <track_id>`)**: Troop spawns an isolated Git worktree under `.worktrees/<track_id>`. All feature code, test additions, and track-specific `.cooper/active/<track_id>/` files are created inside that isolated worktree.
 * **Parallel Execution**: Multiple agents or developers can work on separate tracks concurrently in distinct worktrees (`git troop` lists all active worktrees).
 * **Teardown (`git agent-stop <track_id>`)**: Once the track's PR is merged and its Spec Deltas are integrated into main's `.cooper/specs/`, Troop cleans up `.worktrees/<track_id>` and deletes the local track branch.
@@ -192,4 +193,3 @@ sequenceDiagram
   - [ ] Sub-task: Implement "Remember Me" checkbox (`src/components/LoginForm.tsx`)
 - [ ] Task: Cooper - User Manual Verification 'Phase 2: UI & Auth Integration'
 ```
-

@@ -41,12 +41,14 @@ test('All Troop references in docs/ link to https://github.com/twoBoots/troop', 
     const content = fs.readFileSync(file, 'utf8');
     const relativePath = path.relative(repoRoot, file);
 
-    // If Troop is mentioned, it should be linked to upstream repository
+    // If Troop is mentioned, it should be linked to upstream repository or docs portal
     if (content.includes('Troop')) {
-      const hasUpstreamLink = content.includes('https://github.com/twoBoots/troop');
+      const hasUpstreamLink =
+        content.includes('https://github.com/twoBoots/troop') ||
+        content.includes('https://twoboots.github.io/troop');
       assert.ok(
         hasUpstreamLink,
-        `File ${relativePath} mentions Troop but is missing link to https://github.com/twoBoots/troop`
+        `File ${relativePath} mentions Troop but is missing link to https://github.com/twoBoots/troop or https://twoboots.github.io/troop`
       );
     }
   }

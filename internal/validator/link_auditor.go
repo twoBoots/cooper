@@ -47,11 +47,11 @@ func AuditMarkdownLinks(filePath string, content string, rootDir string) []Valid
 			}
 
 			// Handle troop attribution rule
-			if strings.EqualFold(linkText, "Troop") && !strings.Contains(linkTarget, "github.com/twoBoots/troop") {
+			if strings.EqualFold(linkText, "Troop") && !strings.Contains(linkTarget, "github.com/twoBoots/troop") && !strings.Contains(linkTarget, "twoboots.github.io/troop") {
 				errors = append(errors, ValidationError{
 					File:    filePath,
 					Line:    lineNum,
-					Message: "Links with text 'Troop' must target 'https://github.com/twoBoots/troop'",
+					Message: "Links with text 'Troop' must target 'https://github.com/twoBoots/troop' or 'https://twoboots.github.io/troop'",
 					Rule:    "link/troop-attribution",
 				})
 			}
