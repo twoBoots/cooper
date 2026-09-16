@@ -2,6 +2,10 @@
 
 Cooper is a suggestive, agent-agnostic Spec-Driven Development (SDD) framework—a hybrid uniting [OpenSpec](https://openspec.dev)'s living capability specifications with Conductor's quality governance, paired with [Troop](https://twoboots.github.io/troop) worktree isolation. Designed to be customized to any tech stack, Cooper eliminates context drift, hallucinated requirements, and trunk pollution in autonomous AI agent engineering workflows.
 
+::: tip Ethos: Suggestive, Not Prescriptive
+Cooper is suggestive, not prescriptive. It provides guardrails to keep agents grounded, but leaves teams free to adapt skills, tech stacks, and workflows to their project needs.
+:::
+
 ## Prerequisites
 
 - **Git** 2.30+
@@ -15,7 +19,9 @@ You can install the Cooper CLI using the official installer:
 curl -sSL https://raw.githubusercontent.com/twoBoots/cooper/main/install.sh | bash
 ```
 
-For detailed platform instructions and manual verification steps, see the [Installation Guide](../INSTALL.md).
+After installing, ask your agent to run `/cooper-setup` inside your project.
+
+For detailed platform instructions and manual verification steps, see the [Installation Guide](../install.md).
 
 ## Initializing Cooper in a Repository
 
@@ -54,9 +60,5 @@ Every task adheres to Red -> Green -> Refactor:
 
 ### 4. Git Notes Metadata Tracking
 Every task execution and phase verification checkpoint is recorded directly into Git Notes on commits, preserving full machine-readable provenance.
-
-::: tip Ethos: Suggestive, Not Prescriptive
-Cooper is suggestive, not prescriptive. It provides guardrails to keep agents grounded, but leaves teams free to adapt skills, tech stacks, and workflows to their project needs.
-:::
 
 Next, explore the [Cooper Workflow & Lifecycle](./workflow.md).

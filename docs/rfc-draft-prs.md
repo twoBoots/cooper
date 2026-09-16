@@ -11,8 +11,6 @@ A foundational rule of the upstream tier is that **all architectural RFCs are op
 
 This document details the governance rationale, comparative advantages, and lifecycle mechanics of why Cooper mandates Draft PRs for architectural design initiatives.
 
----
-
 ## 1. Rationale & Comparison: Draft RFC PR vs. Regular PR
 
 | Dimension | Draft RFC PR | Regular PR |
@@ -22,8 +20,6 @@ This document details the governance rationale, comparative advantages, and life
 | **Living Spec & Track Integrity** | Spec deltas and track breakdowns iterate dynamically on the branch until team consensus is solid. | If merged prematurely, stale or unaligned tracks and spec deltas pollute `main`. |
 | **CI / Notification Noise** | Bypasses heavy code CI/CD pipelines (e.g., container builds, end-to-end suites, preview deploys) while retaining Markdown review. | Triggers full CI/CD test suites and aggressive reviewer assignment policies. |
 | **Graduation Trigger** | Mark `Ready for review` (`gh pr ready`) + register child tracks **only after** team approves the design. | Track registration has to happen upfront before consensus is reached. |
-
----
 
 ## 2. The 3 Primary Benefits of a Draft RFC PR
 
@@ -85,15 +81,13 @@ sequenceDiagram
     Architect->>Worktree: TDD Execution & Phase Checkpoints (cooper-implement)
 ```
 
----
-
 ## 3. The RFC Graduation Lifecycle
 
 The complete lifecycle from architectural conception to code execution follows six structured stages:
 
 ```
 [1. Draft RFC & Spec Deltas]
-         │ (cooper-rfc)
+         │ (/cooper-rfc)
          ▼
 [2. Open Draft PR] ──► gh pr create --draft
          │
@@ -110,14 +104,12 @@ The complete lifecycle from architectural conception to code execution follows s
 [6. Maintainer Merges to main] ──► Downstream tracks unlocked for cooper-new-track & cooper-implement
 ```
 
-1. **RFC Scoping & Spawning (`/cooper-rfc`)**: The architect or AI agent creates an isolated RFC workspace (`.worktrees/rfc-<name>`) and drafts `rfc.md`, cross-capability `spec-deltas/`, and `tracks-breakdown.md`.
-2. **Draft PR Submission (`gh pr create --draft`)**: The RFC branch is pushed, and a Draft PR is opened with the `rfc` label.
+1. `/cooper-rfc` **RFC Scoping & Spawning**: The architect or AI agent creates an isolated RFC workspace (`.worktrees/rfc-<name>`) and drafts `rfc.md`, cross-capability `spec-deltas/`, and `tracks-breakdown.md`.
+2. `gh pr create --draft` **Draft PR Submission**: The RFC branch is pushed, and a Draft PR is opened with the `rfc` label.
 3. **Collaborative Review & Feedback Synthesis**: The team reviews the design, and the agent synthesizes PR comments into revised RFC documents and living spec diffs.
 4. **Team Approval**: Once consensus is achieved and all open questions are resolved, reviewers approve the PR.
-5. **Track Registration & Graduation**: The finalized child tracks are appended to `.cooper/tracks.md`, and the PR is marked ready (`gh pr ready`).
+5. `gh pr ready` **Track Registration & Graduation**: The finalized child tracks are appended to `.cooper/tracks.md`, and the PR is marked ready.
 6. **Merge to `main` & Track Execution**: A maintainer merges the PR into `main`. Downstream developers and agents can now pick up individual child tracks in their own isolated worktrees using `/cooper-new-track` and `/cooper-implement`.
-
----
 
 ## 4. Frequently Asked Questions
 
@@ -126,3 +118,4 @@ Because the RFC is in a Draft PR on an isolated branch, closing the PR cleanly a
 
 ### What if child track scopes change during review?
 Child tracks are only registered in `.cooper/tracks.md` *after* team approval is granted in Step 5. Prior to that, tracks in `tracks-breakdown.md` can be split, merged, reordered, or deleted freely without polluting the master track registry.
+

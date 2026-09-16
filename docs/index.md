@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: Cooper
+  name: Cooper 🛢️
   text: Spec-Driven Development Framework
   tagline: Eliminate agentic drift with grounded capability specs, Troop worktree isolation, and strict TDD.
   actions:
@@ -36,7 +36,7 @@ Install the Cooper CLI with a single command:
 curl -sSL https://raw.githubusercontent.com/twoBoots/cooper/main/install.sh | bash
 ```
 
----
+After installing, ask your agent to run `/cooper-setup` inside your project.
 
 ## The Cooper Lifecycle
 
@@ -68,18 +68,16 @@ Cooper structures agentic engineering into clear, verifiable phases:
   </div>
 </div>
 
-1. **RFC & Initiative Planning (`/cooper-rfc`)**: Align on architectural scope, living spec impact, and draft PR reviews.
-2. **Track Scaffolding (`/cooper-new-track`)**: Spawn an isolated [Troop](https://twoboots.github.io/troop) worktree and author the Spec Delta and TDD implementation plan.
-3. **Execution (`/cooper-implement`)**: Run the strict Red-Green-Refactor loop, attach Git Notes execution metadata, and pass phase checkpoints.
-4. **Principal Review (`/cooper-review`)**: Verify code against spec delta requirements, style guides, and test coverage before opening a PR.
-
----
+1. `/cooper-rfc` **RFC & Initiative Planning**: Align on architectural scope, living spec impact, and draft PR reviews.
+2. `/cooper-new-track` **Track Scaffolding**: Spawn an isolated [Troop](https://twoboots.github.io/troop) worktree and author the Spec Delta and TDD implementation plan.
+3. `/cooper-implement` **Execution**: Run the strict Red-Green-Refactor loop, attach Git Notes execution metadata, and pass phase checkpoints.
+4. `/cooper-review` **Principal Review**: Verify code against spec delta requirements, style guides, and test coverage before opening a PR.
 
 ## Learn More
 
 - [Getting Started Guide](./guide/getting-started.md)
 - [Workflow & Lifecycle Details](./guide/workflow.md)
-- [Installation Guide](./INSTALL.md)
+- [Installation Guide](./install.md)
 - [Compare with Other Frameworks](./openspec-vs-conductor-comparison.md)
 
 <style>
@@ -143,3 +141,4 @@ Cooper structures agentic engineering into clear, verifiable phases:
   }
 }
 </style>
+
