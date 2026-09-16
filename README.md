@@ -45,7 +45,7 @@ Alternatively, if you have this repository cloned locally:
 /path/to/cooper/install.sh /path/to/your-project
 ```
 
-> 📖 **Detailed Installer & Migration Guide**: For details on auto-migrating existing Conductor/OpenSpec setups or greenfield scaffolding, see [`docs/INSTALL.md`](docs/INSTALL.md).
+> 📖 **Detailed Installer & Migration Guide**: For details on auto-migrating existing Conductor/OpenSpec setups or greenfield scaffolding, see [`docs/install.md`](docs/install.md).
 
 ## What `install.sh` Does
 

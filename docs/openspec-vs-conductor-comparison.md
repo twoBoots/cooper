@@ -6,8 +6,6 @@ As AI coding agents (Claude Code, Cursor, Gemini CLI, Antigravity, etc.) mature,
 
 **Cooper** is a **suggestive, agent-agnostic hybrid** uniting **[OpenSpec](https://openspec.dev)**'s living capability specifications and spec deltas with **Conductor**'s quality governance and verification gates, paired with **[Troop](https://twoboots.github.io/troop)** Git worktree isolation (`.worktrees/`). Cooper provides guardrails without being prescriptive, empowering teams to adapt skills, workflows, and tech stacks to their project needs.
 
----
-
 ## 1. Core Framework Comparison
 | Dimension | Customized Conductor Approach | OpenSpec (Fission AI) | Cooper Hybrid Model (`.cooper/` + [Troop](https://twoboots.github.io/troop)) |
 | :--- | :--- | :--- | :--- |
@@ -21,8 +19,6 @@ As AI coding agents (Claude Code, Cursor, Gemini CLI, Antigravity, etc.) mature,
 | **Phase Synchronisation** | Manual / Local | N/A | **Automatic (`git fetch origin main` & `git push origin <track_id>`)** |
 | **Agent Skills** | External Global Plugin Prerequisite | N/A | **Packaged Project-Local Skills (`.agents/skills/`)** |
 | **Scaffolding** | Full (`product.md`, `tech-stack.md`) | Minimalist | **Full Scaffolding (`.cooper/definition/`)** |
-
----
 
 ```
 your-project/
@@ -62,8 +58,6 @@ your-project/
 └── AGENTS.md                          # Universal agent guidelines
 ```
 
----
-
 ### 3.1 [Troop](https://twoboots.github.io/troop) Worktree Isolation (`git agent-start` / `git agent-stop`)
 * **Worktree Spawning (`git agent-start <track_id>`)**: Troop spawns an isolated Git worktree under `.worktrees/<track_id>`. All feature code, test additions, and track-specific `.cooper/active/<track_id>/` files are created inside that isolated worktree.
 * **Parallel Execution**: Multiple agents or developers can work on separate tracks concurrently in distinct worktrees (`git troop` lists all active worktrees).
@@ -78,8 +72,6 @@ Each task in `.cooper/active/<track_id>/plan.md` follows Cooper's strict TDD lif
 5. **Coverage & Quality Gates**: Verify >80% code coverage, zero linter errors, docstrings, and type safety.
 6. **Task Summary Git Notes**: Attach commit summary metadata via `git notes add -m "<summary>" <commit_hash>`.
 7. **Mark Done**: Update `plan.md` to `[x]` with short commit SHA.
-
----
 
 Phase completion enforces **three levels of synchronisation** alongside automated and manual verification:
 
@@ -120,8 +112,6 @@ sequenceDiagram
 * Upon completing phase verification and creating the checkpoint commit (`cooper(checkpoint): Checkpoint end of Phase X`), Cooper attaches an auditable verification report using `git notes`.
 * It updates `plan.md` with `[checkpoint: <sha>]` and executes `git push origin <track_id>`.
 
----
-
 ```mermaid
 sequenceDiagram
     autonumber
@@ -153,8 +143,6 @@ sequenceDiagram
     Agent->>LivingSpecs: Merge Spec Deltas into main .cooper/specs/
     Dev->>Troop: git agent-stop <track_id>
 ```
-
----
 
 ### 6.1 Spec Delta (`.cooper/active/<track_id>/spec-deltas/auth-session/spec.md`)
 ```diff

@@ -8,11 +8,11 @@ export default withMermaid(
   description: 'Spec-Driven Development (SDD) & Troop Worktree Isolation Framework',
   base: process.env.VITEPRESS_BASE || '/cooper/',
   themeConfig: {
-    siteTitle: 'Cooper',
+    siteTitle: 'Cooper 🛢️',
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'Workflow', link: '/guide/workflow' },
-      { text: 'Installation', link: '/INSTALL' },
+      { text: 'Installation', link: '/install' },
       { text: 'Comparisons', link: '/openspec-vs-conductor-comparison' },
       { text: 'Troop', link: 'https://twoboots.github.io/troop' },
       { text: 'OpenSpec', link: 'https://openspec.dev' }
@@ -23,7 +23,7 @@ export default withMermaid(
         items: [
           { text: 'Getting Started', link: '/guide/getting-started' },
           { text: 'Workflow & Lifecycle', link: '/guide/workflow' },
-          { text: 'Installation Guide', link: '/INSTALL' }
+          { text: 'Installation Guide', link: '/install' }
         ]
       },
       {

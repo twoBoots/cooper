@@ -150,7 +150,7 @@ func TestAuditMarkdownLinks_CodePathScopedToOperativeDocuments(t *testing.T) {
 
 	exempt := []string{
 		"README.md",
-		"docs/INSTALL.md",
+		"docs/install.md",
 		".cooper/active/some-track/proposal.md",
 		".cooper/active/some-track/plan.md",
 		".cooper/archive/old-track/design.md",
