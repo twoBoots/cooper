@@ -17,10 +17,10 @@
 - [x] Task: Phase 2 Verification & Checkpoint [checkpoint: 6fc7152]
 
 ## Phase 3: Setup Skill Documentation & Source Parity
-- [~] Task: Document Claude Bridge in Cooper Setup Skill
-  - [ ] Sub-task: Update `skills/cooper-setup/SKILL.md` to document `.claude/skills` symlink and `CLAUDE.md` bridge setup
-  - [ ] Sub-task: Synchronize `.agents/skills/cooper-setup/SKILL.md` byte-for-byte with `skills/cooper-setup/SKILL.md`
-  - [ ] Sub-task: Run `cooper validate` to verify skill identity, spec structure, and links
+- [x] Task: Document Claude Bridge in Cooper Setup Skill (be5b1a6)
+  - [x] Sub-task: Update `skills/cooper-setup/SKILL.md` to document `.claude/skills` symlink and `CLAUDE.md` bridge setup
+  - [x] Sub-task: Synchronize `.agents/skills/cooper-setup/SKILL.md` byte-for-byte with `skills/cooper-setup/SKILL.md`
+  - [x] Sub-task: Run `cooper validate` to verify skill identity, spec structure, and links
 - [ ] Task: Phase 3 Verification & Checkpoint
 
 ## Phase 4: End-to-End Verification & Remote Sync
