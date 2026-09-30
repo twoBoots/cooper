@@ -224,3 +224,158 @@ echo "SOURCED_OK"
 		t.Error("sourcing install.sh in library mode scaffolded .cooper/; it must be side-effect free")
 	}
 }
+
+// TestInstallScript_ClaudeBridge_Greenfield verifies that running setup_claude_bridge
+// creates .claude/skills as a symlink pointing to ../.agents/skills and CLAUDE.md
+// containing @AGENTS.md when neither exists.
+func TestInstallScript_ClaudeBridge_Greenfield(t *testing.T) {
+	bash := requireBash(t)
+
+	scriptPath, err := filepath.Abs(installScript)
+	if err != nil {
+		t.Fatalf("failed resolving install.sh: %v", err)
+	}
+
+	target := t.TempDir()
+
+	program := `
+set -e
+export COOPER_INSTALL_LIB_ONLY=1
+. "` + scriptPath + `"
+cd "` + target + `"
+setup_claude_bridge
+`
+
+	cmd := exec.Command(bash, "-c", program)
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		t.Fatalf("setup_claude_bridge failed: %v\n%s", err, out)
+	}
+
+	linkPath := filepath.Join(target, ".claude", "skills")
+	dest, err := os.Readlink(linkPath)
+	if err != nil {
+		t.Fatalf("expected %s to be a symlink: %v", linkPath, err)
+	}
+	if dest != "../.agents/skills" {
+		t.Errorf("expected symlink to point to '../.agents/skills', got %q", dest)
+	}
+
+	claudeMdPath := filepath.Join(target, "CLAUDE.md")
+	content, err := os.ReadFile(claudeMdPath)
+	if err != nil {
+		t.Fatalf("expected %s to exist: %v", claudeMdPath, err)
+	}
+	if !strings.Contains(string(content), "@AGENTS.md") {
+		t.Errorf("expected CLAUDE.md to contain '@AGENTS.md', got: %s", string(content))
+	}
+}
+
+// TestInstallScript_ClaudeBridge_PreservesExistingSkills verifies that an existing
+// entity at .claude/skills is not clobbered or overwritten.
+func TestInstallScript_ClaudeBridge_PreservesExistingSkills(t *testing.T) {
+	bash := requireBash(t)
+
+	scriptPath, err := filepath.Abs(installScript)
+	if err != nil {
+		t.Fatalf("failed resolving install.sh: %v", err)
+	}
+
+	target := t.TempDir()
+	claudeDir := filepath.Join(target, ".claude")
+	if err := os.MkdirAll(claudeDir, 0755); err != nil {
+		t.Fatalf("failed creating .claude dir: %v", err)
+	}
+
+	customSkillsDir := filepath.Join(claudeDir, "skills")
+	if err := os.MkdirAll(customSkillsDir, 0755); err != nil {
+		t.Fatalf("failed creating custom skills dir: %v", err)
+	}
+	markerFile := filepath.Join(customSkillsDir, "custom.txt")
+	if err := os.WriteFile(markerFile, []byte("custom content"), 0644); err != nil {
+		t.Fatalf("failed creating marker file: %v", err)
+	}
+
+	program := `
+set -e
+export COOPER_INSTALL_LIB_ONLY=1
+. "` + scriptPath + `"
+cd "` + target + `"
+setup_claude_bridge
+`
+
+	cmd := exec.Command(bash, "-c", program)
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		t.Fatalf("setup_claude_bridge failed: %v\n%s", err, out)
+	}
+
+	// Must remain a directory, not replaced by a symlink
+	fi, err := os.Lstat(customSkillsDir)
+	if err != nil {
+		t.Fatalf("failed stating skills path: %v", err)
+	}
+	if fi.Mode()&os.ModeSymlink != 0 {
+		t.Errorf("expected %s to remain a directory, but it became a symlink", customSkillsDir)
+	}
+	if _, err := os.Stat(markerFile); err != nil {
+		t.Errorf("marker file in custom skills was removed: %v", err)
+	}
+}
+
+// TestInstallScript_ClaudeBridge_AppendsToExistingClaudeMd verifies that if CLAUDE.md
+// already exists without @AGENTS.md, @AGENTS.md is appended.
+func TestInstallScript_ClaudeBridge_AppendsToExistingClaudeMd(t *testing.T) {
+	bash := requireBash(t)
+
+	scriptPath, err := filepath.Abs(installScript)
+	if err != nil {
+		t.Fatalf("failed resolving install.sh: %v", err)
+	}
+
+	target := t.TempDir()
+	claudeMdPath := filepath.Join(target, "CLAUDE.md")
+	const existingContent = "# My Existing Project Rules\n\n- rule 1\n"
+	if err := os.WriteFile(claudeMdPath, []byte(existingContent), 0644); err != nil {
+		t.Fatalf("failed writing initial CLAUDE.md: %v", err)
+	}
+
+	program := `
+set -e
+export COOPER_INSTALL_LIB_ONLY=1
+. "` + scriptPath + `"
+cd "` + target + `"
+setup_claude_bridge
+`
+
+	cmd := exec.Command(bash, "-c", program)
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		t.Fatalf("setup_claude_bridge failed: %v\n%s", err, out)
+	}
+
+	data, err := os.ReadFile(claudeMdPath)
+	if err != nil {
+		t.Fatalf("failed reading CLAUDE.md: %v", err)
+	}
+	content := string(data)
+	if !strings.HasPrefix(content, existingContent) {
+		t.Errorf("expected CLAUDE.md to preserve existing content, got: %s", content)
+	}
+	if !strings.Contains(content, "@AGENTS.md") {
+		t.Errorf("expected CLAUDE.md to append '@AGENTS.md', got: %s", content)
+	}
+
+	// Run again to verify idempotency (no duplicate @AGENTS.md)
+	cmd2 := exec.Command(bash, "-c", program)
+	if out2, err2 := cmd2.CombinedOutput(); err2 != nil {
+		t.Fatalf("second run of setup_claude_bridge failed: %v\n%s", err2, out2)
+	}
+	data2, err := os.ReadFile(claudeMdPath)
+	if err != nil {
+		t.Fatalf("failed reading CLAUDE.md on second read: %v", err)
+	}
+	if strings.Count(string(data2), "@AGENTS.md") != 1 {
+		t.Errorf("expected exactly one '@AGENTS.md' occurrence, got: %s", string(data2))
+	}
+}
