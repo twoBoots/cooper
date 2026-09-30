@@ -9,11 +9,11 @@
 - [x] Task: Phase 1 Verification & Checkpoint [checkpoint: 91a4a83]
 
 ## Phase 2: Installer Implementation (Green)
-- [~] Task: Implement Claude Bridge in `install.sh`
-  - [ ] Sub-task: Implement `setup_claude_bridge` function in `install.sh` handling `.claude/skills` and `CLAUDE.md`
-  - [ ] Sub-task: Invoke `setup_claude_bridge` during installer execution after AGENTS.md setup
-  - [ ] Sub-task: Re-run `go test ./cmd/ -run TestInstallScript_ClaudeBridge` and verify all tests pass (Green)
-  - [ ] Sub-task: Run all existing installer tests in `cmd/installer_test.go` to ensure no regressions
+- [x] Task: Implement Claude Bridge in `install.sh` (6ffeb91)
+  - [x] Sub-task: Implement `setup_claude_bridge` function in `install.sh` handling `.claude/skills` and `CLAUDE.md`
+  - [x] Sub-task: Invoke `setup_claude_bridge` during installer execution after AGENTS.md setup
+  - [x] Sub-task: Re-run `go test ./cmd/ -run TestInstallScript_ClaudeBridge` and verify all tests pass (Green)
+  - [x] Sub-task: Run all existing installer tests in `cmd/installer_test.go` to ensure no regressions
 - [ ] Task: Phase 2 Verification & Checkpoint
 
 ## Phase 3: Setup Skill Documentation & Source Parity
