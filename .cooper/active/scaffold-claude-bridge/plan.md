@@ -1,7 +1,7 @@
 # Implementation Plan: Scaffold Claude Bridge (`.claude/skills` and `CLAUDE.md`)
 
 ## Phase 1: Test Suite & Failure Demonstration (Red)
-- [ ] Task: Claude Bridge Installer Tests
+- [~] Task: Claude Bridge Installer Tests
   - [ ] Sub-task: Write unit test in `cmd/installer_test.go` verifying greenfield creation of `.claude/skills` symlink and `CLAUDE.md` bridge (Red)
   - [ ] Sub-task: Write unit test in `cmd/installer_test.go` verifying preservation of existing `.claude/skills` entity (Red)
   - [ ] Sub-task: Write unit test in `cmd/installer_test.go` verifying append and idempotent non-duplication of `@AGENTS.md` in existing `CLAUDE.md` (Red)
