@@ -90,6 +90,9 @@ Classify repository state:
    - `.agents/skills/cooper-review/SKILL.md`
    - `.agents/skills/cooper-status/SKILL.md`
 2. This ensures any AI coding agent opening the project immediately discovers and can execute Cooper skills without requiring global profile plugins.
+3. Bridge skills for Claude Code and compatible agents:
+   - Ensure `.claude/` directory exists (`mkdir -p .claude`).
+   - If `.claude/skills` does not exist as a file, directory, or link (`[ ! -e .claude/skills ] && [ ! -L .claude/skills ]`), create relative symlink: `ln -s ../.agents/skills .claude/skills`.
 
 ---
 
@@ -123,14 +126,17 @@ Initialize `.cooper/tracks.md` (Tracks Registry) if not present.
 
 ---
 
-## 4. Agent Guidelines (`AGENTS.md`)
+## 4. Agent Guidelines (`AGENTS.md`) & Claude Bridge (`CLAUDE.md`)
 
-Create or update `AGENTS.md` at the project root with instructions to follow `.cooper/COOPER.md`, `.cooper/definition/workflow.md`, and project-local skills in `.agents/skills/cooper-*`.
+1. Create or update `AGENTS.md` at the project root with instructions to follow `.cooper/COOPER.md`, `.cooper/definition/workflow.md`, and project-local skills in `.agents/skills/cooper-*`.
+2. Bridge guidelines for Claude Code and compatible agents (`CLAUDE.md`):
+   - If `CLAUDE.md` does not exist, create `CLAUDE.md` containing `@AGENTS.md`.
+   - If `CLAUDE.md` already exists and does not contain `@AGENTS.md`, append `@AGENTS.md` to it.
 
 ---
 
 ## 5. Completion & Next Steps
 
-1. Stage `.cooper/`, `.agents/`, and `AGENTS.md`.
+1. Stage `.cooper/`, `.agents/`, `AGENTS.md`, and any created `.claude/` or `CLAUDE.md` bridge files.
 2. Commit with message: `cooper(setup): Initialize Cooper SDD framework and standards`.
 3. Prompt the user via interactive question tool (e.g. `ask_question`, falling back to text chat if unavailable) to ask if they would like to plan their first track now using `cooper-new-track`.
