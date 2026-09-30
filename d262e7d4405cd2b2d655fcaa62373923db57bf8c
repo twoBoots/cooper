@@ -1,0 +1,3 @@
+Task: Claude Bridge Installer Tests
+Scope: cmd/installer_test.go
+Summary: Added unit tests verifying greenfield .claude/skills symlink creation, CLAUDE.md @AGENTS.md bridge, preservation of existing skills, and idempotent appending without duplicates.
