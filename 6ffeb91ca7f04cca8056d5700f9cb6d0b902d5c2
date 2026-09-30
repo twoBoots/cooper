@@ -1,0 +1,3 @@
+Task: Implement Claude Bridge in install.sh
+Scope: install.sh
+Summary: Implemented setup_claude_bridge function creating .claude/skills symlink pointing to ../.agents/skills and CLAUDE.md bridging to @AGENTS.md, with non-destructive idempotency checks for existing directories/symlinks and existing CLAUDE.md files. Integrated as step 6 in install.sh workflow.
