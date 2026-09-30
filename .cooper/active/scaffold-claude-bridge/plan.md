@@ -6,7 +6,7 @@
   - [x] Sub-task: Write unit test in `cmd/installer_test.go` verifying preservation of existing `.claude/skills` entity (Red)
   - [x] Sub-task: Write unit test in `cmd/installer_test.go` verifying append and idempotent non-duplication of `@AGENTS.md` in existing `CLAUDE.md` (Red)
   - [x] Sub-task: Execute `go test ./cmd/ -run TestInstallScript_ClaudeBridge` and confirm test failures (Red)
-- [ ] Task: Phase 1 Verification & Checkpoint
+- [x] Task: Phase 1 Verification & Checkpoint [checkpoint: 91a4a83]
 
 ## Phase 2: Installer Implementation (Green)
 - [ ] Task: Implement Claude Bridge in `install.sh`
