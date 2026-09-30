@@ -14,7 +14,7 @@
   - [x] Sub-task: Invoke `setup_claude_bridge` during installer execution after AGENTS.md setup
   - [x] Sub-task: Re-run `go test ./cmd/ -run TestInstallScript_ClaudeBridge` and verify all tests pass (Green)
   - [x] Sub-task: Run all existing installer tests in `cmd/installer_test.go` to ensure no regressions
-- [ ] Task: Phase 2 Verification & Checkpoint
+- [x] Task: Phase 2 Verification & Checkpoint [checkpoint: 6fc7152]
 
 ## Phase 3: Setup Skill Documentation & Source Parity
 - [ ] Task: Document Claude Bridge in Cooper Setup Skill
