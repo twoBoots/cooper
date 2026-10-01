@@ -24,8 +24,8 @@
 - [x] Task: Phase 3 Verification & Checkpoint [checkpoint: 4adf093]
 
 ## Phase 4: End-to-End Verification & Remote Sync
-- [~] Task: Complete Test Suite & Manual Dry-Run
-  - [ ] Sub-task: Run full test suite (`go test ./...`) across all packages
-  - [ ] Sub-task: Perform end-to-end dry run of `install.sh` in an isolated temporary directory
-  - [ ] Sub-task: Present manual verification results for user confirmation
+- [x] Task: Complete Test Suite & Manual Dry-Run (98224a9)
+  - [x] Sub-task: Run full test suite (`go test ./...`) across all packages
+  - [x] Sub-task: Perform end-to-end dry run of `install.sh` in an isolated temporary directory
+  - [x] Sub-task: Present manual verification results for user confirmation
 - [ ] Task: Phase 4 Verification & Checkpoint
