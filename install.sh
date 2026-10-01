@@ -217,6 +217,32 @@ relocate_troop_reference() {
     return 0
 }
 
+# Bridge agent skills and guidelines for Claude Code and compatible agents
+# (.claude/skills -> ../.agents/skills and CLAUDE.md -> @AGENTS.md).
+# Idempotent and non-destructive to existing custom files/directories.
+setup_claude_bridge() {
+    mkdir -p .claude
+    if [ ! -e ".claude/skills" ] && [ ! -L ".claude/skills" ]; then
+        ln -s ../.agents/skills .claude/skills
+        echo "  [✓] Linked .claude/skills -> ../.agents/skills"
+    else
+        echo "  [✓] .claude/skills already present"
+    fi
+
+    if [ ! -f "CLAUDE.md" ]; then
+        echo "@AGENTS.md" > CLAUDE.md
+        echo "  [✓] Created CLAUDE.md bridging to @AGENTS.md"
+    elif ! grep -qs "@AGENTS.md" CLAUDE.md; then
+        echo "" >> CLAUDE.md
+        echo "@AGENTS.md" >> CLAUDE.md
+        echo "  [✓] Appended @AGENTS.md bridge to existing CLAUDE.md"
+    else
+        echo "  [✓] CLAUDE.md bridge to @AGENTS.md already present"
+    fi
+
+    return 0
+}
+
 # Library mode: when sourced with COOPER_INSTALL_LIB_ONLY set, define the
 # functions above and stop, performing no installation. Used by the test suite.
 if [ -n "${COOPER_INSTALL_LIB_ONLY:-}" ]; then
@@ -234,7 +260,7 @@ fi
 echo "🛢️ Installing Cooper (Cooper SDD + Living Specs + Troop Worktrees) into $(pwd)..."
 
 # 1. Run Troop installer first (worktree setup, .gitaliases, .gitignore, TROOP.md)
-echo "  [1/6] Setting up Troop worktree foundation..."
+echo "  [1/7] Setting up Troop worktree foundation..."
 if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/../troop/install.sh" ]; then
     bash "$SCRIPT_DIR/../troop/install.sh" "$TARGET_DIR"
 elif command -v curl >/dev/null 2>&1; then
@@ -264,7 +290,7 @@ if [ -d "openspec" ]; then
 fi
 
 # 2. Check and Migrate Existing Setup or Fetch Baseline Scaffolding
-echo "  [2/6] Scaffolding & Migration Analysis..."
+echo "  [2/7] Scaffolding & Migration Analysis..."
 
 if [ "$CONDUCTOR_EXISTS" = true ]; then
     echo "  [→] Existing Conductor setup detected. Migrating to .cooper/ structure..."
@@ -314,7 +340,7 @@ if [ "$CONDUCTOR_EXISTS" = false ] && [ "$OPENSPEC_EXISTS" = false ]; then
 fi
 
 # 3. Install Cooper Hybrid workflow specification & COOPER.md reference
-echo "  [3/6] Installing Cooper workflow specification & COOPER.md..."
+echo "  [3/7] Installing Cooper workflow specification & COOPER.md..."
 get_cooper_file ".cooper/definition/workflow.md" ".cooper/definition/workflow.md"
 get_cooper_file ".cooper/COOPER.md" ".cooper/COOPER.md"
 
@@ -354,7 +380,7 @@ fi
 echo "  [✓] Installed .cooper/definition/workflow.md, COOPER.md & index.md"
 
 # 4. Install Project-Local Agent Skills (.agents/skills/cooper-*)
-echo "  [4/6] Installing project-local Cooper skills into .agents/skills/..."
+echo "  [4/7] Installing project-local Cooper skills into .agents/skills/..."
 get_cooper_file "skills/cooper-setup/SKILL.md" ".agents/skills/cooper-setup/SKILL.md"
 get_cooper_file "skills/cooper-rfc/SKILL.md" ".agents/skills/cooper-rfc/SKILL.md"
 get_cooper_file "skills/cooper-new-track/SKILL.md" ".agents/skills/cooper-new-track/SKILL.md"
@@ -364,7 +390,7 @@ get_cooper_file "skills/cooper-status/SKILL.md" ".agents/skills/cooper-status/SK
 echo "  [✓] Installed Cooper skills (.agents/skills/cooper-{setup,rfc,new-track,implement,review,status})"
 
 # 5. Setup AGENTS.md
-echo "  [5/6] Setting up AGENTS.md rules..."
+echo "  [5/7] Setting up AGENTS.md rules..."
 TMP_TEMPLATE="$(mktemp)"
 if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/AGENTS.template.md" ]; then
     cp "$SCRIPT_DIR/AGENTS.template.md" "$TMP_TEMPLATE"
@@ -388,8 +414,12 @@ else
 fi
 rm -f "$TMP_TEMPLATE"
 
-# 6. Install the optional cooper binary (never fatal)
-echo "  [6/6] Installing optional cooper binary..."
+# 6. Setup Claude compatibility bridge (.claude/skills & CLAUDE.md)
+echo "  [6/7] Setting up Claude compatibility bridge (.claude/skills & CLAUDE.md)..."
+setup_claude_bridge
+
+# 7. Install the optional cooper binary (never fatal)
+echo "  [7/7] Installing optional cooper binary..."
 install_cooper_binary
 
 echo ""
