@@ -28,4 +28,4 @@
   - [x] Sub-task: Run full test suite (`go test ./...`) across all packages
   - [x] Sub-task: Perform end-to-end dry run of `install.sh` in an isolated temporary directory
   - [x] Sub-task: Present manual verification results for user confirmation
-- [ ] Task: Phase 4 Verification & Checkpoint
+- [x] Task: Phase 4 Verification & Checkpoint [checkpoint: 955aef9]
