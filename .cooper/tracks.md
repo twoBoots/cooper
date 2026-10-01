@@ -54,7 +54,7 @@ All active and completed Cooper tracks are registered below.
   - Worktree: `.worktrees/docs-review-refinements`
   - Link: [.cooper/active/docs-review-refinements/index.md](.cooper/active/docs-review-refinements/index.md)
 
-- [ ] **Track: Scaffold Claude Bridge (`.claude/skills` and `CLAUDE.md`)**
+- [x] **Track: Scaffold Claude Bridge (`.claude/skills` and `CLAUDE.md`)**
   - Worktree: `.worktrees/scaffold-claude-bridge`
   - Link: [.cooper/active/scaffold-claude-bridge/index.md](.cooper/active/scaffold-claude-bridge/index.md)
 

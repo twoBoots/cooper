@@ -2,7 +2,7 @@
   "track_id": "scaffold-claude-bridge",
   "title": "Scaffold Claude skills symlink and CLAUDE.md bridge in install.sh and setup",
   "type": "feature",
-  "status": "new",
+  "status": "completed",
   "created_at": "2026-09-30T05:05:00-07:00",
-  "updated_at": "2026-09-30T05:05:00-07:00"
+  "updated_at": "2026-10-01T00:41:00-07:00"
 }
