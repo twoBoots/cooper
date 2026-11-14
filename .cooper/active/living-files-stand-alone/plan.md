@@ -15,7 +15,7 @@
   - [x] Sub-task: Verify baseline skill files and `.cooper/definition/` + `.cooper/specs/` living files (Red)
   - [x] Sub-task: Update `skills/cooper-new-track/SKILL.md`, `skills/cooper-rfc/SKILL.md`, `skills/cooper-implement/SKILL.md`, `skills/cooper-review/SKILL.md`, and `skills/cooper-setup/SKILL.md` and mirror byte-for-byte to `.agents/skills/` (Green)
   - [x] Sub-task: Audit skill headings (`### N.M`), required sections (`Interactive Question Protocol`, `Native File Tools Mandate`), backticked paths (`<...>` placeholders), and living files under `.cooper/definition/` and `.cooper/specs/` (Refactor)
-- [~] Task: Phase 2 Verification & Checkpoint
-  - [ ] Sub-task: Synchronize rules (`git fetch origin main`)
-  - [ ] Sub-task: Verify phase 2 changes and attach Git Note (`git notes add -m`)
-  - [ ] Sub-task: Commit phase checkpoint and push (`git push origin living-files-stand-alone`)
+- [x] Task: Phase 2 Verification & Checkpoint (02f4f93) [checkpoint: 02f4f93]
+  - [x] Sub-task: Synchronize rules (`git fetch origin main`)
+  - [x] Sub-task: Verify phase 2 changes and attach Git Note (`git notes add -m`)
+  - [x] Sub-task: Commit phase checkpoint and push (`git push origin living-files-stand-alone`)
