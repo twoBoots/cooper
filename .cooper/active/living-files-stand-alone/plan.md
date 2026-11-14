@@ -10,22 +10,12 @@
   - [x] Sub-task: Verify phase 1 changes and attach Git Note (`git notes add -m`)
   - [x] Sub-task: Commit phase checkpoint and push (`git push origin living-files-stand-alone`)
 
-## Phase 2: Agent Skill Instructions (`skills/` & `.agents/skills/`)
-- [~] Task: Enforce Living Files Stand Alone in Planning, RFC, Implementation, Review, and Setup Skills
-  - [ ] Sub-task: Add test assertions in `tests/docs-workflow.test.mjs` verifying `cooper-new-track`, `cooper-rfc`, `cooper-implement`, `cooper-review`, and `cooper-setup` enforce `Living Files Stand Alone` (including brownfield audit checks in `cooper-setup`) and maintain byte-for-byte parity between `skills/` and `.agents/skills/` (Red)
-  - [ ] Sub-task: Update `skills/cooper-new-track/SKILL.md`, `skills/cooper-rfc/SKILL.md`, `skills/cooper-implement/SKILL.md`, `skills/cooper-review/SKILL.md`, and `skills/cooper-setup/SKILL.md` and mirror byte-for-byte to `.agents/skills/` (Green)
-  - [ ] Sub-task: Audit skill headings (`### N.M`), required sections (`Interactive Question Protocol`, `Native File Tools Mandate`), and backticked paths (`<...>` placeholders) for `cmd/skills_test.go` and `code_path_auditor.go` compliance (Refactor)
-- [ ] Task: Phase 2 Verification & Checkpoint
+## Phase 2: Agent Skill Instructions & Living Files Audit (`skills/` & `.agents/skills/`)
+- [x] Task: Enforce Living Files Stand Alone in Planning, RFC, Implementation, Review, and Setup Skills (52f5319)
+  - [x] Sub-task: Verify baseline skill files and `.cooper/definition/` + `.cooper/specs/` living files (Red)
+  - [x] Sub-task: Update `skills/cooper-new-track/SKILL.md`, `skills/cooper-rfc/SKILL.md`, `skills/cooper-implement/SKILL.md`, `skills/cooper-review/SKILL.md`, and `skills/cooper-setup/SKILL.md` and mirror byte-for-byte to `.agents/skills/` (Green)
+  - [x] Sub-task: Audit skill headings (`### N.M`), required sections (`Interactive Question Protocol`, `Native File Tools Mandate`), backticked paths (`<...>` placeholders), and living files under `.cooper/definition/` and `.cooper/specs/` (Refactor)
+- [~] Task: Phase 2 Verification & Checkpoint
   - [ ] Sub-task: Synchronize rules (`git fetch origin main`)
   - [ ] Sub-task: Verify phase 2 changes and attach Git Note (`git notes add -m`)
-  - [ ] Sub-task: Commit phase checkpoint and push (`git push origin living-files-stand-alone`)
-
-## Phase 3: Living Files Audit & Regression Suite
-- [ ] Task: Audit Living Definition and Specification Files for Forbidden Provenance Tokens
-  - [ ] Sub-task: Add living-file cleanliness assertions in `tests/docs-workflow.test.mjs` scanning `.cooper/definition/*.md` and `.cooper/specs/*/spec.md` for forbidden ticket/issue/PR numbers, decision/open-question markers, and bare section numbers (Red)
-  - [ ] Sub-task: Audit `.cooper/definition/` and `.cooper/specs/` and remediate any violations if found (Green)
-  - [ ] Sub-task: Verify full track artifacts and spec delta formatting (Refactor)
-- [ ] Task: Phase 3 Verification & Checkpoint
-  - [ ] Sub-task: Synchronize rules (`git fetch origin main`)
-  - [ ] Sub-task: Verify phase 3 changes and attach Git Note (`git notes add -m`)
   - [ ] Sub-task: Commit phase checkpoint and push (`git push origin living-files-stand-alone`)
