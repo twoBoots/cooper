@@ -1,0 +1,11 @@
+{
+  "track_id": "living-files-stand-alone",
+  "title": "Living files: forbid ticket, decision-marker and section-number references",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-11-14T16:17:00+11:00",
+  "issue": 28,
+  "capabilities": [
+    "documentation"
+  ]
+}
