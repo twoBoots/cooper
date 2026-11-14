@@ -155,7 +155,7 @@ git push origin <track_id>
 Once all phases and tasks in `plan.md` are marked `[x]`:
 
 1. **Living Files Stand Alone Cleanup:**
-   - Before finalizing or merging Spec Deltas (`.cooper/active/<track_id>/spec-deltas/`) into `.cooper/specs/<capability>/spec.md` or committing edits to `.cooper/definition/`, strip any planning provenance—ticket/issue/PR/track numbers, decision or open-question markers (such as `D14`, `DEC-1`, `OQ-4`), and bare section numbers (replacing section numbers with exact heading names). Ensure any rationale link to a frozen archived track, approved/archived RFC, or frozen macro contract (by file path + heading name) or open known-gap ticket citation appears strictly outside requirement text and scenario steps.
+   - Before merging Spec Deltas (`.cooper/active/<track_id>/spec-deltas/`) into `.cooper/specs/<capability>/spec.md` or committing edits to `.cooper/definition/`, strip ticket/issue/PR/track numbers, decision or open-question markers (`D14`, `DEC-1`, `OQ-4`), and bare section numbers (replace section numbers with exact heading names). Any rationale link to a frozen archived track, approved/archived RFC, or frozen macro contract (file path + heading name) or open known-gap ticket citation MUST sit outside requirement text and scenario steps.
 2. **Update Registry & Metadata:**
    - Update `metadata.json` status to `completed`.
    - Update `.cooper/tracks.md` status to `[x]`.
