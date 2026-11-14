@@ -1,11 +1,11 @@
 # Implementation Plan: Living Files Stand Alone
 
 ## Phase 1: Workflow Policy, Template & Living Documentation Spec
-- [~] Task: Add Living Files Stand Alone to Workflow Policy, Starter Template, and Documentation Spec
-  - [ ] Sub-task: Write verification assertions in `tests/docs-workflow.test.mjs` checking `.cooper/definition/workflow.md`, `templates/workflow.md`, and `.cooper/specs/documentation/spec.md` for `Living Files Stand Alone`, banned categories, non-requirement exceptions, and Track Finalization provenance cleanup (Red)
-  - [ ] Sub-task: Update `.cooper/definition/workflow.md`, `templates/workflow.md`, and `.cooper/specs/documentation/spec.md` with the `Living Files Stand Alone` Guiding Principle, Track Finalization cleanup rule, and formal capability requirement/scenarios (Green)
-  - [ ] Sub-task: Verify formatting, heading consistency, and placeholder paths across workflow and spec files (Refactor)
-- [ ] Task: Phase 1 Verification & Checkpoint
+- [x] Task: Add Living Files Stand Alone to Workflow Policy, Starter Template, and Documentation Spec (97a6b3f)
+  - [x] Sub-task: Write verification assertions in `tests/docs-workflow.test.mjs` checking `.cooper/definition/workflow.md`, `templates/workflow.md`, and `.cooper/specs/documentation/spec.md` for `Living Files Stand Alone`, banned categories, non-requirement exceptions, and Track Finalization provenance cleanup (Red)
+  - [x] Sub-task: Update `.cooper/definition/workflow.md`, `templates/workflow.md`, and `.cooper/specs/documentation/spec.md` with the `Living Files Stand Alone` Guiding Principle, Track Finalization cleanup rule, and formal capability requirement/scenarios (Green)
+  - [x] Sub-task: Verify formatting, heading consistency, and placeholder paths across workflow and spec files (Refactor)
+- [~] Task: Phase 1 Verification & Checkpoint
   - [ ] Sub-task: Synchronize rules (`git fetch origin main`)
   - [ ] Sub-task: Verify phase 1 changes and attach Git Note (`git notes add -m`)
   - [ ] Sub-task: Commit phase checkpoint and push (`git push origin living-files-stand-alone`)
