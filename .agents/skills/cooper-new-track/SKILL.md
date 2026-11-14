@@ -74,6 +74,7 @@ Inside the worktree at `.cooper/active/<track_id>/` (using native file tools lik
    - Requirement diffs using standard GIVEN/WHEN/THEN syntax:
      - Lines prefixed with `+` for added requirements/scenarios.
      - Lines prefixed with `-` for removed/modified legacy behaviors.
+   - **Living Files Stand Alone:** Because Spec Deltas merge into `.cooper/specs/<capability>/spec.md` (and any track edits to `.cooper/definition/` land in living definitions), keep delta requirement text, scenario steps, and living prose self-contained—free of ticket/issue/PR/track numbers, decision or open-question markers (such as `D14`, `DEC-1`, `OQ-4`), and bare section numbers (such as `§4.2` or `section 3`, including self-references; use exact heading names instead). Keep planning provenance in `proposal.md` and `design.md`; outside requirement text, only rationale links to frozen archived tracks, approved/archived RFCs, or frozen macro contracts (by file path + heading name) and open known-gap tickets (until resolved) are permitted.
 4. **`metadata.json`**: Track ID, type, status (`new`), and creation timestamp.
 
 Present the proposal, design, and Spec Delta to the user for review. Revise until approved.

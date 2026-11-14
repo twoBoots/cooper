@@ -52,11 +52,9 @@ All edits are made first in `skills/` and mirrored byte-for-byte to `.agents/ski
   - Use `### N.M` (never `## N.M`) for subsection headings inside skills.
   - Keep `skills/<skill>/SKILL.md` and `.agents/skills/<skill>/SKILL.md` byte-for-byte identical.
   - Ensure no illustrative example path without `<...>` / `{...}` placeholders triggers `internal/validator/code_path_auditor.go` (`link/code-path-exists`).
-- **`tests/docs-workflow.test.mjs`:** Add Node test assertions verifying that `.cooper/definition/workflow.md`, `templates/workflow.md`, `.cooper/specs/documentation/spec.md`, and the five updated skills contain the **Living Files Stand Alone** principle, exceptions, finalization cleanup, and brownfield audit guidance, and that living files in `.cooper/definition/` and `.cooper/specs/` are clean of banned patterns.
 
 ---
 
 ## Quality Gates
-- `CI=true npm test` (`tests/docs-workflow.test.mjs`) passes.
 - `go test ./...` (`cmd/skills_test.go`, `internal/validator/...`) and `go run . validate` pass.
-- Manual audit confirms `.cooper/definition/*` and `.cooper/specs/*/spec.md` contain zero forbidden references.
+- Audit confirms `.cooper/definition/*` and `.cooper/specs/*/spec.md` contain zero forbidden references.

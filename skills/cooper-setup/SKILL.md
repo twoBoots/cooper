@@ -41,7 +41,7 @@ Classify repository state:
    - **Existing Conductor detected (`conductor/` exists):** Offer to auto-migrate definitions, styleguides, and tracks into `.cooper/`.
    - **Existing OpenSpec detected (`openspec/` exists):** Offer to auto-migrate specs into `.cooper/specs/` and changes into `.cooper/active/`.
 2. **Maturity:**
-   - **Brownfield:** Codebase files or manifests (`package.json`, `go.mod`, `requirements.txt`, `Cargo.toml`, `src/`) present. Request permission to perform a read-only scan to infer tech stack and existing architecture.
+   - **Brownfield:** Codebase files or manifests (`package.json`, `go.mod`, `requirements.txt`, `Cargo.toml`, `src/`) present. Request permission to perform a read-only scan to infer tech stack and existing architecture. If `.cooper/definition/` or `.cooper/specs/` (at the repository root or inside any barrel) already exist, audit those living files for **Living Files Stand Alone** violations—flagging any ticket/issue/PR/track numbers, decision or open-question markers (`D14`, `DEC-1`, `OQ-4`), or bare section numbers (`§4.2`, `section 3`, including self-references) outside the bounded non-requirement exceptions (rationale links to frozen archived tracks, approved/archived RFCs, or frozen macro contracts by file path + heading name, and open known-gap tickets until resolved).
    - **Greenfield:** No application code present. Initialize Git if needed (`git init`) and ask the user for their initial project concept.
 
 ---

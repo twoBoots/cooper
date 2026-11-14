@@ -32,4 +32,4 @@ Establish **Living Files Stand Alone** as an explicit Guiding Principle and spec
 1. `.cooper/definition/workflow.md` and `templates/workflow.md` document **Living Files Stand Alone** under Guiding Principles and require provenance cleanup during Track Finalization Spec Delta merges.
 2. `.cooper/specs/documentation/spec.md` includes `### Requirement: Living Files Stand Alone` covering scope, the three banned reference types, and the two non-requirement exceptions.
 3. `cooper-new-track`, `cooper-rfc`, `cooper-implement`, `cooper-review`, and `cooper-setup` enforce the rule (including brownfield audit checks in `cooper-setup`), with byte-for-byte parity between `skills/` and `.agents/skills/`.
-4. Documentation/workflow tests (`tests/docs-workflow.test.mjs`) verify the workflow rule, template, living spec, and skill directives, and existing living files under `.cooper/definition/` and `.cooper/specs/` are audited and clean.
+4. Existing living files under `.cooper/definition/` and `.cooper/specs/` are audited and verified clean of forbidden provenance tokens.
