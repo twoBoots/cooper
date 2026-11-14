@@ -13,6 +13,11 @@
 9. **Upstream Architecture vs. Track Execution:** Major collaborative initiatives, epics, or cross-cutting architectural changes should first be planned and peer-reviewed upstream using `cooper-rfc`. Once approved and merged to `main`, decomposed child tracks registered in `.cooper/tracks.md` enter this Track Workflow for TDD implementation.
 10. **Interactive Question Tools:** Whenever gathering requirements, clarifying choices, or requesting user decisions/verifications, agents MUST invoke runtime interactive question tools (e.g. `ask_question`). Plain text markdown option lists in chat are strictly a fallback when no interactive tool is available.
 11. **Native File Tools Mandate:** Always use dedicated file tools (`view_file`, `write_to_file`, `replace_file_content`) for inspecting, creating, or editing workspace files. Shell heredocs, pipes, stream editors (`sed`, `awk`), and output redirections (`cat << 'EOF'`, `echo >`, `cat >`) are strictly prohibited for file creation/edits when native file tools are present.
+12. **Living Files Stand Alone:** Files in `.cooper/definition/` and `.cooper/specs/` (at the repo root and in every barrel) MUST stand alone. `.cooper/active/` and `.cooper/archive/` are exempt.
+    - **Forbidden:** Ticket, issue, PR, or track numbers; decision or open-question markers (numbered `D`, `DEC`, or `OQ` identifiers); and bare section numbers (section-symbol numbers or positional section references, including self-references - use exact heading names instead).
+    - **Non-Requirement Exceptions (Outside Requirement Text and Scenario Steps Only):**
+      1. **Rationale Links:** Link frozen archived tracks, approved or archived RFCs, or frozen macro contracts by file path and exact heading name (e.g. `.cooper/archive/<track_id>/design.md#<Heading Name>`).
+      2. **Open Known Gaps:** Cite the tracking ticket while the gap is open; remove the entry once the ticket ships.
 
 ---
 
@@ -143,7 +148,7 @@ Once all phases are complete:
    - Run `gh pr create --title "feat(cooper): <track_description>" --body-file prbody.md`.
    - Remove `prbody.md`.
 4. **Merge & Spec Delta Integration**:
-   - Upon PR approval and merge to `main`, Cooper automatically merges Spec Deltas (`.cooper/active/<track_id>/spec-deltas/`) into living capability specs (`.cooper/specs/`).
+   - Upon PR approval and merge to `main`, merge Spec Deltas (`.cooper/active/<track_id>/spec-deltas/`) into `.cooper/specs/`, stripping ticket/issue/PR/track numbers, decision or open-question markers, and bare section numbers (replacing section numbers with exact heading names).
    - Move active track to `.cooper/archive/`.
 5. **Teardown Worktree (`git agent-stop <track_id>`)**:
    - Execute `git agent-stop <track_id>` to delete the `.worktrees/<track_id>` directory and local branch.

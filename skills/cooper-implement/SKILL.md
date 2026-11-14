@@ -154,12 +154,14 @@ git push origin <track_id>
 
 Once all phases and tasks in `plan.md` are marked `[x]`:
 
-1. **Update Registry & Metadata:**
+1. **Living Files Stand Alone Cleanup:**
+   - Before merging Spec Deltas (`.cooper/active/<track_id>/spec-deltas/`) into `.cooper/specs/<capability>/spec.md` or committing edits to `.cooper/definition/`, strip ticket/issue/PR/track numbers, decision or open-question markers (`D14`, `DEC-1`, `OQ-4`), and bare section numbers (replace section numbers with exact heading names). Any rationale link to a frozen archived track, approved/archived RFC, or frozen macro contract (file path + heading name) or open known-gap ticket citation MUST sit outside requirement text and scenario steps.
+2. **Update Registry & Metadata:**
    - Update `metadata.json` status to `completed`.
    - Update `.cooper/tracks.md` status to `[x]`.
    - Commit: `chore(cooper): Complete track '<track_id>'`.
-2. **Remote Push:**
+3. **Remote Push:**
    - Execute: `git push origin <track_id>`.
-3. **Handoff to Review & PR:**
+4. **Handoff to Review & PR:**
    - Inform user that all tasks are complete.
    - Present next steps via interactive question tool (e.g. `ask_question`), asking if they want to execute a comprehensive code review via `cooper-review` or create a GitHub Pull Request (`gh pr create`).

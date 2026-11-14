@@ -58,5 +58,9 @@ All active and completed Cooper tracks are registered below.
   - Worktree: `.worktrees/scaffold-claude-bridge`
   - Link: [.cooper/active/scaffold-claude-bridge/index.md](.cooper/active/scaffold-claude-bridge/index.md)
 
+- [x] **Track: Living Files Stand Alone** (`living-files-stand-alone`)
+  - Worktree: `.worktrees/living-files-stand-alone`
+  - Link: [.cooper/active/living-files-stand-alone/index.md](.cooper/active/living-files-stand-alone/index.md)
+
 
 

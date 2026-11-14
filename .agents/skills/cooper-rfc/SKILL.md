@@ -116,6 +116,7 @@ Inside `.worktrees/<rfc_id>/.cooper/active/<rfc_id>/` (using native file tools l
 ### 4.2 `spec-deltas/<capability>/spec.md` (Living Spec Diffs)
 For every impacted capability spec under `.cooper/specs/`:
 - Detail requirement additions (`+`) and removals/modifications (`-`) using GIVEN / WHEN / THEN format.
+- **Living Files Stand Alone:** Keep Spec Deltas free of ticket/issue/PR/track numbers, decision or open-question markers (`D14`, `DEC-1`, `OQ-4`), and bare section numbers (`§4.2`, `section 3`, including self-references - use exact heading names instead). Approved or archived RFCs and frozen macro contracts are frozen artifacts and may be cited outside requirement text by file path and exact heading name.
 
 ### 4.3 `tracks-breakdown.md` (Implementation Track Decomposition)
 Break down the proposed architecture into a sequential or parallel set of concrete execution tracks:

@@ -63,6 +63,9 @@ Analyze the implementation against:
 4. **Test Suite & Coverage:**
    - Execute the test suite: `CI=true npm test` (or project equivalent).
    - Verify all new logic is covered with unit/integration tests and coverage meets target (>80%).
+5. **Living Files Stand Alone Compliance:**
+   - Verify touched files in `.cooper/definition/`, `.cooper/specs/` (root and barrels), and `.cooper/active/<track_id>/spec-deltas/` contain no ticket/issue/PR/track numbers, decision or open-question markers (`D14`, `DEC-1`, `OQ-4`), or bare section numbers (`§4.2`, `section 3`, including self-references - use exact heading names instead).
+   - Confirm rationale links to frozen archived tracks, approved/archived RFCs, or frozen macro contracts (file path + heading name) and open known-gap tickets sit outside requirement text and scenario steps.
 
 ---
 
