@@ -62,5 +62,10 @@ All active and completed Cooper tracks are registered below.
   - Worktree: `.worktrees/living-files-stand-alone`
   - Link: [.cooper/active/living-files-stand-alone/index.md](.cooper/active/living-files-stand-alone/index.md)
 
+- [x] **Track: Bump Cooper CLI Patch Version to v1.2.1** (`bump-cli-v1.2.1`)
+  - Worktree: `.worktrees/bump-cli-v1.2.1`
+  - Link: [.cooper/active/bump-cli-v1.2.1/index.md](.cooper/active/bump-cli-v1.2.1/index.md)
+
+
 
 

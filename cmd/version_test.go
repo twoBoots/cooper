@@ -44,7 +44,18 @@ func TestExecute(t *testing.T) {
 	}
 }
 
+func TestDefaultVersionConstant(t *testing.T) {
+	if Version != "1.2.1" {
+		t.Errorf("expected default Version to be 1.2.1, got: %s", Version)
+	}
+}
+
 func TestVersionCmd_Text(t *testing.T) {
+	origVersion, origCommit, origDate := Version, Commit, Date
+	defer func() {
+		Version, Commit, Date = origVersion, origCommit, origDate
+	}()
+
 	Version = "1.0.0"
 	Commit = "abcdef"
 	Date = "2026-08-20"
@@ -67,6 +78,11 @@ func TestVersionCmd_Text(t *testing.T) {
 }
 
 func TestVersionCmd_JSON(t *testing.T) {
+	origVersion, origCommit, origDate := Version, Commit, Date
+	defer func() {
+		Version, Commit, Date = origVersion, origCommit, origDate
+	}()
+
 	Version = "1.0.0"
 	Commit = "abcdef"
 	Date = "2026-08-20"
